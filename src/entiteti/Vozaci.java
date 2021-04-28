@@ -11,14 +11,14 @@ public class Vozaci extends Korisnici {
     protected double plata;
     protected int brClanskeKarte;
     protected Automobil automobil;
-    protected ArrayList<Voznja> voznjeVozaca;
+    protected ArrayList<Voznja> voznjeVozaca; //List
 
     public Vozaci() {
         this.id = 0;
         this.plata = 0;
         this.brClanskeKarte = 0;
         this.automobil = new Automobil();
-        this.voznjeVozaca = new ArrayList<>(voznjeVozaca);
+        this.voznjeVozaca = new ArrayList<Voznja>();
     }
 
     public Vozaci(String korisnickoIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol, String telefon, TipKorisnika tipKorisnika, boolean izbrisan, int id, double plata, int brClanskeKarte, Automobil automobil, ArrayList<Voznja> voznjeVozaca) {
@@ -90,4 +90,5 @@ public class Vozaci extends Korisnici {
                 ", voznjeVozaca=" + voznjeVozaca +
                 '}';
     }
+
 }

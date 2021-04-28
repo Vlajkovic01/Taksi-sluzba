@@ -1,0 +1,3 @@
+A6|Audi|2015|NS100NS|100|PUTNICKI|false|false
+508|Peugeot|2013|NS105NS|105|PUTNICKI|false|false
+Ducato|Fiat|2010|NS110NS|110|KOMBI|false|false

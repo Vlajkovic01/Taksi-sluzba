@@ -3,17 +3,16 @@ package entiteti;
 import enumeracije.Pol;
 import enumeracije.TipKorisnika;
 
-import java.util.ArrayList;
-import java.util.Set;
+import java.util.*;
 
 public class Musterije extends Korisnici {
     protected int id;
-    protected ArrayList<Voznja> voznjeMusterije;
+    protected ArrayList<Voznja> voznjeMusterije; //List
 
     public Musterije() {
         super();
         this.id = 0;
-        this.voznjeMusterije = new ArrayList<>(voznjeMusterije) ;
+        this.voznjeMusterije = new ArrayList<Voznja>();
     }
 
     public Musterije(String korisnickoIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol, String telefon, TipKorisnika tipKorisnika, boolean izbrisan, int id, ArrayList<Voznja> voznjeMusterije) {

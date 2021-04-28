@@ -1,0 +1,2 @@
+budo|12345|Marko|Budesa|01010101|Svetog Save, Sabac|MUSKO|062323232|VOZAC|false|200|45000|1001|100|
+mare|321321|Marko|Veselinovic|02020202|Sabacka, Subotica|MUSKO|061121|VOZAC|false|201|45000|1002|105|

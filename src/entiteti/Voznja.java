@@ -2,6 +2,8 @@ package entiteti;
 
 import enumeracije.StatusVoznje;
 
+import java.util.GregorianCalendar;
+
 public class Voznja {
     protected int id;
     protected String datumIVremePorudzbine;
@@ -25,7 +27,7 @@ public class Voznja {
         this.statusVoznje = StatusVoznje.NA_CEKANJU;
     }
 
-    public Voznja(int id, String datumIVremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterije musterija, Vozaci vozac, int predjeniKm, double trajanjeVoznje, StatusVoznje statusVoznje) {
+    public Voznja(int id, String datumIVremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterije musterija, Vozaci vozac, double predjeniKm, double trajanjeVoznje, StatusVoznje statusVoznje) {
         this.id = id;
         this.datumIVremePorudzbine = datumIVremePorudzbine;
         this.adresaPolaska = adresaPolaska;

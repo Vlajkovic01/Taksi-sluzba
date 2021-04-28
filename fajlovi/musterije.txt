@@ -1,0 +1,2 @@
+nidzo|12345|Nikola|Panic|123123123|Nikole Tesle, Beograd|MUSKO|061123123|MUSTERIJA|false|101
+lule|1234|Luka|Lukic|11221122|Beogradska, Novi Sad|MUSKO|065665566|MUSTERIJA|false|102
