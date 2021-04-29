@@ -118,10 +118,10 @@ public class Voznja {
                 ", datumIVremePorudzbine='" + datumIVremePorudzbine + '\'' +
                 ", adresaPolaska='" + adresaPolaska + '\'' +
                 ", adresaDestinacije='" + adresaDestinacije + '\'' +
-                ", musterija=" + musterija +
-                ", vozac=" + vozac +
+                ", musterija=" + musterija.getId() +
+                ", vozac=" + vozac.getId() +
                 ", predjeniKm=" + predjeniKm +
-                ", trajanjeVoznje=" + trajanjeVoznje +
+                ", trajanjeVoznje=" + trajanjeVoznje + "min" +
                 ", statusVoznje=" + statusVoznje +
                 '}';
     }

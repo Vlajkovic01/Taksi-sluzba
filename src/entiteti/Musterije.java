@@ -39,19 +39,19 @@ public class Musterije extends Korisnici {
 
     @Override
     public String toString() {
-        return "Musterije{" +
-                "korisnickoIme='" + korisnickoIme + '\'' +
-                ", lozinka='" + lozinka + '\'' +
-                ", ime='" + ime + '\'' +
-                ", prezime='" + prezime + '\'' +
-                ", jmbg='" + jmbg + '\'' +
-                ", adresa='" + adresa + '\'' +
-                ", pol=" + pol +
-                ", telefon='" + telefon + '\'' +
-                ", tipKorisnika=" + tipKorisnika +
-                ", izbrisan=" + izbrisan +
-                ", id=" + id +
-                ", voznjeMusterije=" + voznjeMusterije +
-                '}';
+        String s = "Musterije{" + "korisnickoIme='" +this.korisnickoIme + '\'' +
+                ", lozinka='" + this.lozinka + '\'' +
+                ", ime='" + this.ime + '\'' +
+                ", prezime='" + this.prezime + '\'' +
+                ", jmbg='" + this.jmbg + '\'' +
+                ", adresa='" + this.adresa + '\'' +
+                ", pol=" + this.pol +
+                ", telefon='" + this.telefon + '\'' +
+                ", tipKorisnika=" + this.tipKorisnika + '\'' +
+                ", izbrisan=" + this.izbrisan + ", id=" + this.id + "}";
+        for (Voznja voznja: voznjeMusterije) {
+            s += voznja;
+        }
+        return s;
     }
 }

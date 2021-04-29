@@ -72,23 +72,24 @@ public class Vozaci extends Korisnici {
 
     @Override
     public String toString() {
-        return "Vozaci{" +
-                "korisnickoIme='" + korisnickoIme + '\'' +
-                ", lozinka='" + lozinka + '\'' +
-                ", ime='" + ime + '\'' +
-                ", prezime='" + prezime + '\'' +
-                ", jmbg='" + jmbg + '\'' +
-                ", adresa='" + adresa + '\'' +
-                ", pol=" + pol +
-                ", telefon='" + telefon + '\'' +
-                ", tipKorisnika=" + tipKorisnika +
-                ", izbrisan=" + izbrisan +
-                ", id=" + id +
-                ", plata=" + plata +
-                ", brClanskeKarte=" + brClanskeKarte +
-                ", automobil=" + automobil +
-                ", voznjeVozaca=" + voznjeVozaca +
-                '}';
+        String s = "Vozaci{" + "korisnickoIme='" +this.korisnickoIme + '\'' +
+                ", lozinka='" + this.lozinka + '\'' +
+                ", ime='" + this.ime + '\'' +
+                ", prezime='" + this.prezime + '\'' +
+                ", jmbg='" + this.jmbg + '\'' +
+                ", adresa='" + this.adresa + '\'' +
+                ", pol=" + this.pol +
+                ", telefon='" + this.telefon + '\'' +
+                ", tipKorisnika=" + this.tipKorisnika + '\'' +
+                ", izbrisan=" + this.izbrisan + '\'' +
+                ", id=" + this.id + '\'' +
+                ", plata=" + this.plata + '\'' +
+                ", brClanskeKarte=" + this.brClanskeKarte + '\'' +
+                ", automobil=" + this.automobil.getIdVozila();
+        for (Voznja voznja: voznjeVozaca) {
+            s += voznja;
+        }
+        return s;
     }
 
 }
