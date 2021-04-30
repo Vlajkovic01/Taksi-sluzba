@@ -382,12 +382,12 @@ public class Sluzba {
                 double trajanjeVoznje = Double.parseDouble(trajanjeVoznjeString);
                 StatusVoznje statusVoznje = StatusVoznje.valueOf(split[8]);
                 Voznja voznja = new Voznja(id,datumIVremePorudzbine,adresaPolaska,adresaDestinacije,musterija,vozac,predjeniKm,trajanjeVoznje,statusVoznje);
-//                if (vozac != null) {
-//                    vozac.getVoznjeVozaca().add(voznja);
-//                }
-//                if (musterija != null) {
-//                    musterija.getVoznjeMusterije().add(voznja);
-//                }
+                if (vozac != null) {
+                    vozac.getVoznjeVozaca().add(voznja);
+                }
+                if (musterija != null) {
+                    musterija.getVoznjeMusterije().add(voznja);
+                }
                 voznje.add(voznja);
             }
             reader.close();
