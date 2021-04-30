@@ -48,10 +48,10 @@ public class Musterije extends Korisnici {
                 ", pol=" + this.pol +
                 ", telefon='" + this.telefon + '\'' +
                 ", tipKorisnika=" + this.tipKorisnika + '\'' +
-                ", izbrisan=" + this.izbrisan + ", id=" + this.id + "}";
+                ", izbrisan=" + this.izbrisan + ", id=" + this.id + ", idVoznji=";
         for (Voznja voznja: voznjeMusterije) {
-            s += voznja;
+            s += voznja.getId() + ", ";
         }
-        return s;
+        return s + "}";
     }
 }

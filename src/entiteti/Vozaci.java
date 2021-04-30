@@ -85,11 +85,11 @@ public class Vozaci extends Korisnici {
                 ", id=" + this.id + '\'' +
                 ", plata=" + this.plata + '\'' +
                 ", brClanskeKarte=" + this.brClanskeKarte + '\'' +
-                ", automobil=" + this.automobil.getIdVozila();
+                ", automobil=" + this.automobil.getIdVozila() + ", idVoznji=";
         for (Voznja voznja: voznjeVozaca) {
-            s += voznja;
+            s += voznja.getId() + ", ";
         }
-        return s;
+        return s + "}";
     }
 
 }
