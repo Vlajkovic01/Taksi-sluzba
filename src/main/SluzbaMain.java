@@ -30,7 +30,7 @@ public class SluzbaMain {
 
         Musterije testMusterija = new Musterije("test", "test","test","test","test","test", Pol.MUSKO,"test", TipKorisnika.MUSTERIJA,false,5,new ArrayList<Voznja>());
 
-        Voznja testVoznja = new Voznja(10,"10-10-2010/22:00","test","test",testMusterija,testVozac,100,30, StatusVoznje.PRIHVACENA);
+        Voznja testVoznja = new Voznja(11,"10-10-2010/22:00","test","test",testMusterija,testVozac,100,30, StatusVoznje.PRIHVACENA);
 
         System.out.println("Snimanje novih podataka...\n");
 
