@@ -10,7 +10,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/miglayout-4.0-swing.jar!/" />
+          <root url="jar://$MODULE_DIR$/biblioteke/miglayout-4.0-swing.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
