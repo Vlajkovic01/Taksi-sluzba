@@ -1,11 +1,7 @@
 package main;
 
-import entiteti.*;
-import enumeracije.*;
 import gui.LoginProzor;
 import sluzba.Sluzba;
-
-import java.util.ArrayList;
 
 public class SluzbaMain {
     public static void main(String[] args) {
@@ -18,7 +14,5 @@ public class SluzbaMain {
 
         LoginProzor loginProzor = new LoginProzor(sluzba);
         loginProzor.setVisible(true);
-
-
     }
 }

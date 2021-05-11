@@ -427,6 +427,19 @@ public class Sluzba {
         return null;
     }
 
+    public Automobil pronadjiAutomobilString(String id) {
+        for (Automobil auto : automobili) {
+            try {
+                if(auto.getIdVozila() == Integer.parseInt(id)) {
+                    return auto;
+                }
+            }catch(NumberFormatException e) {
+
+            }
+        }
+        return null;
+    }
+
     public Musterije pronadjiMusteriju(int id) {
         for (Musterije musterija : musterije) {
             if(musterija.getId() == id ){
@@ -440,6 +453,18 @@ public class Sluzba {
         for (Vozaci vozac : vozaci) {
             if(vozac.getId() == id ){
                 return vozac;
+            }
+        }
+        return null;
+    }
+
+    public  Vozaci pronadjiVozacaString(String admin) {
+        for(Vozaci vozac:vozaci) {
+            try {
+                if(vozac.getId() == Integer.parseInt(admin)) {
+                    return  vozac;
+                }
+            }catch(NumberFormatException e) {
             }
         }
         return null;
@@ -566,6 +591,51 @@ public class Sluzba {
             this.voznje.add(voznja);
             System.out.println("Voznja uspesno dodata.");
         }
+    }
+    //----------------------------------Brisanje--------------------------------------//
+    public void obrisiAutomobil(Automobil automobil) {
+        automobil.setIzbrisan(true);
+        snimiAutomobile();
+        for(Vozaci vozac: vozaci) {
+            if(vozac.getAutomobil().getIdVozila() == automobil.getIdVozila()) {
+                vozac.setAutomobil(new Automobil());
+                snimiVozace();
+            }
+        }
+    }
+
+    public void obrisiVozaca(Vozaci vozac) {
+        vozac.setIzbrisan(true);
+        snimiVozace();
+        for(Automobil auto: automobili) {
+            if(vozac.getAutomobil().getIdVozila() == auto.getIdVozila()) {
+                auto.setSlobodan(true);
+                snimiAutomobile();
+            }
+        }
+    }
+    //----------------------------------Izmena--------------------------------------//
+    public void izmeniVozace(String korisnickoIme,String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol, String telefon,TipKorisnika tipKorisnika , boolean izbrisan, int id, double plata, int brClanskeKarte, Automobil automobil, ArrayList<Voznja> voznjeVozaca) {
+        for(Vozaci vozac: vozaci) {
+            if(vozac.getId() == id) {
+                vozac.setKorisnickoIme(korisnickoIme);
+                vozac.setLozinka(lozinka);
+                vozac.setIme(ime);
+                vozac.setPrezime(prezime);
+                vozac.setJmbg(jmbg);
+                vozac.setAdresa(adresa);
+                vozac.setPol(pol);
+                vozac.setTelefon(telefon);
+                vozac.setTipKorisnika(tipKorisnika);
+                vozac.setIzbrisan(izbrisan);
+                vozac.setId(id);
+                vozac.setPlata(plata);
+                vozac.setBrClanskeKarte(brClanskeKarte);
+                vozac.setAutomobil(automobil);
+                vozac.setVoznjeVozaca(voznjeVozaca);
+            }
+        }
+        snimiVozace();
     }
 }
 

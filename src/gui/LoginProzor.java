@@ -50,8 +50,8 @@ public class LoginProzor extends JFrame {
         add(btnPrijava, "split 2");
         add(btnOtkazi);
 
-        txtKorisnickoIme.setText("lule");
-        pfLozinka.setText("1234");      // izbrisati ovu liniju i prethodnu, sluzi samo da bi se brze logovali.
+        txtKorisnickoIme.setText("stefo");
+        pfLozinka.setText("12345");      // izbrisati ovu liniju i prethodnu, sluzi samo da bi se brze logovali.
         getRootPane().setDefaultButton(btnPrijava);
     }
 
@@ -81,20 +81,20 @@ public class LoginProzor extends JFrame {
                     }else if(prijavljenMusterija != null){
                         LoginProzor.this.dispose();
                         LoginProzor.this.setVisible(false);
-//                        GlavniProzor glavniProzor = new GlavniProzor(taxiSluzba, prijavljenMusterija);
-//                        glavniProzor.setVisible(true);
+                        GlavniProzor glavniProzor = new GlavniProzor(taxiSluzba, prijavljenMusterija);
+                        glavniProzor.setVisible(true);
                     }
                     else if(prijavljenVozac != null){
                         LoginProzor.this.dispose();
                         LoginProzor.this.setVisible(false);
-//                        GlavniProzor glavniProzor = new GlavniProzor(taxiSluzba, prijavljenVozac);
-//                        glavniProzor.setVisible(true);
+                        GlavniProzor glavniProzor = new GlavniProzor(taxiSluzba, prijavljenVozac);
+                        glavniProzor.setVisible(true);
                     }
                     else if(prijavljenDispecer != null){
                         LoginProzor.this.dispose();
                         LoginProzor.this.setVisible(false);
-//                        GlavniProzor glavniProzor = new GlavniProzor(taxiSluzba, prijavljenDispecer);
-//                        glavniProzor.setVisible(true);
+                        GlavniProzor glavniProzor = new GlavniProzor(taxiSluzba, prijavljenDispecer);
+                        glavniProzor.setVisible(true);
                     }
                 }
 
