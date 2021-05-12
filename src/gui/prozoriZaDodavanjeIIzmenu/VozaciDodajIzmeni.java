@@ -72,7 +72,9 @@ public class VozaciDodajIzmeni extends JFrame {
         cbUloga.setModel(new DefaultComboBoxModel<>(TipKorisnika.values()));
 
         for(Automobil auto: taxiSluzba.getAutomobili()) {
-            cbAutomobil.addItem(auto.getIdVozila());
+            if (auto.isSlobodan()) {
+                cbAutomobil.addItem(auto.getIdVozila());
+            }
         }
         if(this.vozac != null) {
             popuniPolja();
@@ -153,11 +155,14 @@ public class VozaciDodajIzmeni extends JFrame {
                         vozac.setBrClanskeKarte(brClanskeKarte);
                         vozac.setAutomobil(automobil);
                         vozac.setVoznjeVozaca(new ArrayList<Voznja>());
+                        vozac.getAutomobil().setSlobodan(false);
                         JOptionPane.showMessageDialog(null, "Izmene su sacuvane!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                     }
 
                     VozaciDodajIzmeni.this.dispose();
                     VozaciDodajIzmeni.this.setVisible(false);
+                    automobil.setSlobodan(false);
+                    taxiSluzba.snimiAutomobile();
                     taxiSluzba.snimiVozace();
                 }
             }

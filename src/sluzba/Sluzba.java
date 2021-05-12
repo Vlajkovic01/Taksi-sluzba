@@ -561,20 +561,23 @@ public class Sluzba {
         }
     }
 
+//    public void dodajVozaca(Vozaci vozac) {
+//        boolean postojiVozac = false;
+//        for (Vozaci v: vozaci) {
+//            if (v.getId() == vozac.getId() && !v.isIzbrisan()) {
+//                postojiVozac = true;
+//                break;
+//            }
+//        }
+//        if (postojiVozac) {
+//            System.out.println("Postoji vozac sa tim ID-jem.");
+//        }else {
+//            this.vozaci.add(vozac);
+//            System.out.println("Vozac uspesno dodat.");
+//        }
+//    }
     public void dodajVozaca(Vozaci vozac) {
-        boolean postojiVozac = false;
-        for (Vozaci v: vozaci) {
-            if (v.getId() == vozac.getId() && !v.isIzbrisan()) {
-                postojiVozac = true;
-                break;
-            }
-        }
-        if (postojiVozac) {
-            System.out.println("Postoji vozac sa tim ID-jem.");
-        }else {
-            this.vozaci.add(vozac);
-            System.out.println("Vozac uspesno dodat.");
-        }
+        this.vozaci.add(vozac);
     }
 
     public void dodajVoznju(Voznja voznja) {

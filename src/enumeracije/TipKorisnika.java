@@ -1,7 +1,7 @@
 package enumeracije;
 
 public enum TipKorisnika {
-    MUSTERIJA,
+    VOZAC,
     DISPECER,
-    VOZAC
+    MUSTERIJA
 }
