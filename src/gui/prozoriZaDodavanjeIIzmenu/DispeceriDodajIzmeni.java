@@ -1,8 +1,8 @@
 package gui.prozoriZaDodavanjeIIzmenu;
 
-import entiteti.Automobil;
+import entiteti.Dispeceri;
 import entiteti.Vozaci;
-import entiteti.Voznja;
+import enumeracije.Odeljenje;
 import enumeracije.Pol;
 import enumeracije.TipKorisnika;
 import net.miginfocom.swing.MigLayout;
@@ -11,9 +11,8 @@ import sluzba.Sluzba;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
-public class VozaciDodajIzmeni extends JFrame {
+public class DispeceriDodajIzmeni extends JFrame {
 
     private JLabel lblKorisnickoIme = new JLabel("Korisnicko Ime");
     private JTextField txtKorisnickoIme = new JTextField(10);
@@ -37,24 +36,24 @@ public class VozaciDodajIzmeni extends JFrame {
     private JTextField txtID = new JTextField(8);
     private JLabel lblPlata = new JLabel("Plata");
     private JTextField txtPlata = new JTextField(8);
-    private JLabel lblClanskaKarta = new JLabel("Clanska Karta");
-    private JTextField txtClanskaKarta = new JTextField(8);
-    private JLabel lblAutomobil = new JLabel("Automobil");
-    private JComboBox<Integer> cbAutomobil = new JComboBox<Integer>();
+    private JLabel lblBrojLinije = new JLabel("Broj Linije");
+    private JTextField txtBrojLinije = new JTextField(10);
+    private JLabel lblOdeljenje = new JLabel("Odeljenje");
+    private JComboBox<Odeljenje> cbOdeljenje = new JComboBox<Odeljenje>();
 
     private JButton btnOk = new JButton("OK");
     private JButton btnCancel = new JButton("Cancel");
 
-    private Vozaci vozac;
+    private Dispeceri dispecer;
     private Sluzba taxiSluzba;
 
-    public VozaciDodajIzmeni(Sluzba taxiSluzba, Vozaci vozac) {
+    public DispeceriDodajIzmeni(Sluzba taxiSluzba, Dispeceri dispecer) {
         this.taxiSluzba = taxiSluzba;
-        this.vozac = vozac;
-        if(this.vozac == null) {
-            setTitle("Dodavanje vozaca");
+        this.dispecer = dispecer;
+        if(this.dispecer == null) {
+            setTitle("Dodavanje dispecera");
         }else {
-            setTitle("Izmena podataka - " + this.vozac.getId());
+            setTitle("Izmena podataka - " + this.dispecer.getId());
 
         }
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -70,14 +69,9 @@ public class VozaciDodajIzmeni extends JFrame {
         setLayout(layout);
         cbPol.setModel(new DefaultComboBoxModel<>(Pol.values()));
         cbUloga.setModel(new DefaultComboBoxModel<>(TipKorisnika.values()));
+        cbOdeljenje.setModel(new DefaultComboBoxModel<>(Odeljenje.values()));
 
-        for(Automobil auto: taxiSluzba.getAutomobili()) {
-            if (auto.isSlobodan()) {
-                cbAutomobil.addItem(auto.getIdVozila());
-            }
-        }
-        cbAutomobil.addItem(vozac.getAutomobil().getIdVozila());
-        if(this.vozac != null) {
+        if(this.dispecer != null) {
             popuniPolja();
         }
 
@@ -103,15 +97,15 @@ public class VozaciDodajIzmeni extends JFrame {
         add(txtID);
         add(lblPlata);
         add(txtPlata);
-        add(lblClanskaKarta);
-        add(txtClanskaKarta);
-        add(lblAutomobil);
-        add(cbAutomobil);
+        add(lblBrojLinije);
+        add(txtBrojLinije);
+        add(lblOdeljenje);
+        add(cbOdeljenje);
 
         add(new JLabel());
         add(btnOk, "split");
         add(btnCancel);
-        if(vozac !=null) {
+        if(dispecer !=null) {
             txtID.setEditable(false);
         }
     }
@@ -133,38 +127,34 @@ public class VozaciDodajIzmeni extends JFrame {
                     TipKorisnika uloga = TipKorisnika.valueOf(cbUloga.getSelectedItem().toString());
                     int ID = Integer.parseInt(txtID.getText());
                     double plata  = Double.parseDouble(txtPlata.getText());
-                    int brClanskeKarte = Integer.parseInt(txtClanskaKarta.getText());
-                    Automobil automobil = taxiSluzba.pronadjiAutomobilString(cbAutomobil.getSelectedItem().toString());
+                    String brojLinije = txtBrojLinije.getText();
+                    Odeljenje odeljenje = Odeljenje.valueOf(cbOdeljenje.getSelectedItem().toString());
 
-                    if(vozac == null) {
-                        Vozaci vozac = new Vozaci(korisnickoIme,lozinka,ime,prezime,jmbg,adresa,pol,telefon,uloga,false,ID,plata,brClanskeKarte,automobil,new ArrayList<Voznja>());
-                        taxiSluzba.dodajVozaca(vozac);
-                        JOptionPane.showMessageDialog(null, "Uspesno kreiran vozac!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
+                    if(dispecer == null) {
+                        Dispeceri dispecer = new Dispeceri(korisnickoIme,lozinka,ime,prezime,jmbg,adresa,pol,telefon,uloga,false,ID,plata,brojLinije,odeljenje);
+                        taxiSluzba.dodajDispecera(dispecer);
+                        JOptionPane.showMessageDialog(null, "Uspesno kreiran dispecer!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                     }
                     else {
-                        vozac.setKorisnickoIme(korisnickoIme);
-                        vozac.setLozinka(lozinka);
-                        vozac.setIme(ime);
-                        vozac.setPrezime(prezime);
-                        vozac.setJmbg(jmbg);
-                        vozac.setAdresa(adresa);
-                        vozac.setPol(pol);
-                        vozac.setTelefon(telefon);
-                        vozac.setTipKorisnika(uloga);
-                        vozac.setId(ID);
-                        vozac.setPlata(plata);
-                        vozac.setBrClanskeKarte(brClanskeKarte);
-                        vozac.setAutomobil(automobil);
-                        vozac.setVoznjeVozaca(new ArrayList<Voznja>());
-                        vozac.getAutomobil().setSlobodan(true);
+                        dispecer.setKorisnickoIme(korisnickoIme);
+                        dispecer.setLozinka(lozinka);
+                        dispecer.setIme(ime);
+                        dispecer.setPrezime(prezime);
+                        dispecer.setJmbg(jmbg);
+                        dispecer.setAdresa(adresa);
+                        dispecer.setPol(pol);
+                        dispecer.setTelefon(telefon);
+                        dispecer.setTipKorisnika(uloga);
+                        dispecer.setId(ID);
+                        dispecer.setPlata(plata);
+                        dispecer.setBrLinije(brojLinije);
+                        dispecer.setOdeljenje(odeljenje);
                         JOptionPane.showMessageDialog(null, "Izmene su sacuvane!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                     }
 
-                    VozaciDodajIzmeni.this.dispose();
-                    VozaciDodajIzmeni.this.setVisible(false);
-                    automobil.setSlobodan(false);
-                    taxiSluzba.snimiAutomobile();
-                    taxiSluzba.snimiVozace();
+                    DispeceriDodajIzmeni.this.dispose();
+                    DispeceriDodajIzmeni.this.setVisible(false);
+                    taxiSluzba.snimiDispecere();
                 }
             }
         });
@@ -172,26 +162,26 @@ public class VozaciDodajIzmeni extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                VozaciDodajIzmeni.this.dispose();
-                VozaciDodajIzmeni.this.setVisible(false);
+                DispeceriDodajIzmeni.this.dispose();
+                DispeceriDodajIzmeni.this.setVisible(false);
             }
         });
     }
 
     private void popuniPolja() {
-        txtKorisnickoIme.setText(vozac.getKorisnickoIme());
-        txtLozinka.setText(vozac.getLozinka());
-        txtIme.setText(vozac.getIme());
-        txtPrezime.setText(vozac.getPrezime());
-        txtJmbg.setText(vozac.getJmbg());
-        txtAdresa.setText(vozac.getAdresa());
-        cbPol.setSelectedItem(vozac.getPol());
-        txtTelefon.setText(vozac.getTelefon());
-        cbUloga.setSelectedItem(vozac.getTipKorisnika());
-        txtID.setText(String.valueOf(vozac.getId()));
-        txtPlata.setText(String.valueOf(vozac.getPlata()));
-        txtClanskaKarta.setText(String.valueOf(vozac.getBrClanskeKarte()));
-        cbAutomobil.setSelectedItem(vozac.getAutomobil().getIdVozila());
+        txtKorisnickoIme.setText(dispecer.getKorisnickoIme());
+        txtLozinka.setText(dispecer.getLozinka());
+        txtIme.setText(dispecer.getIme());
+        txtPrezime.setText(dispecer.getPrezime());
+        txtJmbg.setText(dispecer.getJmbg());
+        txtAdresa.setText(dispecer.getAdresa());
+        cbPol.setSelectedItem(dispecer.getPol());
+        txtTelefon.setText(dispecer.getTelefon());
+        cbUloga.setSelectedItem(dispecer.getTipKorisnika());
+        txtID.setText(String.valueOf(dispecer.getId()));
+        txtPlata.setText(String.valueOf(dispecer.getPlata()));
+        txtBrojLinije.setText(dispecer.getBrLinije());
+        cbOdeljenje.setSelectedItem(dispecer.getOdeljenje());
     }
 
     private boolean validacija() {
@@ -207,11 +197,11 @@ public class VozaciDodajIzmeni extends JFrame {
             poruka += "Morate uneti ID\n";
             ispravno = false;
         }
-        else if(vozac == null) {
+        else if(dispecer == null) {
             String id = txtID.getText().trim();
             Vozaci pronadjen = taxiSluzba.pronadjiVozacaString(id);
             if(pronadjen != null) {
-                poruka += "- Vozac sa unetim ID vec postoji\n";
+                poruka += "- Dispecer sa unetim ID vec postoji\n";
                 ispravno = false;
             }
         }

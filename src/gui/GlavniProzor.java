@@ -4,6 +4,7 @@ import entiteti.Korisnici;
 import entiteti.Musterije;
 import entiteti.Vozaci;
 import enumeracije.TipKorisnika;
+import gui.prozoriZaPrikaz.DispeceriPrikaz;
 import gui.prozoriZaPrikaz.VozaciPrikaz;
 import sluzba.Sluzba;
 
@@ -14,8 +15,10 @@ import java.awt.event.ActionListener;
 public class GlavniProzor extends JFrame {
 
     private JMenuBar mainMenu = new JMenuBar();
-    private JMenu prikazMeni = new JMenu("Prikaz");
+    private JMenu prikazMeni = new JMenu("Pregled");
     private JMenuItem vozaciItem = new JMenuItem("Pregled vozaca");
+    private JMenuItem dispeceriItem = new JMenuItem("Pregled dispecera");
+    private JMenuItem voznjeItem = new JMenuItem("Pregled voznji");
 
     private Sluzba taxiSluzba;
     private Korisnici korisnik;
@@ -57,6 +60,8 @@ public class GlavniProzor extends JFrame {
             setJMenuBar(mainMenu);
             mainMenu.add(prikazMeni);
             prikazMeni.add(vozaciItem);
+            prikazMeni.add(dispeceriItem);
+            prikazMeni.add(voznjeItem);
         }
     }
 
@@ -69,7 +74,15 @@ public class GlavniProzor extends JFrame {
                 ap.setVisible(true);
             }
         });
-        //musterijeItem
-        //dispeceriItem
+
+        dispeceriItem.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DispeceriPrikaz dp = new DispeceriPrikaz(taxiSluzba);
+                dp.setVisible(true);
+            }
+        });
+        //voznjeItem
     }
 }

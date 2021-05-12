@@ -458,11 +458,22 @@ public class Sluzba {
         return null;
     }
 
-    public  Vozaci pronadjiVozacaString(String admin) {
+    public  Vozaci pronadjiVozacaString(String v) {
         for(Vozaci vozac:vozaci) {
             try {
-                if(vozac.getId() == Integer.parseInt(admin)) {
+                if(vozac.getId() == Integer.parseInt(v)) {
                     return  vozac;
+                }
+            }catch(NumberFormatException e) {
+            }
+        }
+        return null;
+    }
+    public  Dispeceri pronadjiDispeceraString(String d) {
+        for(Dispeceri dispecer:dispeceri) {
+            try {
+                if(dispecer.getId() == Integer.parseInt(d)) {
+                    return  dispecer;
                 }
             }catch(NumberFormatException e) {
             }
@@ -529,20 +540,23 @@ public class Sluzba {
         }
     }
 
+//    public void dodajDispecera(Dispeceri dispecer) {
+//        boolean postojiDispecer = false;
+//        for (Dispeceri d: dispeceri) {
+//            if (d.getId() == dispecer.getId() && !d.isIzbrisan()) {
+//                postojiDispecer = true;
+//                break;
+//            }
+//        }
+//        if (postojiDispecer) {
+//            System.out.println("Postoji dispecer sa tim ID-jem.");
+//        }else {
+//            this.dispeceri.add(dispecer);
+//            System.out.println("Dispecer uspesno dodat.");
+//        }
+//    }
     public void dodajDispecera(Dispeceri dispecer) {
-        boolean postojiDispecer = false;
-        for (Dispeceri d: dispeceri) {
-            if (d.getId() == dispecer.getId() && !d.isIzbrisan()) {
-                postojiDispecer = true;
-                break;
-            }
-        }
-        if (postojiDispecer) {
-            System.out.println("Postoji dispecer sa tim ID-jem.");
-        }else {
-            this.dispeceri.add(dispecer);
-            System.out.println("Dispecer uspesno dodat.");
-        }
+        this.dispeceri.add(dispecer);
     }
 
     public void dodajMusteriju(Musterije musterija) {
@@ -616,6 +630,11 @@ public class Sluzba {
                 snimiAutomobile();
             }
         }
+    }
+
+    public void obrisiDispecera(Dispeceri dispecer) {
+        dispecer.setIzbrisan(true);
+        snimiDispecere();
     }
     //----------------------------------Izmena--------------------------------------//
     public void izmeniVozace(String korisnickoIme,String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol, String telefon,TipKorisnika tipKorisnika , boolean izbrisan, int id, double plata, int brClanskeKarte, Automobil automobil, ArrayList<Voznja> voznjeVozaca) {
