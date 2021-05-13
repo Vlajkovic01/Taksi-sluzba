@@ -1,7 +1,6 @@
 package gui.prozoriZaDodavanjeIIzmenu;
 
 import entiteti.Dispeceri;
-import entiteti.Vozaci;
 import enumeracije.Odeljenje;
 import enumeracije.Pol;
 import enumeracije.TipKorisnika;
@@ -15,7 +14,7 @@ import java.awt.event.ActionListener;
 public class DispeceriDodajIzmeni extends JFrame {
 
     private JLabel lblKorisnickoIme = new JLabel("Korisnicko Ime");
-    private JTextField txtKorisnickoIme = new JTextField(10);
+    private JTextField txtKorisnickoIme = new JTextField(15);
     private JLabel lblLozinka = new JLabel("Lozinka");
     private JTextField txtLozinka = new JTextField(15);
     private JLabel lblIme = new JLabel("Ime");
@@ -23,7 +22,7 @@ public class DispeceriDodajIzmeni extends JFrame {
     private JLabel lblPrezime = new JLabel("Prezime");
     private JTextField txtPrezime= new JTextField(15);
     private JLabel lblJmbg = new JLabel("JMBG");
-    private JTextField txtJmbg = new JTextField(13);
+    private JTextField txtJmbg = new JTextField(15);
     private JLabel lblAdresa = new JLabel("Adresa");
     private JTextField txtAdresa = new JTextField(15);
     private JLabel lblPol = new JLabel("Pol");
@@ -33,11 +32,11 @@ public class DispeceriDodajIzmeni extends JFrame {
     private JLabel lblUloga = new JLabel("Uloga");
     private JComboBox<TipKorisnika> cbUloga = new JComboBox<TipKorisnika>();
     private JLabel lblID = new JLabel("ID");
-    private JTextField txtID = new JTextField(8);
+    private JTextField txtID = new JTextField(15);
     private JLabel lblPlata = new JLabel("Plata");
-    private JTextField txtPlata = new JTextField(8);
+    private JTextField txtPlata = new JTextField(15);
     private JLabel lblBrojLinije = new JLabel("Broj Linije");
-    private JTextField txtBrojLinije = new JTextField(10);
+    private JTextField txtBrojLinije = new JTextField(15);
     private JLabel lblOdeljenje = new JLabel("Odeljenje");
     private JComboBox<Odeljenje> cbOdeljenje = new JComboBox<Odeljenje>();
 
@@ -69,6 +68,7 @@ public class DispeceriDodajIzmeni extends JFrame {
         setLayout(layout);
         cbPol.setModel(new DefaultComboBoxModel<>(Pol.values()));
         cbUloga.setModel(new DefaultComboBoxModel<>(TipKorisnika.values()));
+        cbUloga.setSelectedIndex(1);
         cbOdeljenje.setModel(new DefaultComboBoxModel<>(Odeljenje.values()));
 
         if(this.dispecer != null) {
@@ -199,7 +199,7 @@ public class DispeceriDodajIzmeni extends JFrame {
         }
         else if(dispecer == null) {
             String id = txtID.getText().trim();
-            Vozaci pronadjen = taxiSluzba.pronadjiVozacaString(id);
+            Dispeceri pronadjen = taxiSluzba.pronadjiDispeceraString(id);
             if(pronadjen != null) {
                 poruka += "- Dispecer sa unetim ID vec postoji\n";
                 ispravno = false;

@@ -13,6 +13,6 @@ public class SluzbaMain {
         sluzba.ucitajVoznje();
 
         LoginProzor loginProzor = new LoginProzor(sluzba);
-        loginProzor.setVisible(true);
+        loginProzor.setVisible(true); //postavljeni su korIme i lozinka radi brzeg logovanja i testiranja, u loginProzor fajlu izmeniti liniju 49 i 50
     }
 }

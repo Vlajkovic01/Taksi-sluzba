@@ -4,15 +4,11 @@ import enumeracije.Odeljenje;
 import enumeracije.Pol;
 import enumeracije.TipKorisnika;
 
-import java.io.*;
-import java.util.ArrayList;
-
 public class Dispeceri extends Korisnici {
     private int id;
     private double plata;
     private String brLinije;
     private Odeljenje odeljenje;
-//    private ArrayList<Dispeceri> dispeceri;
 
     public Dispeceri() {
         this.id = 0;

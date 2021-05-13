@@ -2,8 +2,6 @@ package entiteti;
 
 import enumeracije.TipVozila;
 
-import java.util.GregorianCalendar;
-
 public class Automobil {
     protected int idVozila;
     protected String model;

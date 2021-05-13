@@ -381,7 +381,8 @@ public class Sluzba {
                 String trajanjeVoznjeString = split[7];
                 double trajanjeVoznje = Double.parseDouble(trajanjeVoznjeString);
                 StatusVoznje statusVoznje = StatusVoznje.valueOf(split[8]);
-                Voznja voznja = new Voznja(id,datumIVremePorudzbine,adresaPolaska,adresaDestinacije,musterija,vozac,predjeniKm,trajanjeVoznje,statusVoznje);
+                boolean izbrisana = Boolean.parseBoolean(split[9]);
+                Voznja voznja = new Voznja(id,datumIVremePorudzbine,adresaPolaska,adresaDestinacije,musterija,vozac,predjeniKm,trajanjeVoznje,statusVoznje,izbrisana);
                 if (vozac != null) {
                     vozac.getVoznjeVozaca().add(voznja);
                 }
@@ -406,7 +407,7 @@ public class Sluzba {
                         + voznja.getAdresaPolaska() + "|" + voznja.getAdresaDestinacije() + "|"
                         + voznja.getMusterija().getId() + "|" + voznja.getVozac().getId() + "|"
                         + voznja.getPredjeniKm() + "|" + voznja.getTrajanjeVoznje() + "|"
-                        + voznja.getStatusVoznje() + "\n";
+                        + voznja.getStatusVoznje() + "|" + voznja.isIzbrisana() + "\n";
             }
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
             writer.write(content);
@@ -449,6 +450,18 @@ public class Sluzba {
         return null;
     }
 
+    public  Musterije pronadjiMusterijuString(String v) {
+        for(Musterije musterija:musterije) {
+            try {
+                if(musterija.getId() == Integer.parseInt(v)) {
+                    return musterija;
+                }
+            }catch(NumberFormatException e) {
+            }
+        }
+        return null;
+    }
+
     public Vozaci pronadjiVozaca(int id) {
         for (Vozaci vozac : vozaci) {
             if(vozac.getId() == id ){
@@ -469,6 +482,7 @@ public class Sluzba {
         }
         return null;
     }
+
     public  Dispeceri pronadjiDispeceraString(String d) {
         for(Dispeceri dispecer:dispeceri) {
             try {
@@ -485,6 +499,18 @@ public class Sluzba {
         for (Voznja voznja : voznje) {
             if(voznja.getId() == id ){
                 return voznja;
+            }
+        }
+        return null;
+    }
+
+    public  Voznja pronadjiVoznjuString(String v) {
+        for(Voznja voznja:voznje) {
+            try {
+                if(voznja.getId() == Integer.parseInt(v)) {
+                    return  voznja;
+                }
+            }catch(NumberFormatException e) {
             }
         }
         return null;
@@ -522,104 +548,21 @@ public class Sluzba {
         return null;
     }
 
-    //-------------------------------Dodavanje-Provera--------------------------------------//
+    //-------------------------------Dodavanje--------------------------------------//
 
-    public void dodajAutomobil(Automobil automobil) {
-        boolean postojiAutomobil = false;
-        for (Automobil auto: automobili) {
-            if (auto.getIdVozila() == automobil.getIdVozila() && !auto.isIzbrisan()) {
-                postojiAutomobil = true;
-                break;
-            }
-        }
-        if (postojiAutomobil) {
-            System.out.println("Postoji automobil sa tim ID-jem.");
-        }else {
-            this.automobili.add(automobil);
-            System.out.println("Automobil uspesno dodat.");
-        }
-    }
-
-//    public void dodajDispecera(Dispeceri dispecer) {
-//        boolean postojiDispecer = false;
-//        for (Dispeceri d: dispeceri) {
-//            if (d.getId() == dispecer.getId() && !d.isIzbrisan()) {
-//                postojiDispecer = true;
-//                break;
-//            }
-//        }
-//        if (postojiDispecer) {
-//            System.out.println("Postoji dispecer sa tim ID-jem.");
-//        }else {
-//            this.dispeceri.add(dispecer);
-//            System.out.println("Dispecer uspesno dodat.");
-//        }
-//    }
     public void dodajDispecera(Dispeceri dispecer) {
         this.dispeceri.add(dispecer);
     }
 
-    public void dodajMusteriju(Musterije musterija) {
-        boolean postojiMusterija = false;
-        for (Musterije m: musterije) {
-            if (m.getId() == musterija.getId() && !m.isIzbrisan()) {
-                postojiMusterija = true;
-                break;
-            }
-        }
-        if (postojiMusterija) {
-            System.out.println("Postoji musterija sa tim ID-jem.");
-        }else {
-            this.musterije.add(musterija);
-            System.out.println("Musterija uspesno dodata.");
-        }
-    }
-
-//    public void dodajVozaca(Vozaci vozac) {
-//        boolean postojiVozac = false;
-//        for (Vozaci v: vozaci) {
-//            if (v.getId() == vozac.getId() && !v.isIzbrisan()) {
-//                postojiVozac = true;
-//                break;
-//            }
-//        }
-//        if (postojiVozac) {
-//            System.out.println("Postoji vozac sa tim ID-jem.");
-//        }else {
-//            this.vozaci.add(vozac);
-//            System.out.println("Vozac uspesno dodat.");
-//        }
-//    }
     public void dodajVozaca(Vozaci vozac) {
         this.vozaci.add(vozac);
     }
 
     public void dodajVoznju(Voznja voznja) {
-        boolean postojiVoznja = false;
-        for (Voznja v: voznje) {
-            if (v.getId() == voznja.getId()) {
-                postojiVoznja = true;
-                break;
-            }
-        }
-        if (postojiVoznja) {
-            System.out.println("Postoji voznja sa tim ID-jem.");
-        }else {
-            this.voznje.add(voznja);
-            System.out.println("Voznja uspesno dodata.");
-        }
+        this.voznje.add(voznja);
     }
+
     //----------------------------------Brisanje--------------------------------------//
-    public void obrisiAutomobil(Automobil automobil) {
-        automobil.setIzbrisan(true);
-        snimiAutomobile();
-        for(Vozaci vozac: vozaci) {
-            if(vozac.getAutomobil().getIdVozila() == automobil.getIdVozila()) {
-                vozac.setAutomobil(new Automobil());
-                snimiVozace();
-            }
-        }
-    }
 
     public void obrisiVozaca(Vozaci vozac) {
         vozac.setIzbrisan(true);
@@ -636,28 +579,10 @@ public class Sluzba {
         dispecer.setIzbrisan(true);
         snimiDispecere();
     }
-    //----------------------------------Izmena--------------------------------------//
-    public void izmeniVozace(String korisnickoIme,String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol, String telefon,TipKorisnika tipKorisnika , boolean izbrisan, int id, double plata, int brClanskeKarte, Automobil automobil, ArrayList<Voznja> voznjeVozaca) {
-        for(Vozaci vozac: vozaci) {
-            if(vozac.getId() == id) {
-                vozac.setKorisnickoIme(korisnickoIme);
-                vozac.setLozinka(lozinka);
-                vozac.setIme(ime);
-                vozac.setPrezime(prezime);
-                vozac.setJmbg(jmbg);
-                vozac.setAdresa(adresa);
-                vozac.setPol(pol);
-                vozac.setTelefon(telefon);
-                vozac.setTipKorisnika(tipKorisnika);
-                vozac.setIzbrisan(izbrisan);
-                vozac.setId(id);
-                vozac.setPlata(plata);
-                vozac.setBrClanskeKarte(brClanskeKarte);
-                vozac.setAutomobil(automobil);
-                vozac.setVoznjeVozaca(voznjeVozaca);
-            }
-        }
-        snimiVozace();
+
+    public void obrisiVoznju(Voznja voznja) {
+        voznja.setIzbrisana(true);
+        snimiVoznje();
     }
 }
 

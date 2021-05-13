@@ -2,8 +2,6 @@ package entiteti;
 
 import enumeracije.StatusVoznje;
 
-import java.util.GregorianCalendar;
-
 public class Voznja {
     protected int id;
     protected String datumIVremePorudzbine;
@@ -14,6 +12,7 @@ public class Voznja {
     protected double predjeniKm;
     protected double trajanjeVoznje;
     protected StatusVoznje statusVoznje;
+    protected boolean izbrisana;
 
     public Voznja() {
         this.id = 0;
@@ -25,9 +24,10 @@ public class Voznja {
         this.predjeniKm = 0;
         this.trajanjeVoznje = 0;
         this.statusVoznje = StatusVoznje.NA_CEKANJU;
+        this.izbrisana = false;
     }
 
-    public Voznja(int id, String datumIVremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterije musterija, Vozaci vozac, double predjeniKm, double trajanjeVoznje, StatusVoznje statusVoznje) {
+    public Voznja(int id, String datumIVremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterije musterija, Vozaci vozac, double predjeniKm, double trajanjeVoznje, StatusVoznje statusVoznje, boolean izbrisana) {
         this.id = id;
         this.datumIVremePorudzbine = datumIVremePorudzbine;
         this.adresaPolaska = adresaPolaska;
@@ -37,6 +37,7 @@ public class Voznja {
         this.predjeniKm = predjeniKm;
         this.trajanjeVoznje = trajanjeVoznje;
         this.statusVoznje = statusVoznje;
+        this.izbrisana = izbrisana;
     }
 
     public int getId() {
@@ -111,6 +112,14 @@ public class Voznja {
         this.statusVoznje = statusVoznje;
     }
 
+    public boolean isIzbrisana() {
+        return izbrisana;
+    }
+
+    public void setIzbrisana(boolean izbrisana) {
+        this.izbrisana = izbrisana;
+    }
+
     @Override
     public String toString() {
         return "Voznja{" +
@@ -122,7 +131,7 @@ public class Voznja {
                 ", vozac=" + vozac.getId() +
                 ", predjeniKm=" + predjeniKm +
                 ", trajanjeVoznje=" + trajanjeVoznje + "min" +
-                ", statusVoznje=" + statusVoznje +
+                ", statusVoznje=" + statusVoznje + ", izbrisana=" + izbrisana +
                 '}';
     }
 }

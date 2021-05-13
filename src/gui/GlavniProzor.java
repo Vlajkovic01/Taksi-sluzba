@@ -6,6 +6,7 @@ import entiteti.Vozaci;
 import enumeracije.TipKorisnika;
 import gui.prozoriZaPrikaz.DispeceriPrikaz;
 import gui.prozoriZaPrikaz.VozaciPrikaz;
+import gui.prozoriZaPrikaz.VoznjePrikaz;
 import sluzba.Sluzba;
 
 import javax.swing.*;
@@ -15,10 +16,23 @@ import java.awt.event.ActionListener;
 public class GlavniProzor extends JFrame {
 
     private JMenuBar mainMenu = new JMenuBar();
-    private JMenu prikazMeni = new JMenu("Pregled");
+    private JMenu meniZaposleni = new JMenu("Zaposleni");
+    private JMenu meniVoznje = new JMenu("Voznje");
+    private JMenu meniPretraga = new JMenu("Pretraga vozaca");
+    private JMenu meniIzvestaj = new JMenu("Izvestaj");
+    private JMenu meniNarucivanjeVoznje = new JMenu("Narucivanje voznje");
+    private JMenu meniAukcija = new JMenu("Aukcija");
     private JMenuItem vozaciItem = new JMenuItem("Pregled vozaca");
     private JMenuItem dispeceriItem = new JMenuItem("Pregled dispecera");
     private JMenuItem voznjeItem = new JMenuItem("Pregled voznji");
+    private JMenuItem dodeljivanjeVoznjeItem = new JMenuItem("Dodeljivanje voznje");
+    private JMenuItem dnevniIzvestajItem = new JMenuItem("Dnevni");
+    private JMenuItem nedeljniIzvestajItem = new JMenuItem("Nedeljni");
+    private JMenuItem mesecniIzvestajItem = new JMenuItem("Mesecni");
+    private JMenuItem godisnjiIzvestajItem = new JMenuItem("Godisnji");
+    private JMenuItem narucivanjeTelefonomItem = new JMenuItem("Telefonom");
+    private JMenuItem dodeljeneVoznjeItem = new JMenuItem("Dodeljene voznje");
+
 
     private Sluzba taxiSluzba;
     private Korisnici korisnik;
@@ -40,7 +54,7 @@ public class GlavniProzor extends JFrame {
         }
 
         setTitle("Taxi Sluzba(Prijavljeni ste kao "+ uloga +": " + korisnik.getKorisnickoIme() + ")");
-        setSize(500,500);
+        setSize(500,400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         initGUI();
@@ -50,18 +64,29 @@ public class GlavniProzor extends JFrame {
     private void initGUI() {
         if(uloga.equals(TipKorisnika.MUSTERIJA)) {
             setJMenuBar(mainMenu);
-            mainMenu.add(prikazMeni);
+            mainMenu.add(meniNarucivanjeVoznje);
+            meniNarucivanjeVoznje.add(narucivanjeTelefonomItem);
         }
         else if(uloga.equals(TipKorisnika.VOZAC)) {
             setJMenuBar(mainMenu);
-            mainMenu.add(prikazMeni);
+            mainMenu.add(meniVoznje);
+            mainMenu.add(meniAukcija);
+            meniVoznje.add(dodeljeneVoznjeItem);
         }
         else{
             setJMenuBar(mainMenu);
-            mainMenu.add(prikazMeni);
-            prikazMeni.add(vozaciItem);
-            prikazMeni.add(dispeceriItem);
-            prikazMeni.add(voznjeItem);
+            mainMenu.add(meniZaposleni);
+            mainMenu.add(meniVoznje);
+            mainMenu.add(meniIzvestaj);
+            mainMenu.add(meniPretraga);
+            meniZaposleni.add(vozaciItem);
+            meniZaposleni.add(dispeceriItem);
+            meniVoznje.add(voznjeItem);
+            meniVoznje.add(dodeljivanjeVoznjeItem);
+            meniIzvestaj.add(dnevniIzvestajItem);
+            meniIzvestaj.add(nedeljniIzvestajItem);
+            meniIzvestaj.add(mesecniIzvestajItem);
+            meniIzvestaj.add(godisnjiIzvestajItem);
         }
     }
 
@@ -83,6 +108,14 @@ public class GlavniProzor extends JFrame {
                 dp.setVisible(true);
             }
         });
-        //voznjeItem
+
+        voznjeItem.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VoznjePrikaz vp = new VoznjePrikaz(taxiSluzba);
+                vp.setVisible(true);
+            }
+        });
     }
 }

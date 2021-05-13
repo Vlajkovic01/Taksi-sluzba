@@ -7,7 +7,7 @@ import java.util.*;
 
 public class Musterije extends Korisnici {
     protected int id;
-    protected ArrayList<Voznja> voznjeMusterije; //List
+    protected ArrayList<Voznja> voznjeMusterije;
 
     public Musterije() {
         super();

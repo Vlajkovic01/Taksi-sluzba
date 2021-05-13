@@ -22,10 +22,6 @@ public class LoginProzor extends JFrame {
     private JButton btnOtkazi = new JButton("Otkazi");
 
     private Sluzba taxiSluzba;
-    private Vozaci vozac;
-    private Musterije musterija;
-    private Dispeceri dispecer;
-    private Voznja voznja;
 
     public LoginProzor(Sluzba taxiSluzba) {
         this.taxiSluzba = taxiSluzba;

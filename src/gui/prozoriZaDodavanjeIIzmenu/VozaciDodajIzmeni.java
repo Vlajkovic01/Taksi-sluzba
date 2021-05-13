@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class VozaciDodajIzmeni extends JFrame {
 
     private JLabel lblKorisnickoIme = new JLabel("Korisnicko Ime");
-    private JTextField txtKorisnickoIme = new JTextField(10);
+    private JTextField txtKorisnickoIme = new JTextField(15);
     private JLabel lblLozinka = new JLabel("Lozinka");
     private JTextField txtLozinka = new JTextField(15);
     private JLabel lblIme = new JLabel("Ime");
@@ -24,7 +24,7 @@ public class VozaciDodajIzmeni extends JFrame {
     private JLabel lblPrezime = new JLabel("Prezime");
     private JTextField txtPrezime= new JTextField(15);
     private JLabel lblJmbg = new JLabel("JMBG");
-    private JTextField txtJmbg = new JTextField(13);
+    private JTextField txtJmbg = new JTextField(15);
     private JLabel lblAdresa = new JLabel("Adresa");
     private JTextField txtAdresa = new JTextField(15);
     private JLabel lblPol = new JLabel("Pol");
@@ -34,11 +34,11 @@ public class VozaciDodajIzmeni extends JFrame {
     private JLabel lblUloga = new JLabel("Uloga");
     private JComboBox<TipKorisnika> cbUloga = new JComboBox<TipKorisnika>();
     private JLabel lblID = new JLabel("ID");
-    private JTextField txtID = new JTextField(8);
+    private JTextField txtID = new JTextField(15);
     private JLabel lblPlata = new JLabel("Plata");
-    private JTextField txtPlata = new JTextField(8);
+    private JTextField txtPlata = new JTextField(15);
     private JLabel lblClanskaKarta = new JLabel("Clanska Karta");
-    private JTextField txtClanskaKarta = new JTextField(8);
+    private JTextField txtClanskaKarta = new JTextField(15);
     private JLabel lblAutomobil = new JLabel("Automobil");
     private JComboBox<Integer> cbAutomobil = new JComboBox<Integer>();
 
@@ -70,15 +70,17 @@ public class VozaciDodajIzmeni extends JFrame {
         setLayout(layout);
         cbPol.setModel(new DefaultComboBoxModel<>(Pol.values()));
         cbUloga.setModel(new DefaultComboBoxModel<>(TipKorisnika.values()));
+        cbUloga.setSelectedIndex(0);
 
         for(Automobil auto: taxiSluzba.getAutomobili()) {
             if (auto.isSlobodan()) {
                 cbAutomobil.addItem(auto.getIdVozila());
             }
         }
-        cbAutomobil.addItem(vozac.getAutomobil().getIdVozila());
         if(this.vozac != null) {
             popuniPolja();
+            cbAutomobil.addItem(vozac.getAutomobil().getIdVozila());
+            cbAutomobil.setSelectedItem(vozac.getAutomobil().getIdVozila());
         }
 
         add(lblKorisnickoIme);
@@ -156,13 +158,12 @@ public class VozaciDodajIzmeni extends JFrame {
                         vozac.setBrClanskeKarte(brClanskeKarte);
                         vozac.setAutomobil(automobil);
                         vozac.setVoznjeVozaca(new ArrayList<Voznja>());
-                        vozac.getAutomobil().setSlobodan(true);
                         JOptionPane.showMessageDialog(null, "Izmene su sacuvane!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                     }
 
                     VozaciDodajIzmeni.this.dispose();
                     VozaciDodajIzmeni.this.setVisible(false);
-                    automobil.setSlobodan(false);
+                    vozac.getAutomobil().setSlobodan(false);
                     taxiSluzba.snimiAutomobile();
                     taxiSluzba.snimiVozace();
                 }

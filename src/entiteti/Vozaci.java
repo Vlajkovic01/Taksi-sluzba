@@ -4,14 +4,13 @@ import enumeracije.Pol;
 import enumeracije.TipKorisnika;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 public class Vozaci extends Korisnici {
     protected int id;
     protected double plata;
     protected int brClanskeKarte;
     protected Automobil automobil;
-    protected ArrayList<Voznja> voznjeVozaca; //List
+    protected ArrayList<Voznja> voznjeVozaca;
 
     public Vozaci() {
         this.id = 0;
