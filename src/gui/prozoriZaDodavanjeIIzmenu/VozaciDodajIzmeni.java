@@ -113,9 +113,8 @@ public class VozaciDodajIzmeni extends JFrame {
         add(new JLabel());
         add(btnOk, "split");
         add(btnCancel);
-        if(vozac !=null) {
-            txtID.setEditable(false);
-        }
+        cbUloga.setEnabled(false);
+        txtID.setText(String.valueOf(taxiSluzba.generisanjeIDVozaca()));
     }
 
     private void initActions() {
@@ -133,7 +132,7 @@ public class VozaciDodajIzmeni extends JFrame {
                     Pol pol = Pol.valueOf(cbPol.getSelectedItem().toString());
                     String  telefon = txtTelefon.getText();
                     TipKorisnika uloga = TipKorisnika.valueOf(cbUloga.getSelectedItem().toString());
-                    int ID = Integer.parseInt(txtID.getText());
+                    int ID = taxiSluzba.generisanjeIDVozaca();
                     double plata  = Double.parseDouble(txtPlata.getText());
                     int brClanskeKarte = Integer.parseInt(txtClanskaKarta.getText());
                     Automobil automobil = taxiSluzba.pronadjiAutomobilString(cbAutomobil.getSelectedItem().toString());
@@ -160,7 +159,6 @@ public class VozaciDodajIzmeni extends JFrame {
                         vozac.setVoznjeVozaca(new ArrayList<Voznja>());
                         JOptionPane.showMessageDialog(null, "Izmene su sacuvane!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                     }
-
                     VozaciDodajIzmeni.this.dispose();
                     VozaciDodajIzmeni.this.setVisible(false);
                     vozac.getAutomobil().setSlobodan(false);

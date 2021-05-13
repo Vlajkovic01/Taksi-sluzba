@@ -1,6 +1,7 @@
-A6|Audi|2015|NS100NS|100|PUTNICKI|false|false
-508|Peugeot|2013|NS105NS|105|PUTNICKI|false|false
-Ducato|Fiat|2010|NS110NS|110|KOMBI|false|false
-520|BMW|2018|NS120NS|120|PUTNICKI|false|true
-Boxer|Peugeot|2008|NS130NS|130|KOMBI|false|true
-Mondeo|Ford|2007|NS140NS|140|PUTNICKI|false|true
+||0||0|PUTNICKI|false|false
+A6|Audi|2015|NS100NS|1|PUTNICKI|false|false
+508|Peugeot|2013|NS105NS|2|PUTNICKI|false|false
+Ducato|Fiat|2010|NS110NS|3|KOMBI|false|false
+520|BMW|2018|NS120NS|4|PUTNICKI|false|true
+Boxer|Peugeot|2008|NS130NS|5|KOMBI|false|true
+Mondeo|Ford|2007|NS140NS|6|PUTNICKI|false|true

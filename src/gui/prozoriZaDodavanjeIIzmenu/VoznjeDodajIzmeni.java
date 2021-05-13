@@ -95,9 +95,7 @@ public class VoznjeDodajIzmeni extends JFrame {
         add(new JLabel());
         add(btnOk, "split");
         add(btnCancel);
-        if(voznja !=null) {
-            txtID.setEditable(false);
-        }
+        txtID.setText(String.valueOf(taxiSluzba.generisanjeIDVoznje()));
     }
 
     private void initActions() {
@@ -106,7 +104,7 @@ public class VoznjeDodajIzmeni extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(validacija()) {
-                    int ID = Integer.parseInt(txtID.getText());
+                    int ID = taxiSluzba.generisanjeIDVoznje();
                     String vremePorudzbine = txtVremePorudzbine.getText();
                     String adresaPolaska = txtAdresaPolaska.getText();
                     String adresaDestinacije = txtAdresaDestinacije.getText();

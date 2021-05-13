@@ -105,9 +105,8 @@ public class DispeceriDodajIzmeni extends JFrame {
         add(new JLabel());
         add(btnOk, "split");
         add(btnCancel);
-        if(dispecer !=null) {
-            txtID.setEditable(false);
-        }
+        cbUloga.setEnabled(false);
+        txtID.setText(String.valueOf(taxiSluzba.generisanjeIDDispecera()));
     }
 
     private void initActions() {
@@ -125,7 +124,7 @@ public class DispeceriDodajIzmeni extends JFrame {
                     Pol pol = Pol.valueOf(cbPol.getSelectedItem().toString());
                     String  telefon = txtTelefon.getText();
                     TipKorisnika uloga = TipKorisnika.valueOf(cbUloga.getSelectedItem().toString());
-                    int ID = Integer.parseInt(txtID.getText());
+                    int ID = taxiSluzba.generisanjeIDDispecera();
                     double plata  = Double.parseDouble(txtPlata.getText());
                     String brojLinije = txtBrojLinije.getText();
                     Odeljenje odeljenje = Odeljenje.valueOf(cbOdeljenje.getSelectedItem().toString());

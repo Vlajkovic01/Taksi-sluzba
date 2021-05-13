@@ -4,6 +4,7 @@ import entiteti.Korisnici;
 import entiteti.Musterije;
 import entiteti.Vozaci;
 import enumeracije.TipKorisnika;
+import gui.prozoriZaNarucivanje.NarucivanjeTelefonomProzor;
 import gui.prozoriZaPrikaz.DispeceriPrikaz;
 import gui.prozoriZaPrikaz.VozaciPrikaz;
 import gui.prozoriZaPrikaz.VoznjePrikaz;
@@ -115,6 +116,15 @@ public class GlavniProzor extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 VoznjePrikaz vp = new VoznjePrikaz(taxiSluzba);
                 vp.setVisible(true);
+            }
+        });
+
+        narucivanjeTelefonomItem.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                NarucivanjeTelefonomProzor nt = new NarucivanjeTelefonomProzor(taxiSluzba, (Musterije) korisnik);
+                nt.setVisible(true);
             }
         });
     }

@@ -584,5 +584,31 @@ public class Sluzba {
         voznja.setIzbrisana(true);
         snimiVoznje();
     }
+
+    //----------------------------------Generisanje ID--------------------------------------//
+
+    public int generisanjeIDVoznje() {
+        int counter = 1;
+        for (Voznja voznja: voznje ) {
+            counter++;
+        }
+        return counter;
+    };
+
+    public int generisanjeIDVozaca() {
+        int counter = 0;
+        for (Vozaci vozac: vozaci ) {
+            counter++;
+        }
+        return counter;
+    };
+
+    public int generisanjeIDDispecera() {
+        int counter = 1;
+        for (Dispeceri dispecer: dispeceri ) {
+            counter++;
+        }
+        return counter;
+    };
 }
 
