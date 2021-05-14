@@ -25,7 +25,7 @@ public class VozaciPrikaz extends JFrame {
     public VozaciPrikaz(Sluzba taxiSluzba) {
         this.taxiSluzba = taxiSluzba;
         setTitle("Vozaci prikaz");
-        setSize(500,300);
+        setSize(900,300);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         InitGUI();

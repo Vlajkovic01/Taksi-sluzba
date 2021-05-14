@@ -25,7 +25,7 @@ public class VoznjePrikaz extends JFrame {
     public VoznjePrikaz(Sluzba taxiSluzba) {
         this.taxiSluzba = taxiSluzba;
         setTitle("Voznje prikaz");
-        setSize(500,300);
+        setSize(900,300);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         InitGUI();
@@ -52,7 +52,7 @@ public class VoznjePrikaz extends JFrame {
             }
         }
 
-        String[] zaglavlja = new String[] {"ID", "Vreme porudzbine", "Adresa polaska", "Adresa destinacije", "Musterija", "Vozac", "Predjeni km", "Trajanje(min)", "Status", "Izbrisana"};
+        String[] zaglavlja = new String[] {"ID", "Vreme porudzbine", "Adresa polaska", "Adresa destinacije", "Musterija", "Vozac", "Predjeni km", "Trajanje(min)", "Status", "Poruceno", "Izbrisana"};
         Object[][] sadrzaj = new Object[voznje.size()][zaglavlja.length];
 
         int i = 0;
@@ -66,7 +66,8 @@ public class VoznjePrikaz extends JFrame {
             sadrzaj[i][6] = voznja.getPredjeniKm();
             sadrzaj[i][7] = voznja.getTrajanjeVoznje();
             sadrzaj[i][8] = voznja.getStatusVoznje();
-            sadrzaj[i][9] = voznja.isIzbrisana();
+            sadrzaj[i][9] = voznja.getTipPorudzbine();
+            sadrzaj[i][10] = voznja.isIzbrisana();
             i++;
         }
         tableModel = new DefaultTableModel(sadrzaj, zaglavlja);

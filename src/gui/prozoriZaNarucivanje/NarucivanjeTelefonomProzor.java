@@ -5,6 +5,7 @@ import entiteti.*;
 import enumeracije.Pol;
 import enumeracije.StatusVoznje;
 import enumeracije.TipKorisnika;
+import enumeracije.TipPorudzbine;
 import net.miginfocom.swing.MigLayout;
 import sluzba.Sluzba;
 
@@ -76,7 +77,8 @@ public class NarucivanjeTelefonomProzor extends JFrame {
                     double predjeniKm = 0;
                     double trajanjeVoznje = 0;
                     StatusVoznje status = StatusVoznje.KREIRANA;
-                    Voznja voznja = new Voznja(id,vremePorudzbine,adresaPolaska,adresaDestinacije,musterija,vozac,predjeniKm,trajanjeVoznje,status,false);
+                    TipPorudzbine tipPorudzbine = TipPorudzbine.TELEFONOM;
+                    Voznja voznja = new Voznja(id,vremePorudzbine,adresaPolaska,adresaDestinacije,musterija,vozac,predjeniKm,trajanjeVoznje,status,tipPorudzbine,false);
                     taxiSluzba.dodajVoznju(voznja);
                     JOptionPane.showMessageDialog(null, "Uspesno narucena voznja!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                     taxiSluzba.snimiVoznje();

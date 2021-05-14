@@ -93,8 +93,8 @@ public class DispeceriDodajIzmeni extends JFrame {
         add(txtTelefon);
         add(lblUloga);
         add(cbUloga);
-        add(lblID);
-        add(txtID);
+//        add(lblID);
+//        add(txtID);
         add(lblPlata);
         add(txtPlata);
         add(lblBrojLinije);
@@ -144,7 +144,7 @@ public class DispeceriDodajIzmeni extends JFrame {
                         dispecer.setPol(pol);
                         dispecer.setTelefon(telefon);
                         dispecer.setTipKorisnika(uloga);
-                        dispecer.setId(ID);
+//                        dispecer.setId(ID);
                         dispecer.setPlata(plata);
                         dispecer.setBrLinije(brojLinije);
                         dispecer.setOdeljenje(odeljenje);

@@ -381,8 +381,9 @@ public class Sluzba {
                 String trajanjeVoznjeString = split[7];
                 double trajanjeVoznje = Double.parseDouble(trajanjeVoznjeString);
                 StatusVoznje statusVoznje = StatusVoznje.valueOf(split[8]);
-                boolean izbrisana = Boolean.parseBoolean(split[9]);
-                Voznja voznja = new Voznja(id,datumIVremePorudzbine,adresaPolaska,adresaDestinacije,musterija,vozac,predjeniKm,trajanjeVoznje,statusVoznje,izbrisana);
+                TipPorudzbine tipPorudzbine = TipPorudzbine.valueOf(split[9]);
+                boolean izbrisana = Boolean.parseBoolean(split[10]);
+                Voznja voznja = new Voznja(id,datumIVremePorudzbine,adresaPolaska,adresaDestinacije,musterija,vozac,predjeniKm,trajanjeVoznje,statusVoznje,tipPorudzbine,izbrisana);
                 if (vozac != null) {
                     vozac.getVoznjeVozaca().add(voznja);
                 }
@@ -407,7 +408,7 @@ public class Sluzba {
                         + voznja.getAdresaPolaska() + "|" + voznja.getAdresaDestinacije() + "|"
                         + voznja.getMusterija().getId() + "|" + voznja.getVozac().getId() + "|"
                         + voznja.getPredjeniKm() + "|" + voznja.getTrajanjeVoznje() + "|"
-                        + voznja.getStatusVoznje() + "|" + voznja.isIzbrisana() + "\n";
+                        + voznja.getStatusVoznje() + "|" + voznja.getTipPorudzbine() + "|" + voznja.isIzbrisana() + "\n";
             }
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
             writer.write(content);

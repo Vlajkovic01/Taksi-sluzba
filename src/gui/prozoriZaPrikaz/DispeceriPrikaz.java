@@ -25,7 +25,7 @@ public class DispeceriPrikaz extends JFrame {
     public DispeceriPrikaz(Sluzba taxiSluzba) {
         this.taxiSluzba = taxiSluzba;
         setTitle("Dispeceri prikaz");
-        setSize(500,300);
+        setSize(900,300);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         InitGUI();

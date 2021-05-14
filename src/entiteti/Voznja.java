@@ -1,6 +1,7 @@
 package entiteti;
 
 import enumeracije.StatusVoznje;
+import enumeracije.TipPorudzbine;
 
 public class Voznja {
     protected int id;
@@ -12,6 +13,7 @@ public class Voznja {
     protected double predjeniKm;
     protected double trajanjeVoznje;
     protected StatusVoznje statusVoznje;
+    protected TipPorudzbine tipPorudzbine;
     protected boolean izbrisana;
 
     public Voznja() {
@@ -24,10 +26,11 @@ public class Voznja {
         this.predjeniKm = 0;
         this.trajanjeVoznje = 0;
         this.statusVoznje = StatusVoznje.NA_CEKANJU;
+        this.tipPorudzbine = TipPorudzbine.TELEFONOM;
         this.izbrisana = false;
     }
 
-    public Voznja(int id, String datumIVremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterije musterija, Vozaci vozac, double predjeniKm, double trajanjeVoznje, StatusVoznje statusVoznje, boolean izbrisana) {
+    public Voznja(int id, String datumIVremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterije musterija, Vozaci vozac, double predjeniKm, double trajanjeVoznje, StatusVoznje statusVoznje, TipPorudzbine tipPorudzbine, boolean izbrisana) {
         this.id = id;
         this.datumIVremePorudzbine = datumIVremePorudzbine;
         this.adresaPolaska = adresaPolaska;
@@ -37,6 +40,7 @@ public class Voznja {
         this.predjeniKm = predjeniKm;
         this.trajanjeVoznje = trajanjeVoznje;
         this.statusVoznje = statusVoznje;
+        this.tipPorudzbine = tipPorudzbine;
         this.izbrisana = izbrisana;
     }
 
@@ -108,6 +112,14 @@ public class Voznja {
         return statusVoznje;
     }
 
+    public TipPorudzbine getTipPorudzbine() {
+        return tipPorudzbine;
+    }
+
+    public void setTipPorudzbine(TipPorudzbine tipPorudzbine) {
+        this.tipPorudzbine = tipPorudzbine;
+    }
+
     public void setStatusVoznje(StatusVoznje statusVoznje) {
         this.statusVoznje = statusVoznje;
     }
@@ -131,7 +143,7 @@ public class Voznja {
                 ", vozac=" + vozac.getId() +
                 ", predjeniKm=" + predjeniKm +
                 ", trajanjeVoznje=" + trajanjeVoznje + "min" +
-                ", statusVoznje=" + statusVoznje + ", izbrisana=" + izbrisana +
+                ", statusVoznje=" + statusVoznje + ", tipPorudznine=" + tipPorudzbine + ", izbrisana=" + izbrisana +
                 '}';
     }
 }

@@ -3,7 +3,6 @@ package gui;
 import entiteti.Dispeceri;
 import entiteti.Musterije;
 import entiteti.Vozaci;
-import entiteti.Voznja;
 import net.miginfocom.swing.MigLayout;
 import sluzba.Sluzba;
 
