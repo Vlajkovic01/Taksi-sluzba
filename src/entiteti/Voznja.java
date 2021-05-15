@@ -25,7 +25,7 @@ public class Voznja {
         this.vozac = new Vozaci();
         this.predjeniKm = 0;
         this.trajanjeVoznje = 0;
-        this.statusVoznje = StatusVoznje.NA_CEKANJU;
+        this.statusVoznje = StatusVoznje.KREIRANA;
         this.tipPorudzbine = TipPorudzbine.TELEFONOM;
         this.izbrisana = false;
     }
