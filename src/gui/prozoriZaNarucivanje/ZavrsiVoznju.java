@@ -1,10 +1,8 @@
-package gui.prozoriZaDodavanjeIIzmenu;
+package gui.prozoriZaNarucivanje;
 
 import entiteti.Musterije;
-import entiteti.Vozaci;
 import entiteti.Voznja;
 import enumeracije.StatusVoznje;
-import enumeracije.TipPorudzbine;
 import net.miginfocom.swing.MigLayout;
 import sluzba.Sluzba;
 
@@ -12,7 +10,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class VoznjeDodajIzmeni extends JFrame {
+public class ZavrsiVoznju extends JFrame {
 
     private JLabel lblID = new JLabel("ID");
     private JTextField txtID = new JTextField(15);
@@ -21,34 +19,27 @@ public class VoznjeDodajIzmeni extends JFrame {
     private JLabel lblAdresaPolaska = new JLabel("Adresa polaska");
     private JTextField txtAdresaPolaska = new JTextField(15);
     private JLabel lblAdresaDestinacije = new JLabel("Adresa destinacije");
-    private JTextField txtAdresaDestinacije= new JTextField(15);
+    private JTextField txtAdresaDestinacije = new JTextField(15);
     private JLabel lblMusterija = new JLabel("Musterija");
     private JComboBox<Integer> cbMusterije = new JComboBox<Integer>();
-    private JLabel lblVozac = new JLabel("Vozac");
-    private JComboBox<Integer> cbVozaci = new JComboBox<Integer>();
     private JLabel lblPredjeniKm = new JLabel("Predjeni km");
     private JTextField txtPredjeniKm = new JTextField(15);
     private JLabel lblTrajanjeVoznje = new JLabel("Trajanje voznje");
     private JTextField txtTrajanjeVoznje = new JTextField(15);
     private JLabel lblStatus = new JLabel("Status voznje");
     private JComboBox<StatusVoznje> cbStatus = new JComboBox<StatusVoznje>();
-    private JLabel lblTipPorudzbine = new JLabel("Poruceno");
-    private JComboBox<TipPorudzbine> cbTipPorudzbine = new JComboBox<TipPorudzbine>();
 
-    private JButton btnOk = new JButton("OK");
+    private JButton btnZavrsi = new JButton("Zavrsi");
     private JButton btnCancel = new JButton("Cancel");
 
     private Voznja voznja;
     private Sluzba taxiSluzba;
 
-    public VoznjeDodajIzmeni(Sluzba taxiSluzba, Voznja voznja) {
+    public ZavrsiVoznju(Sluzba taxiSluzba, Voznja voznja) {
         this.taxiSluzba = taxiSluzba;
         this.voznja = voznja;
-        if(this.voznja == null) {
-            setTitle("Dodavanje voznje");
-        }else {
-            setTitle("Izmena podataka - " + this.voznja.getId());
-
+        if(this.voznja != null) {
+            setTitle("Zavrsavanje voznje - " + this.voznja.getId());
         }
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -63,14 +54,6 @@ public class VoznjeDodajIzmeni extends JFrame {
         setLayout(layout);
         cbStatus.setModel(new DefaultComboBoxModel<>(StatusVoznje.values()));
         cbStatus.setSelectedIndex(0);
-        cbTipPorudzbine.setModel(new DefaultComboBoxModel<>(TipPorudzbine.values()));
-        cbTipPorudzbine.setSelectedIndex(0);
-
-        for(Vozaci vozac: taxiSluzba.getVozaci()) {
-            if (!vozac.isIzbrisan()) {
-                cbVozaci.addItem(vozac.getId());
-            }
-        }
 
         for(Musterije musterija: taxiSluzba.getMusterije()) {
             cbMusterije.addItem(musterija.getId());
@@ -88,25 +71,27 @@ public class VoznjeDodajIzmeni extends JFrame {
         add(txtAdresaDestinacije);
         add(lblMusterija);
         add(cbMusterije);
-        add(lblVozac);
-        add(cbVozaci);
         add(lblPredjeniKm);
         add(txtPredjeniKm);
         add(lblTrajanjeVoznje);
         add(txtTrajanjeVoznje);
         add(lblStatus);
         add(cbStatus);
-        add(lblTipPorudzbine);
-        add(cbTipPorudzbine);
+
+        txtVremePorudzbine.setEditable(false);
+        txtAdresaPolaska.setEditable(false);
+        txtAdresaDestinacije.setEditable(false);
+        cbMusterije.setEnabled(false);
+        cbStatus.setEnabled(false);
 
         add(new JLabel());
-        add(btnOk, "split");
+        add(btnZavrsi, "split");
         add(btnCancel);
         txtID.setText(String.valueOf(taxiSluzba.generisanjeIDVoznje()));
     }
 
     private void initActions() {
-        btnOk.addActionListener(new ActionListener() {
+        btnZavrsi.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -116,33 +101,23 @@ public class VoznjeDodajIzmeni extends JFrame {
                     String adresaPolaska = txtAdresaPolaska.getText();
                     String adresaDestinacije = txtAdresaDestinacije.getText();
                     Musterije musterija = taxiSluzba.pronadjiMusterijuString(cbMusterije.getSelectedItem().toString());
-                    Vozaci vozac = taxiSluzba.pronadjiVozacaString(cbVozaci.getSelectedItem().toString());
                     double predjeniKm = Double.parseDouble(txtPredjeniKm.getText());
                     double trajanjeVoznje = Double.parseDouble(txtTrajanjeVoznje.getText());
-                    StatusVoznje status = StatusVoznje.valueOf(cbStatus.getSelectedItem().toString());
-                    TipPorudzbine tipPorudzbine = TipPorudzbine.valueOf(cbTipPorudzbine.getSelectedItem().toString());
+                    StatusVoznje status = StatusVoznje.ZAVRSENA;
 
-                    if(voznja == null) {
-                        Voznja voznja = new Voznja(ID,vremePorudzbine,adresaPolaska,adresaDestinacije,musterija,vozac,predjeniKm,trajanjeVoznje,status,tipPorudzbine,false);
-                        taxiSluzba.dodajVoznju(voznja);
-                        JOptionPane.showMessageDialog(null, "Uspesno kreirana voznja!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                    else {
+                    if(voznja != null) {
                         voznja.setDatumIVremePorudzbine(vremePorudzbine);
                         voznja.setAdresaPolaska(adresaPolaska);
                         voznja.setAdresaDestinacije(adresaDestinacije);
                         voznja.setMusterija(musterija);
-                        voznja.setVozac(vozac);
                         voznja.setPredjeniKm(predjeniKm);
                         voznja.setTrajanjeVoznje(trajanjeVoznje);
                         voznja.setStatusVoznje(status);
-                        voznja.setTipPorudzbine(tipPorudzbine);
-
-                        JOptionPane.showMessageDialog(null, "Izmene su sacuvane!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Uspesno zavrsena voznja!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                     }
 
-                    VoznjeDodajIzmeni.this.dispose();
-                    VoznjeDodajIzmeni.this.setVisible(false);
+                    ZavrsiVoznju.this.dispose();
+                    ZavrsiVoznju.this.setVisible(false);
                     taxiSluzba.snimiVoznje();
                 }
             }
@@ -151,8 +126,8 @@ public class VoznjeDodajIzmeni extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                VoznjeDodajIzmeni.this.dispose();
-                VoznjeDodajIzmeni.this.setVisible(false);
+                ZavrsiVoznju.this.dispose();
+                ZavrsiVoznju.this.setVisible(false);
             }
         });
     }
@@ -163,11 +138,7 @@ public class VoznjeDodajIzmeni extends JFrame {
         txtAdresaPolaska.setText(voznja.getAdresaPolaska());
         txtAdresaDestinacije.setText(voznja.getAdresaDestinacije());
         cbMusterije.setSelectedItem(voznja.getMusterija().getId());
-        cbVozaci.setSelectedItem(voznja.getVozac().getId());
-        txtPredjeniKm.setText(String.valueOf(voznja.getPredjeniKm()));
-        txtTrajanjeVoznje.setText(String.valueOf(voznja.getTrajanjeVoznje()));
         cbStatus.setSelectedItem(voznja.getStatusVoznje());
-        cbTipPorudzbine.setSelectedItem(voznja.getTipPorudzbine());
     }
 
     private boolean validacija() {
@@ -204,7 +175,6 @@ public class VoznjeDodajIzmeni extends JFrame {
             poruka += "Morate uneti vreme porudzbine\n";
             ispravno = false;
         }
-
         try {
             Double.parseDouble(txtPredjeniKm.getText());
         }catch (NumberFormatException e) {
@@ -214,7 +184,7 @@ public class VoznjeDodajIzmeni extends JFrame {
         try {
             Double.parseDouble(txtTrajanjeVoznje.getText());
         }catch (NumberFormatException e) {
-            poruka += "- Trajanje voznje mora biti\n";
+            poruka += "- Trajanje voznje mora biti broj\n";
             ispravno = false;
         }
         if(ispravno == false) {

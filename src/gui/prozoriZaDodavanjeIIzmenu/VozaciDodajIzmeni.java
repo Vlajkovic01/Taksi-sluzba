@@ -101,8 +101,6 @@ public class VozaciDodajIzmeni extends JFrame {
         add(txtTelefon);
         add(lblUloga);
         add(cbUloga);
-//        add(lblID);
-//        add(txtID);
         add(lblPlata);
         add(txtPlata);
         add(lblClanskaKarta);
@@ -152,7 +150,6 @@ public class VozaciDodajIzmeni extends JFrame {
                         vozac.setPol(pol);
                         vozac.setTelefon(telefon);
                         vozac.setTipKorisnika(uloga);
-//                        vozac.setId(ID);
                         vozac.setPlata(plata);
                         vozac.setBrClanskeKarte(brClanskeKarte);
                         vozac.setAutomobil(automobil);
@@ -256,7 +253,7 @@ public class VozaciDodajIzmeni extends JFrame {
         try {
             Double.parseDouble(txtPlata.getText());
         }catch (NumberFormatException e) {
-            poruka += "- Plata mora biti broj sa decimalom\n";
+            poruka += "- Plata mora biti broj\n";
             ispravno = false;
         }
         try {

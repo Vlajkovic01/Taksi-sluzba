@@ -6,10 +6,7 @@ import entiteti.Vozaci;
 import enumeracije.TipKorisnika;
 import gui.prozoriZaNarucivanje.DodeljivanjeVoznjeProzor;
 import gui.prozoriZaNarucivanje.NarucivanjeTelefonomProzor;
-import gui.prozoriZaPrikaz.DispeceriPrikaz;
-import gui.prozoriZaPrikaz.DodeljeneVoznjePrikaz;
-import gui.prozoriZaPrikaz.VozaciPrikaz;
-import gui.prozoriZaPrikaz.VoznjePrikaz;
+import gui.prozoriZaPrikaz.*;
 import sluzba.Sluzba;
 
 import javax.swing.*;
@@ -35,6 +32,7 @@ public class GlavniProzor extends JFrame {
     private JMenuItem godisnjiIzvestajItem = new JMenuItem("Godisnji");
     private JMenuItem narucivanjeTelefonomItem = new JMenuItem("Telefonom");
     private JMenuItem dodeljeneVoznjeItem = new JMenuItem("Dodeljene voznje");
+    private JMenuItem zavrsiVoznjeItem = new JMenuItem("Zavrsi voznje");
 
 
     private Sluzba taxiSluzba;
@@ -75,6 +73,7 @@ public class GlavniProzor extends JFrame {
             mainMenu.add(meniVoznje);
             mainMenu.add(meniAukcija);
             meniVoznje.add(dodeljeneVoznjeItem);
+            meniVoznje.add(zavrsiVoznjeItem);
         }
         else{
             setJMenuBar(mainMenu);
@@ -145,6 +144,15 @@ public class GlavniProzor extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 DodeljeneVoznjePrikaz dv = new DodeljeneVoznjePrikaz(taxiSluzba, (Vozaci) korisnik);
                 dv.setVisible(true);
+            }
+        });
+
+        zavrsiVoznjeItem.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PrihvaceneVoznjePrikaz pv = new PrihvaceneVoznjePrikaz(taxiSluzba, (Vozaci) korisnik);
+                pv.setVisible(true);
             }
         });
     }
