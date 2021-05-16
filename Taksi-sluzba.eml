@@ -3,4 +3,10 @@
 	<output-test url="file://$MODULE_DIR$/out/test/Taksi-sluzba"/>
 	<exclude-output/>
 	<contentEntry url="file://$MODULE_DIR$"/>
+	<lib name="miglayout-4.0-swing.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/biblioteke/miglayout-4.0-swing.jar!/"/>
+	</lib>
+	<levels>
+		<level name="miglayout-4.0-swing" value="project"/>
+	</levels>
 </component>

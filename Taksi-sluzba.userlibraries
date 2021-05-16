@@ -1,3 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<eclipse-userlibraries />
+<eclipse-userlibraries>
+  <library name="miglayout-4.0-swing">
+    <archive path="C:/Users/Stefan/Desktop/Taksi-sluzba/biblioteke/miglayout-4.0-swing.jar" />
+  </library>
+</eclipse-userlibraries>
 
