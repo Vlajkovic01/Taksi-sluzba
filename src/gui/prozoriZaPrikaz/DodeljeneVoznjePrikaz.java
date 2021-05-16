@@ -1,7 +1,9 @@
-package gui.prozoriZaNarucivanje;
+package gui.prozoriZaPrikaz;
 
+import entiteti.Vozaci;
 import entiteti.Voznja;
 import enumeracije.StatusVoznje;
+import gui.prozoriZaNarucivanje.PrihvatiVoznju;
 import sluzba.Sluzba;
 
 import javax.swing.*;
@@ -11,7 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class DodeljivanjeVoznjeProzor extends JFrame {
+public class DodeljeneVoznjePrikaz extends JFrame {
 
     private JToolBar mainToolbar = new JToolBar();
     private JButton btnAdd = new JButton();
@@ -21,10 +23,12 @@ public class DodeljivanjeVoznjeProzor extends JFrame {
     private DefaultTableModel tableModel;
     private JTable voznjeTabela;
     private Sluzba taxiSluzba;
+    private Vozaci vozac;
 
-    public DodeljivanjeVoznjeProzor(Sluzba taxiSluzba) {
+    public DodeljeneVoznjePrikaz(Sluzba taxiSluzba, Vozaci vozac) {
         this.taxiSluzba = taxiSluzba;
-        setTitle("Dodeljivanje voznje");
+        this.vozac = vozac;
+        setTitle("Dodeljene voznje");
         setSize(900,300);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -41,7 +45,7 @@ public class DodeljivanjeVoznjeProzor extends JFrame {
 
         ArrayList<Voznja> voznje = new ArrayList<Voznja>();
         for(Voznja voznja: taxiSluzba.getVoznje()) {
-            if(voznja.getStatusVoznje().equals(StatusVoznje.KREIRANA) && voznja.getVozac().getId() == 0) {
+            if(voznja.getStatusVoznje().equals(StatusVoznje.DODELJENA) && voznja.getVozac().getId() == vozac.getId()) {
                 voznje.add(voznja);
             }
         }
@@ -90,8 +94,8 @@ public class DodeljivanjeVoznjeProzor extends JFrame {
                     Voznja voznja = taxiSluzba.pronadjiVoznjuString(id);
 
                     if(voznja != null) {
-                        DodeliVoznju dodeliVoznju = new DodeliVoznju(taxiSluzba,voznja);
-                        dodeliVoznju.setVisible(true);
+                        PrihvatiVoznju prihvatiVoznju = new PrihvatiVoznju(taxiSluzba,voznja);
+                        prihvatiVoznju.setVisible(true);
                     }else {
                         JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabran pregled!", "Greska", JOptionPane.ERROR_MESSAGE);
                     }
