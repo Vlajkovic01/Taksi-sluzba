@@ -152,6 +152,7 @@ public class VozaciDodajIzmeni extends JFrame {
                         vozac.setTipKorisnika(uloga);
                         vozac.setPlata(plata);
                         vozac.setBrClanskeKarte(brClanskeKarte);
+                        vozac.getAutomobil().setSlobodan(true);
                         vozac.setAutomobil(automobil);
                         vozac.setVoznjeVozaca(new ArrayList<Voznja>());
                         JOptionPane.showMessageDialog(null, "Izmene su sacuvane!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
