@@ -9,7 +9,6 @@ import sluzba.Sluzba;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class ZavrsiVoznju extends JFrame {
 
@@ -92,9 +91,6 @@ public class ZavrsiVoznju extends JFrame {
     }
 
     private void initActions() {
-
-        ArrayList musterije = taxiSluzba.integerListaMusterija();
-
         btnZavrsi.addActionListener(new ActionListener() {
 
             @Override
@@ -104,8 +100,7 @@ public class ZavrsiVoznju extends JFrame {
                     String vremePorudzbine = txtVremePorudzbine.getText();
                     String adresaPolaska = txtAdresaPolaska.getText();
                     String adresaDestinacije = txtAdresaDestinacije.getText();
-//                    Musterije musterija = taxiSluzba.pronadjiMusterijuString(cbMusterije.getSelectedItem().toString()); //stara metoda
-                    Musterije musterija = taxiSluzba.pronalazenjeMusterije(musterije,Integer.parseInt(cbMusterije.getSelectedItem().toString()));
+                    Musterije musterija = taxiSluzba.pronalazenjeMusterije(Integer.parseInt(cbMusterije.getSelectedItem().toString()));
                     double predjeniKm = Double.parseDouble(txtPredjeniKm.getText());
                     double trajanjeVoznje = Double.parseDouble(txtTrajanjeVoznje.getText());
                     StatusVoznje status = StatusVoznje.ZAVRSENA;
@@ -147,9 +142,6 @@ public class ZavrsiVoznju extends JFrame {
     }
 
     private boolean validacija() {
-
-        ArrayList voznje = taxiSluzba.integerListaVoznji();
-
         Boolean ispravno = true;
         String poruka = "Molimo popravite sledece greske u unosu:\n";
         try {
@@ -164,8 +156,7 @@ public class ZavrsiVoznju extends JFrame {
         }
         else if(voznja == null) {
             String id = txtID.getText().trim();
-//            Voznja pronadjena = taxiSluzba.pronadjiVoznjuString(id);
-            Voznja pronadjena = taxiSluzba.pronalazenjeVoznje(voznje, Integer.parseInt(id));
+            Voznja pronadjena = taxiSluzba.pronalazenjeVoznje(Integer.parseInt(id));
             if(pronadjena != null) {
                 poruka += "- Voznja sa unetim ID vec postoji\n";
                 ispravno = false;

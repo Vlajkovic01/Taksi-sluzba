@@ -87,9 +87,6 @@ public class DispeceriPrikaz extends JFrame {
     }
 
     private void InitAction() {
-
-        ArrayList dispeceri = taxiSluzba.integerListaDispecera();
-
         btnObrisi.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -99,8 +96,7 @@ public class DispeceriPrikaz extends JFrame {
                     JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
                 }else {
                     String id = dispeceriTabela.getValueAt(red, 10).toString();
-//                    Dispeceri dispecer = taxiSluzba.pronadjiDispeceraString(id); //stara metoda
-                    Dispeceri dispecer = taxiSluzba.pronalazenjeDispecera(dispeceri, Integer.parseInt(id));
+                    Dispeceri dispecer = taxiSluzba.pronalazenjeDispecera(Integer.parseInt(id));
                     int izbor = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da zelite da obrisete dispecera?",
                             dispecer.getId() + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
 
@@ -129,8 +125,7 @@ public class DispeceriPrikaz extends JFrame {
                     JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
                 }else {
                     String id = dispeceriTabela.getValueAt(red, 10).toString();
-//                    Dispeceri dispecer = taxiSluzba.pronadjiDispeceraString(id); //stara metoda
-                    Dispeceri dispecer = taxiSluzba.pronalazenjeDispecera(dispeceri, Integer.parseInt(id));
+                    Dispeceri dispecer = taxiSluzba.pronalazenjeDispecera(Integer.parseInt(id));
 
                     if(dispecer != null) {
                         DispeceriDodajIzmeni dispeceriDodajIzmeni = new DispeceriDodajIzmeni(taxiSluzba,dispecer);

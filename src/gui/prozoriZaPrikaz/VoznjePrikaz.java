@@ -84,9 +84,6 @@ public class VoznjePrikaz extends JFrame {
     }
 
     private void InitAction() {
-
-        ArrayList voznje = taxiSluzba.integerListaVoznji();
-
         btnObrisi.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -96,8 +93,7 @@ public class VoznjePrikaz extends JFrame {
                     JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
                 }else {
                     String id = voznjeTabela.getValueAt(red, 0).toString();
-//                    Voznja voznja = taxiSluzba.pronadjiVoznjuString(id); //stara metoda
-                    Voznja voznja = taxiSluzba.pronalazenjeVoznje(voznje,Integer.parseInt(id));
+                    Voznja voznja = taxiSluzba.pronalazenjeVoznje(Integer.parseInt(id));
                     int izbor = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da zelite da obrisete voznju?",
                             voznja.getId() + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
 
@@ -126,8 +122,7 @@ public class VoznjePrikaz extends JFrame {
                     JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
                 }else {
                     String id = voznjeTabela.getValueAt(red, 0).toString();
-//                    Voznja voznja = taxiSluzba.pronadjiVoznjuString(id); //stara metoda
-                    Voznja voznja = taxiSluzba.pronalazenjeVoznje(voznje, Integer.parseInt(id));
+                    Voznja voznja = taxiSluzba.pronalazenjeVoznje(Integer.parseInt(id));
 
                     if(voznja != null) {
                         VoznjeDodajIzmeni voznjeDodajIzmeni = new VoznjeDodajIzmeni(taxiSluzba,voznja);

@@ -1,6 +1,5 @@
 package gui.prozoriZaDodavanjeIIzmenu;
 
-import entiteti.Automobil;
 import entiteti.Musterije;
 import entiteti.Vozaci;
 import entiteti.Voznja;
@@ -12,8 +11,6 @@ import sluzba.Sluzba;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class VoznjeDodajIzmeni extends JFrame {
 
@@ -82,7 +79,6 @@ public class VoznjeDodajIzmeni extends JFrame {
 
         if(this.voznja != null) {
             popuniPolja();
-            cbVozaci.addItem(voznja.getVozac().getId());
             cbVozaci.setSelectedItem(voznja.getVozac().getId());
         }
 
@@ -112,10 +108,6 @@ public class VoznjeDodajIzmeni extends JFrame {
     }
 
     private void initActions() {
-
-        ArrayList vozaci = taxiSluzba.integerListaVozaca();
-        ArrayList musterije = taxiSluzba.integerListaMusterija();
-
         btnOk.addActionListener(new ActionListener() {
 
             @Override
@@ -127,8 +119,8 @@ public class VoznjeDodajIzmeni extends JFrame {
                     String adresaDestinacije = txtAdresaDestinacije.getText();
                     Musterije musterija = taxiSluzba.pronadjiMusteriju(Integer.parseInt(cbMusterije.getSelectedItem().toString()));
                     Vozaci vozac = taxiSluzba.pronadjiVozaca(Integer.parseInt(cbVozaci.getSelectedItem().toString()));
-//                    Musterije musterija = taxiSluzba.pronalazenjeMusterije(musterije,ID); //nova metoda
-//                    Vozaci vozac = taxiSluzba.pronalazenjeVozaca(vozaci,ID); //nova metoda
+//                    Musterije musterija = taxiSluzba.pronalazenjeMusterije(ID); //nova metoda, resiti problem
+//                    Vozaci vozac = taxiSluzba.pronalazenjeVozaca(ID); //nova metoda, resiti problem
                     double predjeniKm = Double.parseDouble(txtPredjeniKm.getText());
                     double trajanjeVoznje = Double.parseDouble(txtTrajanjeVoznje.getText());
                     StatusVoznje status = StatusVoznje.valueOf(cbStatus.getSelectedItem().toString());
@@ -183,9 +175,6 @@ public class VoznjeDodajIzmeni extends JFrame {
     }
 
     private boolean validacija() {
-
-//        ArrayList voznje = taxiSluzba.integerListaVoznji();
-
         Boolean ispravno = true;
         String poruka = "Molimo popravite sledece greske u unosu:\n";
         try {
@@ -201,7 +190,7 @@ public class VoznjeDodajIzmeni extends JFrame {
         else if(voznja == null) {
             String id = txtID.getText().trim();
             Voznja pronadjena = taxiSluzba.pronadjiVoznju(Integer.parseInt(id));
-//            Voznja pronadjena = taxiSluzba.pronalazenjeVoznje(voznje,Integer.parseInt(id)); //nova metoda
+//            Voznja pronadjena = taxiSluzba.pronalazenjeVoznje(Integer.parseInt(id)); //nova metoda, resiti problem
             if(pronadjena != null) {
                 poruka += "- Voznja sa unetim ID vec postoji\n";
                 ispravno = false;

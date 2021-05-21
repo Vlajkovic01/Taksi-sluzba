@@ -7,9 +7,6 @@ import sluzba.Sluzba;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Collections;
-
 
 public class BinarnaPretragaProzor extends JFrame {
 
@@ -46,9 +43,6 @@ public class BinarnaPretragaProzor extends JFrame {
     }
 
     private void initActions(){
-
-        ArrayList vozaci = taxiSluzba.integerListaVozaca();
-
         btnOtkazi.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -62,7 +56,7 @@ public class BinarnaPretragaProzor extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (validacija()) {
                     int ID = Integer.parseInt(txtID.getText());
-                    Vozaci pronadjenID = taxiSluzba.pronalazenjeVozaca(vozaci,ID);
+                    Vozaci pronadjenID = taxiSluzba.pronalazenjeVozaca(ID);
                     if (pronadjenID == null) {
                         JOptionPane.showMessageDialog(null, "Ne postoji vozac sa tim ID-jem!", "Greska", JOptionPane.ERROR_MESSAGE);
                     } else {

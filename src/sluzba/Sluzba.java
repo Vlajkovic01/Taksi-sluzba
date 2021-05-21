@@ -326,7 +326,6 @@ public class Sluzba {
                 String idVozilaString = split[13];
                 int idVozila = Integer.parseInt(idVozilaString);
                 Automobil automobil = pronadjiAutomobil(idVozila);
-//                Automobil automobil = pronalazenjeAutomobila(idVozila);
                 ArrayList<Voznja> voznjeVozaca = new ArrayList<Voznja>();
                 Vozaci vozac = new Vozaci(korisnickoIme,lozinka,ime,prezime,jmbg,adresa,pol,telefon,tipKorisnika,izbrisan,id,plata,brClanskeKarte,automobil,voznjeVozaca);
                 vozaci.add(vozac);
@@ -428,7 +427,8 @@ public class Sluzba {
 //        return automobili.get(index);
 //    }
 
-    public Automobil pronalazenjeAutomobila(ArrayList<Integer> auti,int id) {
+    public Automobil pronalazenjeAutomobila(int id) {
+        ArrayList auti = integerListaAutomobila();
         int index = BinarnaPretraga.find(auti,id);
         if (index == -1) {
             return null;
@@ -437,7 +437,8 @@ public class Sluzba {
         }
     }
 
-    public Vozaci pronalazenjeVozaca(ArrayList<Integer> vozac,int id) {
+    public Vozaci pronalazenjeVozaca(int id) {
+        ArrayList vozac = integerListaVozaca();
         int index = BinarnaPretraga.find(vozac,id);
         if (index == -1) {
             return null;
@@ -446,7 +447,8 @@ public class Sluzba {
         }
     }
 
-    public Musterije pronalazenjeMusterije(ArrayList<Integer> musterija,int id) {
+    public Musterije pronalazenjeMusterije(int id) {
+        ArrayList musterija = integerListaMusterija();
         int index = BinarnaPretraga.find(musterija,id);
         if (index == -1) {
             return null;
@@ -455,7 +457,8 @@ public class Sluzba {
         }
     }
 
-    public Dispeceri pronalazenjeDispecera(ArrayList<Integer> dispecer,int id) {
+    public Dispeceri pronalazenjeDispecera(int id) {
+        ArrayList dispecer = integerListaDispecera();
         int index = BinarnaPretraga.find(dispecer,id);
         if (index == -1) {
             return null;
@@ -464,7 +467,17 @@ public class Sluzba {
         }
     }
 
-    public Voznja pronalazenjeVoznje(ArrayList<Integer> voznja,int id) {
+    public Dispeceri pronadjiDispeceraKorIme(String ime) {
+        for (Dispeceri dispecer : dispeceri) {
+            if(dispecer.getKorisnickoIme().equals(ime)){
+                return dispecer;
+            }
+        }
+        return null;
+    }
+
+    public Voznja pronalazenjeVoznje(int id) {
+        ArrayList voznja = integerListaVoznji();
         int index = BinarnaPretraga.find(voznja,id);
         if (index == -1) {
             return null;
@@ -491,6 +504,15 @@ public class Sluzba {
         return null;
     }
 
+    public Vozaci pronadjiVozacaKorIme(String ime) {
+        for (Vozaci vozac : vozaci) {
+            if(vozac.getKorisnickoIme().equals(ime)){
+                return vozac;
+            }
+        }
+        return null;
+    }
+
     public Automobil pronadjiAutomobil(int idVozila) {
         for (Automobil automobil : automobili) {
             if(automobil.getIdVozila() == idVozila){
@@ -508,54 +530,6 @@ public class Sluzba {
         }
         return null;
     }
-
-//    public  Musterije pronadjiMusterijuString(String v) {
-//        for(Musterije musterija:musterije) {
-//            try {
-//                if(musterija.getId() == Integer.parseInt(v)) {
-//                    return musterija;
-//                }
-//            }catch(NumberFormatException e) {
-//            }
-//        }
-//        return null;
-//    }
-//
-//    public  Vozaci pronadjiVozacaString(String v) {
-//        for(Vozaci vozac:vozaci) {
-//            try {
-//                if(vozac.getId() == Integer.parseInt(v)) {
-//                    return  vozac;
-//                }
-//            }catch(NumberFormatException e) {
-//            }
-//        }
-//        return null;
-//    }
-//
-//    public  Dispeceri pronadjiDispeceraString(String d) {
-//        for(Dispeceri dispecer:dispeceri) {
-//            try {
-//                if(dispecer.getId() == Integer.parseInt(d)) {
-//                    return  dispecer;
-//                }
-//            }catch(NumberFormatException e) {
-//            }
-//        }
-//        return null;
-//    }
-//
-//    public  Voznja pronadjiVoznjuString(String v) {
-//        for(Voznja voznja:voznje) {
-//            try {
-//                if(voznja.getId() == Integer.parseInt(v)) {
-//                    return  voznja;
-//                }
-//            }catch(NumberFormatException e) {
-//            }
-//        }
-//        return null;
-//    }
 
     //-------------------------------Login--------------------------------------//
 
