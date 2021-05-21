@@ -6,6 +6,7 @@ import entiteti.Vozaci;
 import enumeracije.TipKorisnika;
 import gui.prozoriZaNarucivanje.DodeljivanjeVoznjeProzor;
 import gui.prozoriZaNarucivanje.NarucivanjeTelefonomProzor;
+import gui.prozoriZaPretragu.BinarnaPretragaProzor;
 import gui.prozoriZaPrikaz.*;
 import sluzba.Sluzba;
 
@@ -26,6 +27,8 @@ public class GlavniProzor extends JFrame {
     private JMenuItem dispeceriItem = new JMenuItem("Pregled dispecera");
     private JMenuItem voznjeItem = new JMenuItem("Pregled voznji");
     private JMenuItem dodeljivanjeVoznjeItem = new JMenuItem("Dodeljivanje voznje");
+    private JMenuItem binarnaPretragaItem = new JMenuItem("Binarna pretraga");
+    private JMenuItem kombinovanaPretragaItem = new JMenuItem("Kombinovana pretraga");
     private JMenuItem dnevniIzvestajItem = new JMenuItem("Dnevni");
     private JMenuItem nedeljniIzvestajItem = new JMenuItem("Nedeljni");
     private JMenuItem mesecniIzvestajItem = new JMenuItem("Mesecni");
@@ -89,6 +92,8 @@ public class GlavniProzor extends JFrame {
             meniIzvestaj.add(nedeljniIzvestajItem);
             meniIzvestaj.add(mesecniIzvestajItem);
             meniIzvestaj.add(godisnjiIzvestajItem);
+            meniPretraga.add(binarnaPretragaItem);
+            meniPretraga.add(kombinovanaPretragaItem);
         }
     }
 
@@ -153,6 +158,15 @@ public class GlavniProzor extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 PrihvaceneVoznjePrikaz pv = new PrihvaceneVoznjePrikaz(taxiSluzba, (Vozaci) korisnik);
                 pv.setVisible(true);
+            }
+        });
+
+        binarnaPretragaItem.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BinarnaPretragaProzor bp = new BinarnaPretragaProzor(taxiSluzba);
+                bp.setVisible(true);
             }
         });
     }

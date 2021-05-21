@@ -78,6 +78,9 @@ public class DodeljivanjeVoznjeProzor extends JFrame {
     }
 
     private void InitAction() {
+
+        ArrayList voznje = taxiSluzba.integerListaVoznji();
+
         btnAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -87,7 +90,8 @@ public class DodeljivanjeVoznjeProzor extends JFrame {
                     JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
                 }else {
                     String id = voznjeTabela.getValueAt(red, 0).toString();
-                    Voznja voznja = taxiSluzba.pronadjiVoznjuString(id);
+//                    Voznja voznja = taxiSluzba.pronadjiVoznjuString(id);
+                    Voznja voznja = taxiSluzba.pronalazenjeVoznje(voznje, Integer.parseInt(id));
 
                     if(voznja != null) {
                         DodeliVoznju dodeliVoznju = new DodeliVoznju(taxiSluzba,voznja);

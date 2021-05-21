@@ -2,9 +2,11 @@ package sluzba;
 
 import entiteti.*;
 import enumeracije.*;
+import sluzba.pretrage.BinarnaPretraga;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Sluzba {
     public int id;
@@ -324,6 +326,7 @@ public class Sluzba {
                 String idVozilaString = split[13];
                 int idVozila = Integer.parseInt(idVozilaString);
                 Automobil automobil = pronadjiAutomobil(idVozila);
+//                Automobil automobil = pronalazenjeAutomobila(idVozila);
                 ArrayList<Voznja> voznjeVozaca = new ArrayList<Voznja>();
                 Vozaci vozac = new Vozaci(korisnickoIme,lozinka,ime,prezime,jmbg,adresa,pol,telefon,tipKorisnika,izbrisan,id,plata,brClanskeKarte,automobil,voznjeVozaca);
                 vozaci.add(vozac);
@@ -420,44 +423,60 @@ public class Sluzba {
 
     //-----------------------------Pronalazenje------------------------------------//
 
-    public Automobil pronadjiAutomobil(int idVozila) {
-        for (Automobil automobil : automobili) {
-            if(automobil.getIdVozila() == idVozila){
-                return automobil;
-            }
+//    public Automobil pronalazenjeAutomobila(int id) {
+//        int index = BinarnaPretraga.<Automobil>find(automobili, String.valueOf(id), "idVozila");
+//        return automobili.get(index);
+//    }
+
+    public Automobil pronalazenjeAutomobila(ArrayList<Integer> auti,int id) {
+        int index = BinarnaPretraga.find(auti,id);
+        if (index == -1) {
+            return null;
+        } else {
+           return automobili.get(index);
         }
-        return null;
     }
 
-    public Automobil pronadjiAutomobilString(String id) {
-        for (Automobil auto : automobili) {
-            try {
-                if(auto.getIdVozila() == Integer.parseInt(id)) {
-                    return auto;
-                }
-            }catch(NumberFormatException e) {
-
-            }
+    public Vozaci pronalazenjeVozaca(ArrayList<Integer> vozac,int id) {
+        int index = BinarnaPretraga.find(vozac,id);
+        if (index == -1) {
+            return null;
+        } else {
+            return vozaci.get(index);
         }
-        return null;
+    }
+
+    public Musterije pronalazenjeMusterije(ArrayList<Integer> musterija,int id) {
+        int index = BinarnaPretraga.find(musterija,id);
+        if (index == -1) {
+            return null;
+        } else {
+            return musterije.get(index);
+        }
+    }
+
+    public Dispeceri pronalazenjeDispecera(ArrayList<Integer> dispecer,int id) {
+        int index = BinarnaPretraga.find(dispecer,id);
+        if (index == -1) {
+            return null;
+        } else {
+            return dispeceri.get(index);
+        }
+    }
+
+    public Voznja pronalazenjeVoznje(ArrayList<Integer> voznja,int id) {
+        int index = BinarnaPretraga.find(voznja,id);
+        if (index == -1) {
+            return null;
+        } else {
+            return voznje.get(index);
+        }
     }
 
     public Musterije pronadjiMusteriju(int id) {
         for (Musterije musterija : musterije) {
             if(musterija.getId() == id ){
                 return musterija;
-            }
-        }
-        return null;
-    }
-
-    public  Musterije pronadjiMusterijuString(String v) {
-        for(Musterije musterija:musterije) {
-            try {
-                if(musterija.getId() == Integer.parseInt(v)) {
-                    return musterija;
-                }
-            }catch(NumberFormatException e) {
             }
         }
         return null;
@@ -472,25 +491,10 @@ public class Sluzba {
         return null;
     }
 
-    public  Vozaci pronadjiVozacaString(String v) {
-        for(Vozaci vozac:vozaci) {
-            try {
-                if(vozac.getId() == Integer.parseInt(v)) {
-                    return  vozac;
-                }
-            }catch(NumberFormatException e) {
-            }
-        }
-        return null;
-    }
-
-    public  Dispeceri pronadjiDispeceraString(String d) {
-        for(Dispeceri dispecer:dispeceri) {
-            try {
-                if(dispecer.getId() == Integer.parseInt(d)) {
-                    return  dispecer;
-                }
-            }catch(NumberFormatException e) {
+    public Automobil pronadjiAutomobil(int idVozila) {
+        for (Automobil automobil : automobili) {
+            if(automobil.getIdVozila() == idVozila){
+                return automobil;
             }
         }
         return null;
@@ -498,24 +502,60 @@ public class Sluzba {
 
     public Voznja pronadjiVoznju(int id) {
         for (Voznja voznja : voznje) {
-            if(voznja.getId() == id ){
+            if(voznja.getId() == id){
                 return voznja;
             }
         }
         return null;
     }
 
-    public  Voznja pronadjiVoznjuString(String v) {
-        for(Voznja voznja:voznje) {
-            try {
-                if(voznja.getId() == Integer.parseInt(v)) {
-                    return  voznja;
-                }
-            }catch(NumberFormatException e) {
-            }
-        }
-        return null;
-    }
+//    public  Musterije pronadjiMusterijuString(String v) {
+//        for(Musterije musterija:musterije) {
+//            try {
+//                if(musterija.getId() == Integer.parseInt(v)) {
+//                    return musterija;
+//                }
+//            }catch(NumberFormatException e) {
+//            }
+//        }
+//        return null;
+//    }
+//
+//    public  Vozaci pronadjiVozacaString(String v) {
+//        for(Vozaci vozac:vozaci) {
+//            try {
+//                if(vozac.getId() == Integer.parseInt(v)) {
+//                    return  vozac;
+//                }
+//            }catch(NumberFormatException e) {
+//            }
+//        }
+//        return null;
+//    }
+//
+//    public  Dispeceri pronadjiDispeceraString(String d) {
+//        for(Dispeceri dispecer:dispeceri) {
+//            try {
+//                if(dispecer.getId() == Integer.parseInt(d)) {
+//                    return  dispecer;
+//                }
+//            }catch(NumberFormatException e) {
+//            }
+//        }
+//        return null;
+//    }
+//
+//    public  Voznja pronadjiVoznjuString(String v) {
+//        for(Voznja voznja:voznje) {
+//            try {
+//                if(voznja.getId() == Integer.parseInt(v)) {
+//                    return  voznja;
+//                }
+//            }catch(NumberFormatException e) {
+//            }
+//        }
+//        return null;
+//    }
 
     //-------------------------------Login--------------------------------------//
 
@@ -611,5 +651,52 @@ public class Sluzba {
         }
         return counter;
     };
+
+    //---------------------------Integer liste(zbog binarne pretrage)-------------------------------//
+
+    public ArrayList integerListaVozaca() {
+        ArrayList<Integer> vozaciInt = new ArrayList<Integer>();
+        for(Vozaci vozac: vozaci) {
+            vozaciInt.add(vozac.getId());
+        }
+        Collections.sort(vozaciInt);
+        return vozaciInt;
+    }
+
+    public ArrayList integerListaAutomobila() {
+        ArrayList<Integer> automobiliInt = new ArrayList<Integer>();
+        for(Automobil auto: automobili) {
+            automobiliInt.add(auto.getIdVozila());
+        }
+        Collections.sort(automobiliInt);
+        return automobiliInt;
+    }
+
+    public ArrayList integerListaMusterija() {
+        ArrayList<Integer> musretijeInt = new ArrayList<Integer>();
+        for(Musterije musterija: musterije) {
+            musretijeInt.add(musterija.getId());
+        }
+        Collections.sort(musretijeInt);
+        return musretijeInt;
+    }
+
+    public ArrayList integerListaDispecera() {
+        ArrayList<Integer> dispeceriInt = new ArrayList<Integer>();
+        for(Dispeceri dispecer: dispeceri) {
+            dispeceriInt.add(dispecer.getId());
+        }
+        Collections.sort(dispeceriInt);
+        return dispeceriInt;
+    }
+
+    public ArrayList integerListaVoznji() {
+        ArrayList<Integer> voznjeInt = new ArrayList<Integer>();
+        for(Voznja voznja: voznje) {
+            voznjeInt.add(voznja.getId());
+        }
+        Collections.sort(voznjeInt);
+        return voznjeInt;
+    }
 }
 

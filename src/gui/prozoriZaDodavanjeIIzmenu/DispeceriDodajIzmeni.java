@@ -10,6 +10,7 @@ import sluzba.Sluzba;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class DispeceriDodajIzmeni extends JFrame {
 
@@ -108,6 +109,9 @@ public class DispeceriDodajIzmeni extends JFrame {
     }
 
     private void initActions() {
+
+        ArrayList dispeceri = taxiSluzba.integerListaDispecera();
+
         btnOk.addActionListener(new ActionListener() {
 
             @Override
@@ -181,6 +185,9 @@ public class DispeceriDodajIzmeni extends JFrame {
     }
 
     private boolean validacija() {
+
+        ArrayList dispeceri = taxiSluzba.integerListaDispecera();
+
         Boolean ispravno = true;
         String poruka = "Molimo popravite sledece greske u unosu:\n";
         try {
@@ -195,7 +202,8 @@ public class DispeceriDodajIzmeni extends JFrame {
         }
         else if(dispecer == null) {
             String id = txtID.getText().trim();
-            Dispeceri pronadjen = taxiSluzba.pronadjiDispeceraString(id);
+//            Dispeceri pronadjen = taxiSluzba.pronadjiDispeceraString(id); //stara metoda
+            Dispeceri pronadjen = taxiSluzba.pronalazenjeDispecera(dispeceri, Integer.parseInt(id));
             if(pronadjen != null) {
                 poruka += "- Dispecer sa unetim ID vec postoji\n";
                 ispravno = false;
