@@ -81,6 +81,7 @@ public class VozaciPrikaz extends JFrame {
         vozaciTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         vozaciTabela.setDefaultEditor(Object.class, null);
         vozaciTabela.getTableHeader().setReorderingAllowed(false);
+        vozaciTabela.setAutoCreateRowSorter(true);
 
         JScrollPane scrollPane = new JScrollPane(vozaciTabela);
         add(scrollPane, BorderLayout.CENTER);

@@ -1,7 +1,6 @@
 package gui.prozoriZaPrikaz;
 
 import entiteti.Vozaci;
-import gui.prozoriZaDodavanjeIIzmenu.VozaciDodajIzmeni;
 import sluzba.Sluzba;
 
 import javax.swing.*;
@@ -57,6 +56,7 @@ public class KombinovanaPretragaPrikaz extends JFrame {
         vozaciTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         vozaciTabela.setDefaultEditor(Object.class, null);
         vozaciTabela.getTableHeader().setReorderingAllowed(false);
+        vozaciTabela.setAutoCreateRowSorter(true);
 
         JScrollPane scrollPane = new JScrollPane(vozaciTabela);
         add(scrollPane, BorderLayout.CENTER);

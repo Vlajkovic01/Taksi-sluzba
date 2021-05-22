@@ -78,6 +78,7 @@ public class VoznjePrikaz extends JFrame {
         voznjeTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         voznjeTabela.setDefaultEditor(Object.class, null);
         voznjeTabela.getTableHeader().setReorderingAllowed(false);
+        voznjeTabela.setAutoCreateRowSorter(true);
 
         JScrollPane scrollPane = new JScrollPane(voznjeTabela);
         add(scrollPane, BorderLayout.CENTER);

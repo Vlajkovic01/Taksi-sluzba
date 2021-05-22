@@ -81,6 +81,7 @@ public class DispeceriPrikaz extends JFrame {
         dispeceriTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         dispeceriTabela.setDefaultEditor(Object.class, null);
         dispeceriTabela.getTableHeader().setReorderingAllowed(false);
+        dispeceriTabela.setAutoCreateRowSorter(true);
 
         JScrollPane scrollPane = new JScrollPane(dispeceriTabela);
         add(scrollPane, BorderLayout.CENTER);
