@@ -60,7 +60,8 @@ public class BinarnaPretragaProzor extends JFrame {
                     if (pronadjenID == null) {
                         JOptionPane.showMessageDialog(null, "Ne postoji vozac sa tim ID-jem!", "Greska", JOptionPane.ERROR_MESSAGE);
                     } else {
-                        JOptionPane.showMessageDialog(null,"Vozac sa tim ID-jem: \n" + "Ime: " + pronadjenID.getIme() + "\nAuto:" + pronadjenID.getAutomobil().getModel() + " " + pronadjenID.getAutomobil().getProizvodjac());
+                        JOptionPane.showMessageDialog(null,"Vozac sa tim ID-jem: \n" + "Ime: " + pronadjenID.getIme()
+                                + "\nPrezime: " + pronadjenID.getPrezime() + "\nAuto:" + pronadjenID.getAutomobil().getModel() + " " + pronadjenID.getAutomobil().getProizvodjac());
                     }
 
                     BinarnaPretragaProzor.this.dispose();

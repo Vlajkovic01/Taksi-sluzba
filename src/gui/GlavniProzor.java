@@ -7,6 +7,7 @@ import enumeracije.TipKorisnika;
 import gui.prozoriZaNarucivanje.DodeljivanjeVoznjeProzor;
 import gui.prozoriZaNarucivanje.NarucivanjeTelefonomProzor;
 import gui.prozoriZaPretragu.BinarnaPretragaProzor;
+import gui.prozoriZaPretragu.KombinovanaPretragaProzor;
 import gui.prozoriZaPrikaz.*;
 import sluzba.Sluzba;
 
@@ -167,6 +168,15 @@ public class GlavniProzor extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 BinarnaPretragaProzor bp = new BinarnaPretragaProzor(taxiSluzba);
                 bp.setVisible(true);
+            }
+        });
+
+        kombinovanaPretragaItem.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                KombinovanaPretragaProzor kp = new KombinovanaPretragaProzor(taxiSluzba);
+                kp.setVisible(true);
             }
         });
     }

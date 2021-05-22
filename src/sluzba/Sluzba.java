@@ -7,6 +7,7 @@ import sluzba.pretrage.BinarnaPretraga;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Locale;
 
 public class Sluzba {
     public int id;
@@ -511,6 +512,19 @@ public class Sluzba {
             }
         }
         return null;
+    }
+
+    public ArrayList<Vozaci> kombinovanaPretragaVozaca(String ime, String prezime, String plata, String automobil) {
+        ArrayList<Vozaci> pronadjeniVozaci = new ArrayList<>();
+        for (Vozaci vozac : vozaci) {
+            if (!vozac.isIzbrisan()) {
+                if (vozac.getIme().equalsIgnoreCase(ime) || vozac.getPrezime().equalsIgnoreCase(prezime) ||
+                        String.valueOf((int) vozac.getPlata()).equals(plata) || vozac.getAutomobil().getProizvodjac().equalsIgnoreCase(automobil)) {
+                    pronadjeniVozaci.add(vozac);
+                }
+            }
+        }
+        return pronadjeniVozaci;
     }
 
     public Automobil pronadjiAutomobil(int idVozila) {
