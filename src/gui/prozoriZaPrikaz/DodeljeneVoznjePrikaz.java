@@ -7,6 +7,7 @@ import gui.prozoriZaNarucivanje.PrihvatiVoznju;
 import sluzba.Sluzba;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -70,6 +71,13 @@ public class DodeljeneVoznjePrikaz extends JFrame {
         }
         tableModel = new DefaultTableModel(sadrzaj, zaglavlja);
         voznjeTabela = new JTable(tableModel);
+
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+
+        for (int j = 0; j<voznjeTabela.getColumnCount();j++) {
+            voznjeTabela.getColumnModel().getColumn(j).setCellRenderer(centerRenderer);
+        }
 
         voznjeTabela.setRowSelectionAllowed(true);
         voznjeTabela.setColumnSelectionAllowed(false);

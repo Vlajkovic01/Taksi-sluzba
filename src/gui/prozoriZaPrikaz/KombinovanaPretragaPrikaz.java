@@ -4,6 +4,7 @@ import entiteti.Vozaci;
 import sluzba.Sluzba;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.ArrayList;
@@ -50,6 +51,13 @@ public class KombinovanaPretragaPrikaz extends JFrame {
         }
         tableModel = new DefaultTableModel(sadrzaj, zaglavlja);
         vozaciTabela = new JTable(tableModel);
+
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+
+        for (int j = 0; j<vozaciTabela.getColumnCount();j++) {
+            vozaciTabela.getColumnModel().getColumn(j).setCellRenderer(centerRenderer);
+        }
 
         vozaciTabela.setRowSelectionAllowed(true);
         vozaciTabela.setColumnSelectionAllowed(false);

@@ -5,6 +5,7 @@ import gui.prozoriZaDodavanjeIIzmenu.VoznjeDodajIzmeni;
 import sluzba.Sluzba;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -33,14 +34,14 @@ public class VoznjePrikaz extends JFrame {
     }
 
     private void InitGUI() {
-        ImageIcon addIcon = new ImageIcon(getClass().getResource("/slike/add.gif"));
-        btnAdd.setIcon(addIcon);
+//        ImageIcon addIcon = new ImageIcon(getClass().getResource("/slike/add.gif")); //oduzeta mogucnost dodavanja voznji preko dispecera,
+//        btnAdd.setIcon(addIcon);                                                     //otkomentarisati za vracanje mogucnosti
         ImageIcon editIcon = new ImageIcon(getClass().getResource("/slike/edit.gif"));
         btnIzmeni.setIcon(editIcon);
         ImageIcon deleteIcon = new ImageIcon(getClass().getResource("/slike/remove.gif"));
         btnObrisi.setIcon(deleteIcon);
 
-        mainToolbar.add(btnAdd);
+//        mainToolbar.add(btnAdd);
         mainToolbar.add(btnIzmeni);
         mainToolbar.add(btnObrisi);
         add(mainToolbar, BorderLayout.NORTH);
@@ -72,6 +73,13 @@ public class VoznjePrikaz extends JFrame {
         }
         tableModel = new DefaultTableModel(sadrzaj, zaglavlja);
         voznjeTabela = new JTable(tableModel);
+
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+
+        for (int j = 0; j<voznjeTabela.getColumnCount();j++) {
+            voznjeTabela.getColumnModel().getColumn(j).setCellRenderer(centerRenderer);
+        }
 
         voznjeTabela.setRowSelectionAllowed(true);
         voznjeTabela.setColumnSelectionAllowed(false);

@@ -5,6 +5,7 @@ import gui.prozoriZaDodavanjeIIzmenu.DispeceriDodajIzmeni;
 import sluzba.Sluzba;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -75,6 +76,13 @@ public class DispeceriPrikaz extends JFrame {
         }
         tableModel = new DefaultTableModel(sadrzaj, zaglavlja);
         dispeceriTabela = new JTable(tableModel);
+
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+
+        for (int j = 0; j<dispeceriTabela.getColumnCount();j++) {
+            dispeceriTabela.getColumnModel().getColumn(j).setCellRenderer(centerRenderer);
+        }
 
         dispeceriTabela.setRowSelectionAllowed(true);
         dispeceriTabela.setColumnSelectionAllowed(false);

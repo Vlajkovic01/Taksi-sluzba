@@ -4,6 +4,10 @@ import entiteti.Korisnici;
 import entiteti.Musterije;
 import entiteti.Vozaci;
 import enumeracije.TipKorisnika;
+import gui.izvestaj.DnevniIzvestajProzor;
+import gui.izvestaj.GodisnjiIzvestajProzor;
+import gui.izvestaj.MesecniIzvestajProzor;
+import gui.izvestaj.NedeljniIzvestajProzor;
 import gui.prozoriZaNarucivanje.DodeljivanjeVoznjeProzor;
 import gui.prozoriZaNarucivanje.NarucivanjeTelefonomProzor;
 import gui.prozoriZaPretragu.BinarnaPretragaProzor;
@@ -177,6 +181,42 @@ public class GlavniProzor extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 KombinovanaPretragaProzor kp = new KombinovanaPretragaProzor(taxiSluzba);
                 kp.setVisible(true);
+            }
+        });
+
+        dnevniIzvestajItem.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DnevniIzvestajProzor di = new DnevniIzvestajProzor(taxiSluzba);
+                di.setVisible(true);
+            }
+        });
+
+        godisnjiIzvestajItem.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GodisnjiIzvestajProzor gi = new GodisnjiIzvestajProzor(taxiSluzba);
+                gi.setVisible(true);
+            }
+        });
+
+        mesecniIzvestajItem.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MesecniIzvestajProzor mi = new MesecniIzvestajProzor(taxiSluzba);
+                mi.setVisible(true);
+            }
+        });
+
+        nedeljniIzvestajItem.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                NedeljniIzvestajProzor ni = new NedeljniIzvestajProzor(taxiSluzba);
+                ni.setVisible(true);
             }
         });
     }

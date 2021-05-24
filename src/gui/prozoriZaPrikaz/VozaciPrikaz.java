@@ -5,6 +5,7 @@ import gui.prozoriZaDodavanjeIIzmenu.VozaciDodajIzmeni;
 import sluzba.Sluzba;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -75,6 +76,13 @@ public class VozaciPrikaz extends JFrame {
         }
         tableModel = new DefaultTableModel(sadrzaj, zaglavlja);
         vozaciTabela = new JTable(tableModel);
+
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+
+        for (int j = 0; j<vozaciTabela.getColumnCount();j++) {
+            vozaciTabela.getColumnModel().getColumn(j).setCellRenderer(centerRenderer);
+        }
 
         vozaciTabela.setRowSelectionAllowed(true);
         vozaciTabela.setColumnSelectionAllowed(false);

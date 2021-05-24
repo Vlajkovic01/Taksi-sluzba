@@ -545,6 +545,37 @@ public class Sluzba {
         return null;
     }
 
+    //-------------------------------Izvestaji--------------------------------------//
+
+    public ArrayList<Voznja> izvestaj(String datum, int pocetak, int kraj) {
+        ArrayList<Voznja> pronadjeneVoznje = new ArrayList<>();
+        for (Voznja voznja : voznje) {
+            if (!voznja.isIzbrisana() && voznja.getStatusVoznje() == StatusVoznje.ZAVRSENA) {
+                if (voznja.getDatumIVremePorudzbine().substring(pocetak,kraj).equals(datum)) {
+                    pronadjeneVoznje.add(voznja);
+                }
+            }
+        }
+        return pronadjeneVoznje;
+    }
+    //TODO zavrsiti nedeljni izvestaj, konsultovati se sa profesorom
+    public ArrayList<Voznja> nedeljniIzvestaj(String datum) {
+        ArrayList<Voznja> pronadjeneVoznje = new ArrayList<>();
+        for (Voznja voznja: voznje) {
+            if (!voznja.isIzbrisana() && voznja.getStatusVoznje() == StatusVoznje.ZAVRSENA) {
+                if (voznja.getDatumIVremePorudzbine().substring(0,10).equals(datum)) {
+                    int k = Integer.parseInt(datum.substring(0,2));
+                    if (k < 23) {
+                        for (int i = 0 ; i<7 ; i++) {
+                            k++;
+                        }
+                    }
+                }
+            }
+        }
+        return pronadjeneVoznje;
+    }
+
     //-------------------------------Login--------------------------------------//
 
     public Vozaci loginVozac(String korisnickoIme, String lozinka) {
