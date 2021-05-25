@@ -114,8 +114,6 @@ public class VoznjePrikaz extends JFrame {
                         } else {
                             JOptionPane.showMessageDialog(null, "Voznja mora biti ODBIJENA ili ZAVRSENA da bi mogla da se izbrise.", "Greska", JOptionPane.WARNING_MESSAGE);
                         }
-//                        taxiSluzba.obrisiVoznju(voznja);
-//                        tableModel.removeRow(red);
                     }
                 }
             }

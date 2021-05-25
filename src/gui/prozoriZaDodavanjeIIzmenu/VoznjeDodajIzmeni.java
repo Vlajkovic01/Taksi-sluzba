@@ -119,8 +119,8 @@ public class VoznjeDodajIzmeni extends JFrame {
                     String adresaDestinacije = txtAdresaDestinacije.getText();
                     Musterije musterija = taxiSluzba.pronadjiMusteriju(Integer.parseInt(cbMusterije.getSelectedItem().toString()));
                     Vozaci vozac = taxiSluzba.pronadjiVozaca(Integer.parseInt(cbVozaci.getSelectedItem().toString()));
-//                    Musterije musterija = taxiSluzba.pronalazenjeMusterije(ID); //nova metoda, resiti problem
-//                    Vozaci vozac = taxiSluzba.pronalazenjeVozaca(ID); //nova metoda, resiti problem
+//                    Musterije musterija = taxiSluzba.pronalazenjeMusterije(ID); //nova metoda, resiti
+//                    Vozaci vozac = taxiSluzba.pronalazenjeVozaca(ID); //nova metoda, resiti
                     double predjeniKm = Double.parseDouble(txtPredjeniKm.getText());
                     double trajanjeVoznje = Double.parseDouble(txtTrajanjeVoznje.getText());
                     StatusVoznje status = StatusVoznje.valueOf(cbStatus.getSelectedItem().toString());
@@ -190,7 +190,7 @@ public class VoznjeDodajIzmeni extends JFrame {
         else if(voznja == null) {
             String id = txtID.getText().trim();
             Voznja pronadjena = taxiSluzba.pronadjiVoznju(Integer.parseInt(id));
-//            Voznja pronadjena = taxiSluzba.pronalazenjeVoznje(Integer.parseInt(id)); //nova metoda, resiti problem
+//            Voznja pronadjena = taxiSluzba.pronalazenjeVoznje(Integer.parseInt(id)); //nova metoda, resiti
             if(pronadjena != null) {
                 poruka += "- Voznja sa unetim ID vec postoji\n";
                 ispravno = false;
