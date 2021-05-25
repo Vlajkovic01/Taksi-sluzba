@@ -117,14 +117,31 @@ public class DodeliVoznju extends JFrame {
                     TipPorudzbine tipPorudzbine = TipPorudzbine.valueOf(cbTipPorudzbine.getSelectedItem().toString());
 
                     if(voznja != null) {
-                        voznja.setDatumIVremePorudzbine(vremePorudzbine);
-                        voznja.setAdresaPolaska(adresaPolaska);
-                        voznja.setAdresaDestinacije(adresaDestinacije);
-                        voznja.setMusterija(musterija);
-                        voznja.setVozac(vozac);
-                        voznja.setStatusVoznje(status);
-                        voznja.setTipPorudzbine(tipPorudzbine);
-                        JOptionPane.showMessageDialog(null, "Uspesno dodeljen vozac!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
+                        if (vozac.getAutomobil().getIdVozila() == 0) {
+                            JOptionPane.showMessageDialog(null, "Vozac nema dodeljen automobil!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            voznja.setDatumIVremePorudzbine(vremePorudzbine);
+                            voznja.setAdresaPolaska(adresaPolaska);
+                            voznja.setAdresaDestinacije(adresaDestinacije);
+                            voznja.setMusterija(musterija);
+                            voznja.setVozac(vozac);
+                            voznja.setStatusVoznje(status);
+                            voznja.setTipPorudzbine(tipPorudzbine);
+                            JOptionPane.showMessageDialog(null, "Uspesno dodeljen vozac!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
+                        }
+//                        voznja.setDatumIVremePorudzbine(vremePorudzbine);
+//                        voznja.setAdresaPolaska(adresaPolaska);
+//                        voznja.setAdresaDestinacije(adresaDestinacije);
+//                        voznja.setMusterija(musterija);
+//                        if (vozac.getAutomobil().getIdVozila() == 0) {
+//                            JOptionPane.showMessageDialog(null, "Vozac nema dodeljen automobil!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
+//                        } else {
+//                            voznja.setVozac(vozac);
+//                        }
+//                        voznja.setVozac(vozac);
+//                        voznja.setStatusVoznje(status);
+//                        voznja.setTipPorudzbine(tipPorudzbine);
+//                        JOptionPane.showMessageDialog(null, "Uspesno dodeljen vozac!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                     }
 
                     DodeliVoznju.this.dispose();

@@ -1,6 +1,7 @@
 package gui.prozoriZaPrikaz;
 
 import entiteti.Voznja;
+import enumeracije.StatusVoznje;
 import gui.prozoriZaDodavanjeIIzmenu.VoznjeDodajIzmeni;
 import sluzba.Sluzba;
 
@@ -107,8 +108,14 @@ public class VoznjePrikaz extends JFrame {
                             voznja.getId() + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
 
                     if(izbor == JOptionPane.YES_OPTION) {
-                        taxiSluzba.obrisiVoznju(voznja);
-                        tableModel.removeRow(red);
+                        if(voznja.getStatusVoznje() == StatusVoznje.ODBIJENA || voznja.getStatusVoznje() == StatusVoznje.ZAVRSENA) {
+                            taxiSluzba.obrisiVoznju(voznja);
+                            tableModel.removeRow(red);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Voznja mora biti ODBIJENA ili ZAVRSENA da bi mogla da se izbrise.", "Greska", JOptionPane.WARNING_MESSAGE);
+                        }
+//                        taxiSluzba.obrisiVoznju(voznja);
+//                        tableModel.removeRow(red);
                     }
                 }
             }

@@ -4,11 +4,13 @@ import entiteti.Automobil;
 import entiteti.Vozaci;
 import entiteti.Voznja;
 import enumeracije.Pol;
+import enumeracije.StatusVoznje;
 import enumeracije.TipKorisnika;
 import net.miginfocom.swing.MigLayout;
 import sluzba.Sluzba;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -41,6 +43,8 @@ public class VozaciDodajIzmeni extends JFrame {
     private JTextField txtClanskaKarta = new JTextField(15);
     private JLabel lblAutomobil = new JLabel("Automobil");
     private JComboBox<Integer> cbAutomobil = new JComboBox<Integer>();
+    private JLabel lblPrihvacenaVoznja = new JLabel("Zamena auta je onemogucena");
+    private JLabel lblPrihvacenaVoznjaNastavak = new JLabel("zbog prihvacene voznje.");
 
     private JButton btnOk = new JButton("OK");
     private JButton btnCancel = new JButton("Cancel");
@@ -73,7 +77,7 @@ public class VozaciDodajIzmeni extends JFrame {
         cbUloga.setSelectedIndex(0);
 
         for(Automobil auto: taxiSluzba.getAutomobili()) {
-            if (auto.isSlobodan()) {
+            if (auto.isSlobodan() || auto.getIdVozila() == 0) {
                 cbAutomobil.addItem(auto.getIdVozila());
             }
         }
@@ -107,6 +111,7 @@ public class VozaciDodajIzmeni extends JFrame {
         add(txtClanskaKarta);
         add(lblAutomobil);
         add(cbAutomobil);
+
 
         add(new JLabel());
         add(btnOk, "split");
@@ -189,6 +194,13 @@ public class VozaciDodajIzmeni extends JFrame {
         txtPlata.setText(String.valueOf(vozac.getPlata()));
         txtClanskaKarta.setText(String.valueOf(vozac.getBrClanskeKarte()));
         cbAutomobil.setSelectedItem(vozac.getAutomobil().getIdVozila());
+        if (menjanjeAutomobila()) {
+            cbAutomobil.setEnabled(false);
+            add(lblPrihvacenaVoznja);
+            add(lblPrihvacenaVoznjaNastavak);
+            lblPrihvacenaVoznja.setForeground(Color.RED);
+            lblPrihvacenaVoznjaNastavak.setForeground(Color.RED);
+        }
     }
 
     private boolean validacija() {
@@ -275,5 +287,17 @@ public class VozaciDodajIzmeni extends JFrame {
             JOptionPane.showMessageDialog(null, poruka, "Neispravni podaci", JOptionPane.WARNING_MESSAGE);
         }
         return ispravno;
+    }
+
+    private boolean menjanjeAutomobila() {
+        boolean tacno = false;
+        for (Voznja voznja: vozac.getVoznjeVozaca()) {
+            if (voznja.getStatusVoznje() == StatusVoznje.PRIHVACENA) {
+                tacno = true;
+            }else {
+                tacno = false;
+            }
+        }
+        return tacno;
     }
 }
