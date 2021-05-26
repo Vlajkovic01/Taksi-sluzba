@@ -12,8 +12,8 @@ import java.util.ArrayList;
 public class NedeljniIzvestajProzor extends JFrame {
 
     private JLabel lblPozdrav = new JLabel();
-    private JLabel lblDatum = new JLabel("Unesi mesec i godinu:");
-    private JFormattedTextField txtDatum = new JFormattedTextField("MM-yyyy");
+    private JLabel lblDatum = new JLabel("Unesi datum:");
+    private JFormattedTextField txtDatum = new JFormattedTextField("dd-MM-yyyy");
     private JButton btnPretrazi = new JButton("Pretrazi");
     private JButton btnOtkazi = new JButton("Otkazi");
 

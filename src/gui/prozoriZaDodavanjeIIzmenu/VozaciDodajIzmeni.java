@@ -107,8 +107,6 @@ public class VozaciDodajIzmeni extends JFrame {
         add(cbUloga);
         add(lblPlata);
         add(txtPlata);
-        add(lblClanskaKarta);
-        add(txtClanskaKarta);
         add(lblAutomobil);
         add(cbAutomobil);
 
@@ -117,7 +115,8 @@ public class VozaciDodajIzmeni extends JFrame {
         add(btnOk, "split");
         add(btnCancel);
         cbUloga.setEnabled(false);
-        txtID.setText(String.valueOf(taxiSluzba.generisanjeIDVozaca()));
+        txtID.setText(String.valueOf(taxiSluzba.generisanjeIDVozaca(0)));
+        txtClanskaKarta.setText(String.valueOf(taxiSluzba.generisanjeIDVozaca(1000)));
     }
 
     private void initActions() {
@@ -135,9 +134,9 @@ public class VozaciDodajIzmeni extends JFrame {
                     Pol pol = Pol.valueOf(cbPol.getSelectedItem().toString());
                     String  telefon = txtTelefon.getText();
                     TipKorisnika uloga = TipKorisnika.valueOf(cbUloga.getSelectedItem().toString());
-                    int ID = taxiSluzba.generisanjeIDVozaca();
+                    int ID = taxiSluzba.generisanjeIDVozaca(0);
                     double plata  = Double.parseDouble(txtPlata.getText());
-                    int brClanskeKarte = Integer.parseInt(txtClanskaKarta.getText());
+                    int brClanskeKarte = taxiSluzba.generisanjeIDVozaca(1000);
                     Automobil automobil = taxiSluzba.pronalazenjeAutomobila( Integer.parseInt(cbAutomobil.getSelectedItem().toString()));
                     if(vozac == null) {
                         Vozaci vozac = new Vozaci(korisnickoIme,lozinka,ime,prezime,jmbg,adresa,pol,telefon,uloga,false,ID,plata,brClanskeKarte,automobil,new ArrayList<Voznja>());
@@ -155,7 +154,6 @@ public class VozaciDodajIzmeni extends JFrame {
                         vozac.setTelefon(telefon);
                         vozac.setTipKorisnika(uloga);
                         vozac.setPlata(plata);
-                        vozac.setBrClanskeKarte(brClanskeKarte);
                         vozac.getAutomobil().setSlobodan(true);
                         vozac.setAutomobil(automobil);
                         vozac.setVoznjeVozaca(new ArrayList<Voznja>());

@@ -655,8 +655,8 @@ public class Sluzba {
         return counter;
     };
 
-    public int generisanjeIDVozaca() {
-        int counter = 0;
+    public int generisanjeIDVozaca(int counter) {
+//        int counter = 0;
         for (Vozaci vozac: vozaci ) {
             counter++;
         }

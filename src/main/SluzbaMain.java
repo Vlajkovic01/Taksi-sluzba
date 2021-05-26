@@ -5,6 +5,7 @@ import sluzba.Sluzba;
 
 public class SluzbaMain {
     public static void main(String[] args) {
+        //u sistemu ako vozac kao id vozila ima 0 znaci da nema auto, voznja ako ima vozaca sa id 0 znaci da nije dodeljen vozac
         Sluzba sluzba = new Sluzba();
         sluzba.ucitajAutomobile();
         sluzba.ucitajDispecere();
