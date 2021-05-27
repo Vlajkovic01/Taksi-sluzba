@@ -41,6 +41,7 @@ public class IzvestajPrikaz extends JFrame {
         double ukupnoMin = 0;
         double cenaStart = 120;
         double cenaKm = 50;
+        ArrayList<Integer> brVozaca = new ArrayList<>();
 
         for (Voznja voznja : pronadjenaVoznja) {
             sadrzaj[i][0] = voznja.getId();
@@ -57,6 +58,13 @@ public class IzvestajPrikaz extends JFrame {
             i++;
             ukupnoKm += voznja.getPredjeniKm();
             ukupnoMin += voznja.getTrajanjeVoznje();
+
+            if (brVozaca.contains(voznja.getVozac().getId())) {
+                continue;
+            } else {
+                brVozaca.add(voznja.getVozac().getId());
+            }
+
         }
 
         double ukupnaZarada = cenaStart + ukupnoKm*cenaKm;
@@ -83,15 +91,9 @@ public class IzvestajPrikaz extends JFrame {
         Font font = new Font("Bold",Font.BOLD,12);
         lblIzvestaj.setFont(font);
 
-        //TODO uraditi prikaz svih aktivnih vozaca.
-
-        lblIzvestaj.setText("Ukupno voznji: " + i + "\nBroj aktivnih vozaca: " + "\nProsek km: " + ukupnoKm/i +
+        lblIzvestaj.setText("Ukupno voznji: " + i + "\nBroj aktivnih vozaca: " + brVozaca.size()  + "\nProsek km: " + ukupnoKm/i +
                 "\nProsek min: " + ukupnoMin/i + "\nUkupna zarada: " + ukupnaZarada + " Rsd" +
                 "\nProsek zarade po voznji: " + ukupnaZarada/i + " Rsd");
-
-//        lblIzvestaj.setText("Ukupno voznji: " + i + " | Broj aktivnih vozaca: 100000000123123123" + " | Prosek km: " + ukupnoKm/i +
-//                " | Prosek min: " + ukupnoMin/i + " | Ukupna zarada: " + ukupnaZarada + " Rsd" +
-//                " | Prosek zarade po voznji: " + ukupnaZarada/i + " Rsd");
 
         JScrollPane scrollPane = new JScrollPane(voznjeTabela);
         add(scrollPane, BorderLayout.CENTER);

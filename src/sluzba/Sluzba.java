@@ -5,9 +5,7 @@ import enumeracije.*;
 import sluzba.pretrage.BinarnaPretraga;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Locale;
+import java.util.*;
 
 public class Sluzba {
     public int id;
@@ -518,10 +516,19 @@ public class Sluzba {
         ArrayList<Vozaci> pronadjeniVozaci = new ArrayList<>();
         for (Vozaci vozac : vozaci) {
             if (!vozac.isIzbrisan()) {
-                if (vozac.getIme().equalsIgnoreCase(ime) || vozac.getPrezime().equalsIgnoreCase(prezime) ||
-                        String.valueOf((int) vozac.getPlata()).equals(plata) || vozac.getAutomobil().getProizvodjac().equalsIgnoreCase(automobil)) {
-                    pronadjeniVozaci.add(vozac);
+                if (!vozac.getIme().equalsIgnoreCase(ime) && !ime.equals("")) {
+                    continue;
                 }
+                if (!vozac.getPrezime().equalsIgnoreCase(prezime) && !prezime.equals("")) {
+                    continue;
+                }
+                if (!String.valueOf((int) vozac.getPlata()).equals(plata) && !plata.equals("")) {
+                    continue;
+                }
+                if (!vozac.getAutomobil().getProizvodjac().equalsIgnoreCase(automobil) && !automobil.equals("")) {
+                    continue;
+                }
+                pronadjeniVozaci.add(vozac);
             }
         }
         return pronadjeniVozaci;
@@ -558,18 +565,13 @@ public class Sluzba {
         }
         return pronadjeneVoznje;
     }
-    //TODO zavrsiti nedeljni izvestaj, konsultovati se sa profesorom
+    //TODO zavrsiti nedeljni izvestaj, java date, increment date
     public ArrayList<Voznja> nedeljniIzvestaj(String datum) {
         ArrayList<Voznja> pronadjeneVoznje = new ArrayList<>();
         for (Voznja voznja: voznje) {
             if (!voznja.isIzbrisana() && voznja.getStatusVoznje() == StatusVoznje.ZAVRSENA) {
                 if (voznja.getDatumIVremePorudzbine().substring(0,10).equals(datum)) {
-                    int k = Integer.parseInt(datum.substring(0,2));
-                    if (k < 23) {
-                        for (int i = 0 ; i<7 ; i++) {
-                            k++;
-                        }
-                    }
+
                 }
             }
         }
