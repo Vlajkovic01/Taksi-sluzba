@@ -108,7 +108,7 @@ public class VozaciPrikaz extends JFrame {
                     String id = vozaciTabela.getValueAt(red, 10).toString();
                     Vozaci vozac = taxiSluzba.pronalazenjeVozaca(Integer.parseInt(id));
                     int izbor = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da zelite da obrisete vozaca?",
-                            vozac.getId() + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
+                            vozac.getIme() + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
 
                     if(izbor == JOptionPane.YES_OPTION) {
                         taxiSluzba.obrisiVozaca(vozac);

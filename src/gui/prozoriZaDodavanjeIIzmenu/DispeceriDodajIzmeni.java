@@ -52,9 +52,9 @@ public class DispeceriDodajIzmeni extends JFrame {
         if(this.dispecer == null) {
             setTitle("Dodavanje dispecera");
         }else {
-            setTitle("Izmena podataka - " + this.dispecer.getId());
-
+            setTitle("Izmena podataka - " + this.dispecer.getIme());
         }
+
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);

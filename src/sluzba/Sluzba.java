@@ -5,6 +5,9 @@ import enumeracije.*;
 import sluzba.pretrage.BinarnaPretraga;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Sluzba {
@@ -565,13 +568,43 @@ public class Sluzba {
         }
         return pronadjeneVoznje;
     }
-    //TODO zavrsiti nedeljni izvestaj, java date, increment date
+
     public ArrayList<Voznja> nedeljniIzvestaj(String datum) {
+        LocalDate date = LocalDate.of(Integer.parseInt(datum.substring(6,10)),Integer.parseInt(datum.substring(3,5)),Integer.parseInt(datum.substring(0,2)));
+        String date0 = date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        String date1 = date.plusDays(1).format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        String date2 = date.plusDays(2).format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        String date3 = date.plusDays(3).format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        String date4 = date.plusDays(4).format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        String date5 = date.plusDays(5).format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        String date6 = date.plusDays(6).format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        String date7 = date.plusDays(7).format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         ArrayList<Voznja> pronadjeneVoznje = new ArrayList<>();
         for (Voznja voznja: voznje) {
             if (!voznja.isIzbrisana() && voznja.getStatusVoznje() == StatusVoznje.ZAVRSENA) {
-                if (voznja.getDatumIVremePorudzbine().substring(0,10).equals(datum)) {
-
+                if (voznja.getDatumIVremePorudzbine().substring(0,10).equals(date0)) {
+                    pronadjeneVoznje.add(voznja);
+                }
+                if (voznja.getDatumIVremePorudzbine().substring(0,10).equals(date1)) {
+                    pronadjeneVoznje.add(voznja);
+                }
+                if (voznja.getDatumIVremePorudzbine().substring(0,10).equals(date2)) {
+                    pronadjeneVoznje.add(voznja);
+                }
+                if (voznja.getDatumIVremePorudzbine().substring(0,10).equals(date3)) {
+                    pronadjeneVoznje.add(voznja);
+                }
+                if (voznja.getDatumIVremePorudzbine().substring(0,10).equals(date4)) {
+                    pronadjeneVoznje.add(voznja);
+                }
+                if (voznja.getDatumIVremePorudzbine().substring(0,10).equals(date5)) {
+                    pronadjeneVoznje.add(voznja);
+                }
+                if (voznja.getDatumIVremePorudzbine().substring(0,10).equals(date6)) {
+                    pronadjeneVoznje.add(voznja);
+                }
+                if (voznja.getDatumIVremePorudzbine().substring(0,10).equals(date7)) {
+                    pronadjeneVoznje.add(voznja);
                 }
             }
         }

@@ -48,8 +48,8 @@ public class VoznjeDodajIzmeni extends JFrame {
             setTitle("Dodavanje voznje");
         }else {
             setTitle("Izmena podataka - " + this.voznja.getId());
-
         }
+
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);

@@ -107,7 +107,7 @@ public class DispeceriPrikaz extends JFrame {
                     String id = dispeceriTabela.getValueAt(red, 10).toString();
                     Dispeceri dispecer = taxiSluzba.pronalazenjeDispecera(Integer.parseInt(id));
                     int izbor = JOptionPane.showConfirmDialog(null,"Da li ste sigurni da zelite da obrisete dispecera?",
-                            dispecer.getId() + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
+                            dispecer.getIme() + " - Potvrda brisanja", JOptionPane.YES_NO_OPTION);
 
                     if(izbor == JOptionPane.YES_OPTION) {
                         taxiSluzba.obrisiDispecera(dispecer);

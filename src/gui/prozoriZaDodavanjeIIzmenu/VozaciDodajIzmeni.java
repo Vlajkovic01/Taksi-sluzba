@@ -58,9 +58,9 @@ public class VozaciDodajIzmeni extends JFrame {
         if(this.vozac == null) {
             setTitle("Dodavanje vozaca");
         }else {
-            setTitle("Izmena podataka - " + this.vozac.getId());
-
+            setTitle("Izmena podataka - " + this.vozac.getIme());
         }
+
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -156,7 +156,6 @@ public class VozaciDodajIzmeni extends JFrame {
                         vozac.setPlata(plata);
                         vozac.getAutomobil().setSlobodan(true);
                         vozac.setAutomobil(automobil);
-                        vozac.setVoznjeVozaca(new ArrayList<Voznja>());
                         JOptionPane.showMessageDialog(null, "Izmene su sacuvane!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                     }
                     VozaciDodajIzmeni.this.dispose();
@@ -164,6 +163,7 @@ public class VozaciDodajIzmeni extends JFrame {
                     automobil.setSlobodan(false);
                     taxiSluzba.snimiVozace();
                     taxiSluzba.snimiAutomobile();
+
                 }
             }
         });
@@ -288,14 +288,12 @@ public class VozaciDodajIzmeni extends JFrame {
     }
 
     private boolean menjanjeAutomobila() {
-        boolean tacno = false;
+
         for (Voznja voznja: vozac.getVoznjeVozaca()) {
             if (voznja.getStatusVoznje() == StatusVoznje.PRIHVACENA) {
-                tacno = true;
-            }else {
-                tacno = false;
+                return true;
             }
         }
-        return tacno;
+        return false;
     }
 }

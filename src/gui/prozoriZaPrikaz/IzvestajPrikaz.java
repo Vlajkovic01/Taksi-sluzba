@@ -12,9 +12,6 @@ import java.util.ArrayList;
 public class IzvestajPrikaz extends JFrame {
 
     private JTextPane lblIzvestaj = new JTextPane();
-//    private JLabel lblIzvestaj = new JLabel();
-
-
 
     private DefaultTableModel tableModel;
     private JTable voznjeTabela;
