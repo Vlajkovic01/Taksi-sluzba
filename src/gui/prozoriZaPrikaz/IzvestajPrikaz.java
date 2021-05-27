@@ -83,6 +83,11 @@ public class IzvestajPrikaz extends JFrame {
         voznjeTabela.getTableHeader().setReorderingAllowed(false);
         voznjeTabela.setAutoCreateRowSorter(true);
 
+        voznjeTabela.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        for(int k=0; k<zaglavlja.length; k++) {
+            voznjeTabela.getColumnModel().getColumn(k).setPreferredWidth(100);
+        }
+
         add(lblIzvestaj, BorderLayout.SOUTH);
         lblIzvestaj.setEditable(false);
         Font font = new Font("Bold",Font.BOLD,12);

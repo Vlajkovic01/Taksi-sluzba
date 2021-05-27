@@ -66,6 +66,11 @@ public class KombinovanaPretragaPrikaz extends JFrame {
         vozaciTabela.getTableHeader().setReorderingAllowed(false);
         vozaciTabela.setAutoCreateRowSorter(true);
 
+        vozaciTabela.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        for(int k=0; k<zaglavlja.length; k++) {
+            vozaciTabela.getColumnModel().getColumn(k).setPreferredWidth(100);
+        }
+
         JScrollPane scrollPane = new JScrollPane(vozaciTabela);
         add(scrollPane, BorderLayout.CENTER);
     }

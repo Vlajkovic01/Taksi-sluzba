@@ -89,6 +89,11 @@ public class VoznjePrikaz extends JFrame {
         voznjeTabela.getTableHeader().setReorderingAllowed(false);
         voznjeTabela.setAutoCreateRowSorter(true);
 
+        voznjeTabela.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        for(int k=0; k<zaglavlja.length; k++) {
+            voznjeTabela.getColumnModel().getColumn(k).setPreferredWidth(100);
+        }
+
         JScrollPane scrollPane = new JScrollPane(voznjeTabela);
         add(scrollPane, BorderLayout.CENTER);
     }

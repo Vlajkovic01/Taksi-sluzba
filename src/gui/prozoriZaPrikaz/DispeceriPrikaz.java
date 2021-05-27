@@ -91,6 +91,11 @@ public class DispeceriPrikaz extends JFrame {
         dispeceriTabela.getTableHeader().setReorderingAllowed(false);
         dispeceriTabela.setAutoCreateRowSorter(true);
 
+        dispeceriTabela.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        for(int k=0; k<zaglavlja.length; k++) {
+            dispeceriTabela.getColumnModel().getColumn(k).setPreferredWidth(100);
+        }
+
         JScrollPane scrollPane = new JScrollPane(dispeceriTabela);
         add(scrollPane, BorderLayout.CENTER);
     }
