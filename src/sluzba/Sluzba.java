@@ -570,6 +570,7 @@ public class Sluzba {
     }
 
     public ArrayList<Voznja> nedeljniIzvestaj(String datum) {
+
         LocalDate date = LocalDate.of(Integer.parseInt(datum.substring(6,10)),Integer.parseInt(datum.substring(3,5)),Integer.parseInt(datum.substring(0,2)));
         String date0 = date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         String date1 = date.plusDays(1).format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
@@ -579,6 +580,7 @@ public class Sluzba {
         String date5 = date.plusDays(5).format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         String date6 = date.plusDays(6).format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         String date7 = date.plusDays(7).format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+
         ArrayList<Voznja> pronadjeneVoznje = new ArrayList<>();
         for (Voznja voznja: voznje) {
             if (!voznja.isIzbrisana() && voznja.getStatusVoznje() == StatusVoznje.ZAVRSENA) {
