@@ -67,7 +67,7 @@ public class VoznjeDodajIzmeni extends JFrame {
         cbTipPorudzbine.setSelectedIndex(0);
 
         for(Vozaci vozac: taxiSluzba.getVozaci()) {
-            if (!vozac.isIzbrisan()) {
+            if (!vozac.isIzbrisan() || vozac.getId() == 0) {
                 cbVozaci.addItem(vozac.getId());
             }
         }
@@ -79,6 +79,7 @@ public class VoznjeDodajIzmeni extends JFrame {
 
         if(this.voznja != null) {
             popuniPolja();
+
             cbVozaci.setSelectedItem(voznja.getVozac().getId());
         }
 

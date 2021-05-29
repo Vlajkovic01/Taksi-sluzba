@@ -5,6 +5,7 @@ import enumeracije.StatusVoznje;
 import sluzba.Sluzba;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -67,12 +68,25 @@ public class DodeljivanjeVoznjeProzor extends JFrame {
         tableModel = new DefaultTableModel(sadrzaj, zaglavlja);
         voznjeTabela = new JTable(tableModel);
 
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+
+        for (int j = 0; j<voznjeTabela.getColumnCount();j++) {
+            voznjeTabela.getColumnModel().getColumn(j).setCellRenderer(centerRenderer);
+        }
+
         voznjeTabela.setRowSelectionAllowed(true);
         voznjeTabela.setColumnSelectionAllowed(false);
         voznjeTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         voznjeTabela.setDefaultEditor(Object.class, null);
         voznjeTabela.getTableHeader().setReorderingAllowed(false);
         voznjeTabela.setAutoCreateRowSorter(true);
+
+        voznjeTabela.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        for(int k=0; k<zaglavlja.length; k++) {
+            voznjeTabela.getColumnModel().getColumn(k).setPreferredWidth(100);
+        }
+
 
         JScrollPane scrollPane = new JScrollPane(voznjeTabela);
         add(scrollPane, BorderLayout.CENTER);
