@@ -1,5 +1,6 @@
 package gui.izvestaj;
 
+import entiteti.Voznja;
 import gui.prozoriZaPrikaz.IzvestajPrikaz;
 import net.miginfocom.swing.MigLayout;
 import sluzba.Sluzba;
@@ -8,6 +9,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+//import java.util.ArrayList;
+
 
 public class NedeljniIzvestajProzor extends JFrame {
 
@@ -57,7 +60,7 @@ public class NedeljniIzvestajProzor extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (validacija()) {
                     String datum = txtDatum.getText();
-                    ArrayList pronadjenaVoznja = taxiSluzba.nedeljniIzvestaj(datum);
+                    ArrayList<Voznja> pronadjenaVoznja = taxiSluzba.nedeljniIzvestaj(datum);
                     if (pronadjenaVoznja.isEmpty()) {
                         JOptionPane.showMessageDialog(null, "Ne postoje voznje za tu nedelju!", "Greska", JOptionPane.ERROR_MESSAGE);
                     } else {

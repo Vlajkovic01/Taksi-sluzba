@@ -1,5 +1,6 @@
 package gui.prozoriZaPretragu;
 
+import entiteti.Vozaci;
 import gui.prozoriZaPrikaz.KombinovanaPretragaPrikaz;
 import net.miginfocom.swing.MigLayout;
 import sluzba.Sluzba;
@@ -8,6 +9,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+//import java.util.ArrayList;
+
 
 public class KombinovanaPretragaProzor extends JFrame {
 
@@ -72,7 +75,7 @@ public class KombinovanaPretragaProzor extends JFrame {
                     String prezime = txtPrezime.getText();
                     String plata = txtPlata.getText();
                     String automobil = txtAutomobil.getText();
-                    ArrayList pronadjenVozac = taxiSluzba.kombinovanaPretragaVozaca(ime, prezime, plata, automobil);
+                    ArrayList<Vozaci> pronadjenVozac = taxiSluzba.kombinovanaPretragaVozaca(ime, prezime, plata, automobil);
                     if (pronadjenVozac.isEmpty()) {
                         JOptionPane.showMessageDialog(null, "Ne postoji vozac sa unetim parametrima!", "Greska", JOptionPane.ERROR_MESSAGE);
                     } else {
