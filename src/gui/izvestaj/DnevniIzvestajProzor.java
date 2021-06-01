@@ -8,8 +8,7 @@ import sluzba.Sluzba;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-//import java.util.ArrayList;
+import strukture.ArrayList;
 
 
 public class DnevniIzvestajProzor extends JFrame {

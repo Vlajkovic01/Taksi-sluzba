@@ -7,7 +7,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.util.ArrayList;
+import strukture.ArrayList;
 
 public class IzvestajPrikaz extends JFrame {
 
@@ -16,7 +16,7 @@ public class IzvestajPrikaz extends JFrame {
     private DefaultTableModel tableModel;
     private JTable voznjeTabela;
     private Sluzba taxiSluzba;
-    private ArrayList<Voznja> pronadjenaVoznja;
+    private strukture.ArrayList<Voznja> pronadjenaVoznja;
 
     public IzvestajPrikaz(Sluzba taxiSluzba, ArrayList<Voznja> pronadjenaVoznja) {
         this.taxiSluzba = taxiSluzba;

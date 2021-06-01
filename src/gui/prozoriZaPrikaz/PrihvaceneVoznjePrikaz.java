@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import strukture.ArrayList;
 
 public class PrihvaceneVoznjePrikaz extends JFrame {
 

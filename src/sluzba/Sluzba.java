@@ -5,7 +5,6 @@ import enumeracije.*;
 import sluzba.pretrage.BinarnaPretraga;
 
 import java.io.*;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -515,8 +514,8 @@ public class Sluzba {
         return null;
     }
 
-    public ArrayList<Vozaci> kombinovanaPretragaVozaca(String ime, String prezime, String plata, String automobil) {
-        ArrayList<Vozaci> pronadjeniVozaci = new ArrayList<>();
+    public strukture.ArrayList<Vozaci> kombinovanaPretragaVozaca(String ime, String prezime, String plata, String automobil) {
+        strukture.ArrayList<Vozaci> pronadjeniVozaci = new strukture.ArrayList<>();
         for (Vozaci vozac : vozaci) {
             if (!vozac.isIzbrisan()) {
                 if (!vozac.getIme().equalsIgnoreCase(ime) && !ime.equals("")) {
@@ -557,8 +556,8 @@ public class Sluzba {
 
     //-------------------------------Izvestaji--------------------------------------//
 
-    public ArrayList<Voznja> izvestaj(String datum, int pocetak, int kraj) {
-        ArrayList<Voznja> pronadjeneVoznje = new ArrayList<>();
+    public strukture.ArrayList<Voznja> izvestaj(String datum, int pocetak, int kraj) {
+        strukture.ArrayList<Voznja> pronadjeneVoznje = new strukture.ArrayList<>();
         for (Voznja voznja : voznje) {
             if (!voznja.isIzbrisana() && voznja.getStatusVoznje() == StatusVoznje.ZAVRSENA) {
                 if (voznja.getDatumIVremePorudzbine().substring(pocetak,kraj).equals(datum)) {
@@ -569,8 +568,8 @@ public class Sluzba {
         return pronadjeneVoznje;
     }
 
-    public ArrayList<Voznja> nedeljniIzvestaj(String datum) {
-        ArrayList<Voznja> pronadjeneVoznje = new ArrayList<>();
+    public strukture.ArrayList<Voznja> nedeljniIzvestaj(String datum) {
+        strukture.ArrayList<Voznja> pronadjeneVoznje = new strukture.ArrayList<Voznja>();
         for (int i = 0 ; i < 8 ; i++) {
 
             LocalDate date = LocalDate.of(Integer.parseInt(datum.substring(6,10)),Integer.parseInt(datum.substring(3,5)),Integer.parseInt(datum.substring(0,2)));

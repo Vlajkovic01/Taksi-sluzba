@@ -1,108 +1,131 @@
 package strukture;
 
-public class ArrayList<T> {
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-    private static int CAPACITY = 10;
-    private T[] arr = (T[]) new Object[CAPACITY];
-    private int size = 0;
+public class ArrayList<E> implements Iterable<E> {
+    private static final int INIT_SIZE = 10;
+    private E[] myArray;
+    private int length;
 
-    public ArrayList() { }
-
-    public int size() {
-        return size;
+    //Konstruktori
+    public ArrayList() {
+        this(ArrayList.INIT_SIZE);
     }
+
+    @SuppressWarnings(value = { "unchecked" })
+    public ArrayList(int capacity) {
+        this.myArray = (E[]) new Object[capacity];
+        this.length = 0;
+    }
+
+    //Provera da li je lista prazna ili ne
     public boolean isEmpty() {
-        return size==0;
+        return length <= 0;
     }
-    public void add(T item) {
-        if(size==CAPACITY) resize();
-        arr[size++] = item;
+
+    //return size of array list
+    public int size() {
+        return length;
     }
-    private boolean resize() {
-        int temp = CAPACITY;
-        CAPACITY = CAPACITY<<1;
-        T[] arrCopy = arr;
-        arr = (T[]) new Object[CAPACITY];
-        for(int i=0; i<temp; i++) {
-            arr[i] = arrCopy[i];
+
+    //To increase size of array
+    @SuppressWarnings(value = { "unchecked" })
+    //Suppress warning on(E[]) casted from Object type
+    private void increaseSize() {
+        E[] temp = (E[]) new Object[myArray.length + 3];
+        for (int i = 0; i < myArray.length; i++) {
+            temp[i] = myArray[i];
         }
+        myArray = temp;
+    }
+
+    //Dodavanje elementa u array listu
+    public void add(int index, E newElement) {
+        this.rangeCheck(index, length);
+        if (this.length == myArray.length) {
+            increaseSize();
+        }
+        for (int i = length; i > index; i--) {
+            myArray[i] = myArray[i - 1];
+        }
+        myArray[index] = newElement;
+        length++;
+    }
+
+    public boolean add(E newElement) {
+        this.add(this.length, newElement);
         return true;
     }
 
-    public T remove(int index) {
-        if(index<0 || index>=size) throw new ArrayIndexOutOfBoundsException();
-        T res = arr[index];
-        for(int i=index; i<size-1; i++) {
-            arr[i] = arr[i+1];
+    // Uzima element na datom indexu
+    public E get(int index) {
+        rangeCheck(index, length - 1);
+        return myArray[index];
+    }
+
+    // Vraca index elementa
+    public int indexOf(E element) {
+        for (int i = 0; i < length; i++) {
+            if (element.equals(myArray[i])) {
+                return i+1;
+            }
         }
-        --size;
-        return res;
+        return -1;
     }
 
-    public T get(int index) {
-        if(index<0 || index>=CAPACITY) throw new ArrayIndexOutOfBoundsException();
-        return arr[index];
+    // Provera da li postoji element u listi
+    public boolean contains(E element) {
+        return indexOf(element) >= 0;
     }
 
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for(int i=0; i<size; i++) {
-            sb.append(arr[i] + ",");
+    // Brisanje elementa
+    public void remove(int index) {
+        rangeCheck(index, length - 1);
+        for (int i = index; i < length - 1; i++) {
+            myArray[i] = myArray[i + 1];
         }
-        return sb.toString().substring(0, sb.length()-1);
+        length--;
     }
 
-//    public static void main(String[] args) {
-//
-//        ArrayList<Integer> list = new ArrayList<>();
-//
-//        System.out.println("add(0)");
-//        list.add(0);
-//        System.out.println("add(10)");
-//        list.add(10);
-//        System.out.println("add(20)");
-//        list.add(20);
-//        System.out.println("add(30)");
-//        list.add(30);
-//        System.out.println("add(40)");
-//        list.add(40);
-//        System.out.println("add(50)");
-//        list.add(50);
-//
-//        System.out.println("items: " + list);
-//        System.out.println("size: " + list.size());
-//        System.out.println("get(0): " + list.get(0));
-//        System.out.println("get(1): " + list.get(1));
-//        System.out.println("get(2): " + list.get(2));
-//        System.out.println("get(5): " + list.get(5));
-//
-//        System.out.println();
-//
-//        System.out.println("remove(3): " + list.remove(3));
-//        System.out.println("items: " + list);
-//        System.out.println("size: " + list.size());
-//
-//        System.out.println();
-//
-//        System.out.println("remove(3): " + list.remove(3));
-//        System.out.println("items: " + list);
-//        System.out.println("size: " + list.size());
-//
-//        System.out.println();
-//
-//
-//        System.out.println("remove(3): " + list.remove(3));
-//        System.out.println("items: " + list);
-//        System.out.println("size: " + list.size());
-//
-//        System.out.println();
-//
-//        System.out.println("add(60)");
-//        list.add(60);
-//        System.out.println("add(70)");
-//        list.add(70);
-//
-//        System.out.println("items: " + list);
-//        System.out.println("size: " + list.size());
-//    }
+    public boolean remove(E element) {
+        int index = indexOf(element);
+        if (index >= 0) {
+            remove(index);
+            return true;
+        }
+        return false;
+    }
+
+    // Provera opsega niza
+    private void rangeCheck(int index, int upperBound) {
+        if (index < 0 || index > upperBound)
+            throw new ArrayIndexOutOfBoundsException("Array index " + index + " out of bound");
+    }
+
+    //Iterator interface is implemented
+    @Override
+    public Iterator<E> iterator() {
+        return new Iterator<E>() { //Anonymous Class
+            int nextIndex=-1;
+
+            @Override
+            public boolean hasNext() {
+                if(nextIndex>=size()-1) return false;
+                return true;
+            }
+
+            @Override
+            public E next() {
+                if(nextIndex>=size()-1)throw new NoSuchElementException();
+                return myArray[++nextIndex];
+            }
+            @Override
+            public void remove() {
+                if(nextIndex<=0)
+                    throw new RuntimeException("next() required before calling remove()");
+                ArrayList.this.remove(nextIndex-1);
+            }
+        };
+    }
 }
