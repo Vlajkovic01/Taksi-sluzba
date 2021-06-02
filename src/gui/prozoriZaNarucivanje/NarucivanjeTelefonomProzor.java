@@ -13,7 +13,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import strukture.ArrayList;
 import java.util.Date;
 
 public class NarucivanjeTelefonomProzor extends JFrame {

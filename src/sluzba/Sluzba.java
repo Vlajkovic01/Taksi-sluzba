@@ -269,7 +269,7 @@ public class Sluzba {
                 boolean izbrisan = Boolean.parseBoolean(split[9]);
                 String idString = split[10];
                 int id = Integer.parseInt(idString);
-                ArrayList<Voznja> voznjeMusterije = new ArrayList<Voznja>();
+                strukture.ArrayList<Voznja> voznjeMusterije = new strukture.ArrayList<Voznja>();
                 Musterije musterija = new Musterije(korisnickoIme,lozinka,ime,prezime,jmbg,adresa,pol,telefon,tipKorisnika,izbrisan,id,voznjeMusterije);
                 musterije.add(musterija);
                 // nidzo|12345|Nikola|Panic|123123123|Nikole Tesle, Beograd|MUSKO|061123123|MUSTERIJA|false|101
@@ -327,7 +327,7 @@ public class Sluzba {
                 String idVozilaString = split[13];
                 int idVozila = Integer.parseInt(idVozilaString);
                 Automobil automobil = pronadjiAutomobil(idVozila);
-                ArrayList<Voznja> voznjeVozaca = new ArrayList<Voznja>();
+                strukture.ArrayList<Voznja> voznjeVozaca = new strukture.ArrayList<Voznja>();
                 Vozaci vozac = new Vozaci(korisnickoIme,lozinka,ime,prezime,jmbg,adresa,pol,telefon,tipKorisnika,izbrisan,id,plata,brClanskeKarte,automobil,voznjeVozaca);
                 vozaci.add(vozac);
                 // budo|12345|Marko|Budesa|01010101|Svetog Save, Sabac|MUSKO|062323232|VOZAC|false|200|45000|1001|100

@@ -3,7 +3,7 @@ package entiteti;
 import enumeracije.Pol;
 import enumeracije.TipKorisnika;
 
-import java.util.*;
+import strukture.ArrayList;
 
 public class Musterije extends Korisnici {
     protected int id;

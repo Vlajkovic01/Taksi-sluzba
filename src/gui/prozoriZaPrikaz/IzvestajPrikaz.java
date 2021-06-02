@@ -56,9 +56,7 @@ public class IzvestajPrikaz extends JFrame {
             ukupnoKm += voznja.getPredjeniKm();
             ukupnoMin += voznja.getTrajanjeVoznje();
 
-            if (brVozaca.contains(voznja.getVozac().getId())) {
-                continue;
-            } else {
+            if (!brVozaca.contains(voznja.getVozac().getId())) {
                 brVozaca.add(voznja.getVozac().getId());
             }
 
