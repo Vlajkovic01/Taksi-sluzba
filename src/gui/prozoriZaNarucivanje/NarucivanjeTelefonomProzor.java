@@ -94,13 +94,17 @@ public class NarucivanjeTelefonomProzor extends JFrame {
         Boolean ispravno = true;
         String poruka = "Molimo popravite sledece greske u unosu:\n";
         if(txtAdresaPolaska.getText().trim().equals("")) {
-            poruka += "Morate uneti adresu polaska\n";
+            poruka += "-Morate uneti adresu polaska\n";
             ispravno = false;
         }
         if(txtAdresaDestinacije.getText().trim().equals("")) {
-            poruka += "Morate uneti adresu destinacije\n";
+            poruka += "-Morate uneti adresu destinacije\n";
             ispravno = false;
         }
+        if(ispravno == false) {
+            JOptionPane.showMessageDialog(null, poruka, "Neispravni podaci", JOptionPane.WARNING_MESSAGE);
+        }
+
         return ispravno;
     }
 }
