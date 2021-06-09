@@ -27,6 +27,10 @@ public class PrihvatiVoznju extends JFrame {
     private JComboBox<StatusVoznje> cbStatus = new JComboBox<StatusVoznje>();
     private JLabel lblTipPorudzbine = new JLabel("Poruceno");
     private JComboBox<TipPorudzbine> cbTipPorudzbine = new JComboBox<TipPorudzbine>();
+    private JLabel lblNovijaVozila = new JLabel("Zahtevaj novija vozila");
+    private JComboBox<Boolean> cbNovijaVozila = new JComboBox<Boolean>();
+    private JLabel lblPetFriendly = new JLabel("Zahtevaj Pet Friendly");
+    private JComboBox<Boolean> cbPetFriendly = new JComboBox<Boolean>();
 
     private JButton btnPrihvati = new JButton("Prihvati");
     private JButton btnOdbij = new JButton("Odbij");
@@ -77,6 +81,10 @@ public class PrihvatiVoznju extends JFrame {
         add(cbStatus);
         add(lblTipPorudzbine);
         add(cbTipPorudzbine);
+        add(lblNovijaVozila);
+        add(cbNovijaVozila);
+        add(lblPetFriendly);
+        add(cbPetFriendly);
 
         txtVremePorudzbine.setEditable(false);
         txtAdresaPolaska.setEditable(false);
@@ -84,6 +92,8 @@ public class PrihvatiVoznju extends JFrame {
         cbMusterije.setEnabled(false);
         cbStatus.setEnabled(false);
         cbTipPorudzbine.setEnabled(false);
+        cbNovijaVozila.setEnabled(false);
+        cbPetFriendly.setEnabled(false);
 
         add(new JLabel());
         add(btnPrihvati, "split");
@@ -105,6 +115,8 @@ public class PrihvatiVoznju extends JFrame {
                     Musterije musterija = taxiSluzba.pronalazenjeMusterije(Integer.parseInt(cbMusterije.getSelectedItem().toString()));
                     StatusVoznje status = StatusVoznje.PRIHVACENA;
                     TipPorudzbine tipPorudzbine = TipPorudzbine.valueOf(cbTipPorudzbine.getSelectedItem().toString());
+                    Boolean novijaVozila = Boolean.parseBoolean(cbNovijaVozila.getSelectedItem().toString());
+                    Boolean petFriendly = Boolean.parseBoolean(cbPetFriendly.getSelectedItem().toString());
 
                     if(voznja != null) {
                         voznja.setDatumIVremePorudzbine(vremePorudzbine);
@@ -113,6 +125,8 @@ public class PrihvatiVoznju extends JFrame {
                         voznja.setMusterija(musterija);
                         voznja.setStatusVoznje(status);
                         voznja.setTipPorudzbine(tipPorudzbine);
+                        voznja.setNovijaVozila(novijaVozila);
+                        voznja.setPetFriendly(petFriendly);
                         JOptionPane.showMessageDialog(null, "Uspesno prihvacena voznja!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                     }
 
@@ -134,6 +148,8 @@ public class PrihvatiVoznju extends JFrame {
                     Musterije musterija = taxiSluzba.pronalazenjeMusterije(Integer.parseInt(cbMusterije.getSelectedItem().toString()));
                     StatusVoznje status = StatusVoznje.ODBIJENA;
                     TipPorudzbine tipPorudzbine = TipPorudzbine.valueOf(cbTipPorudzbine.getSelectedItem().toString());
+                    Boolean novijaVozila = Boolean.parseBoolean(cbNovijaVozila.getSelectedItem().toString());
+                    Boolean petFriendly = Boolean.parseBoolean(cbPetFriendly.getSelectedItem().toString());
 
                     if(voznja != null) {
                         voznja.setDatumIVremePorudzbine(vremePorudzbine);
@@ -142,6 +158,8 @@ public class PrihvatiVoznju extends JFrame {
                         voznja.setMusterija(musterija);
                         voznja.setStatusVoznje(status);
                         voznja.setTipPorudzbine(tipPorudzbine);
+                        voznja.setNovijaVozila(novijaVozila);
+                        voznja.setPetFriendly(petFriendly);
                         JOptionPane.showMessageDialog(null, "Uspesno odbijena voznja!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                     }
 
@@ -169,6 +187,8 @@ public class PrihvatiVoznju extends JFrame {
         cbMusterije.setSelectedItem(voznja.getMusterija().getId());
         cbStatus.setSelectedItem(voznja.getStatusVoznje());
         cbTipPorudzbine.setSelectedItem(voznja.getTipPorudzbine());
+        cbNovijaVozila.setSelectedItem(voznja.isNovijaVozila());
+        cbPetFriendly.setSelectedItem(voznja.isPetFriendly());
     }
 
     private boolean validacija() {

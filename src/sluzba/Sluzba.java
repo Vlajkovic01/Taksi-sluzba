@@ -396,7 +396,9 @@ public class Sluzba {
                 StatusVoznje statusVoznje = StatusVoznje.valueOf(split[8]);
                 TipPorudzbine tipPorudzbine = TipPorudzbine.valueOf(split[9]);
                 boolean izbrisana = Boolean.parseBoolean(split[10]);
-                Voznja voznja = new Voznja(id,datumIVremePorudzbine,adresaPolaska,adresaDestinacije,musterija,vozac,predjeniKm,trajanjeVoznje,statusVoznje,tipPorudzbine,izbrisana);
+                boolean novijaVozila = Boolean.parseBoolean(split[11]);
+                boolean petFriendly = Boolean.parseBoolean(split[12]);
+                Voznja voznja = new Voznja(id,datumIVremePorudzbine,adresaPolaska,adresaDestinacije,musterija,vozac,predjeniKm,trajanjeVoznje,statusVoznje,tipPorudzbine,izbrisana, novijaVozila,petFriendly);
                 if (vozac != null) {
                     vozac.getVoznjeVozaca().add(voznja);
                 }
@@ -421,7 +423,8 @@ public class Sluzba {
                         + voznja.getAdresaPolaska() + "|" + voznja.getAdresaDestinacije() + "|"
                         + voznja.getMusterija().getId() + "|" + voznja.getVozac().getId() + "|"
                         + voznja.getPredjeniKm() + "|" + voznja.getTrajanjeVoznje() + "|"
-                        + voznja.getStatusVoznje() + "|" + voznja.getTipPorudzbine() + "|" + voznja.isIzbrisana() + "\n";
+                        + voznja.getStatusVoznje() + "|" + voznja.getTipPorudzbine() + "|" + voznja.isIzbrisana()
+                        + "|" + voznja.isNovijaVozila() + "|" + voznja.isPetFriendly() +  "\n";
             }
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
             writer.write(content);

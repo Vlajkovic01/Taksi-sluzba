@@ -54,7 +54,7 @@ public class VoznjePrikaz extends JFrame {
             }
         }
 
-        String[] zaglavlja = new String[] {"ID", "Vreme porudzbine", "Adresa polaska", "Adresa destinacije", "Musterija", "Vozac", "Predjeni km", "Trajanje(min)", "Status", "Poruceno", "Izbrisana"};
+        String[] zaglavlja = new String[] {"ID", "Vreme porudzbine", "Adresa polaska", "Adresa destinacije", "Musterija", "Vozac", "Predjeni km", "Trajanje(min)", "Status", "Poruceno", "Izbrisana","Zahtev za novije vozilo", "Pet Friendly"};
         Object[][] sadrzaj = new Object[voznje.size()][zaglavlja.length];
 
         int i = 0;
@@ -70,6 +70,8 @@ public class VoznjePrikaz extends JFrame {
             sadrzaj[i][8] = voznja.getStatusVoznje();
             sadrzaj[i][9] = voznja.getTipPorudzbine();
             sadrzaj[i][10] = voznja.isIzbrisana();
+            sadrzaj[i][11] = voznja.isNovijaVozila();
+            sadrzaj[i][12] = voznja.isPetFriendly();
             i++;
         }
         tableModel = new DefaultTableModel(sadrzaj, zaglavlja);

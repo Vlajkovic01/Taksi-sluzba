@@ -15,6 +15,8 @@ public class Voznja {
     protected StatusVoznje statusVoznje;
     protected TipPorudzbine tipPorudzbine;
     protected boolean izbrisana;
+    protected boolean novijaVozila;
+    protected boolean petFriendly;
 
     public Voznja() {
         this.id = 0;
@@ -28,9 +30,11 @@ public class Voznja {
         this.statusVoznje = StatusVoznje.KREIRANA;
         this.tipPorudzbine = TipPorudzbine.TELEFONOM;
         this.izbrisana = false;
+        this.novijaVozila = false;
+        this.petFriendly = false;
     }
 
-    public Voznja(int id, String datumIVremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterije musterija, Vozaci vozac, double predjeniKm, double trajanjeVoznje, StatusVoznje statusVoznje, TipPorudzbine tipPorudzbine, boolean izbrisana) {
+    public Voznja(int id, String datumIVremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterije musterija, Vozaci vozac, double predjeniKm, double trajanjeVoznje, StatusVoznje statusVoznje, TipPorudzbine tipPorudzbine, boolean izbrisana, boolean novijaVozila, boolean petFriendly) {
         this.id = id;
         this.datumIVremePorudzbine = datumIVremePorudzbine;
         this.adresaPolaska = adresaPolaska;
@@ -42,6 +46,8 @@ public class Voznja {
         this.statusVoznje = statusVoznje;
         this.tipPorudzbine = tipPorudzbine;
         this.izbrisana = izbrisana;
+        this.novijaVozila = novijaVozila;
+        this.petFriendly = petFriendly;
     }
 
     public int getId() {
@@ -132,6 +138,22 @@ public class Voznja {
         this.izbrisana = izbrisana;
     }
 
+    public boolean isNovijaVozila() {
+        return novijaVozila;
+    }
+
+    public void setNovijaVozila(boolean novijaVozila) {
+        this.novijaVozila = novijaVozila;
+    }
+
+    public boolean isPetFriendly() {
+        return petFriendly;
+    }
+
+    public void setPetFriendly(boolean petFriendly) {
+        this.petFriendly = petFriendly;
+    }
+
     @Override
     public String toString() {
         return "Voznja{" +
@@ -139,11 +161,15 @@ public class Voznja {
                 ", datumIVremePorudzbine='" + datumIVremePorudzbine + '\'' +
                 ", adresaPolaska='" + adresaPolaska + '\'' +
                 ", adresaDestinacije='" + adresaDestinacije + '\'' +
-                ", musterija=" + musterija.getId() +
-                ", vozac=" + vozac.getId() +
+                ", musterija=" + musterija +
+                ", vozac=" + vozac +
                 ", predjeniKm=" + predjeniKm +
-                ", trajanjeVoznje=" + trajanjeVoznje + "min" +
-                ", statusVoznje=" + statusVoznje + ", tipPorudznine=" + tipPorudzbine + ", izbrisana=" + izbrisana +
+                ", trajanjeVoznje=" + trajanjeVoznje +
+                ", statusVoznje=" + statusVoznje +
+                ", tipPorudzbine=" + tipPorudzbine +
+                ", izbrisana=" + izbrisana +
+                ", novijaVozila=" + novijaVozila +
+                ", petFriendly=" + petFriendly +
                 '}';
     }
 }

@@ -30,6 +30,10 @@ public class DodeliVoznju extends JFrame {
     private JComboBox<StatusVoznje> cbStatus = new JComboBox<StatusVoznje>();
     private JLabel lblTipPorudzbine = new JLabel("Poruceno");
     private JComboBox<TipPorudzbine> cbTipPorudzbine = new JComboBox<TipPorudzbine>();
+    private JLabel lblNovijaVozila = new JLabel("Zahtevaj novija vozila");
+    private JComboBox<Boolean> cbNovijaVozila = new JComboBox<Boolean>();
+    private JLabel lblPetFriendly = new JLabel("Zahtevaj Pet Friendly");
+    private JComboBox<Boolean> cbPetFriendly = new JComboBox<Boolean>();
 
     private JButton btnOk = new JButton("OK");
     private JButton btnCancel = new JButton("Cancel");
@@ -87,6 +91,10 @@ public class DodeliVoznju extends JFrame {
         add(cbStatus);
         add(lblTipPorudzbine);
         add(cbTipPorudzbine);
+        add(lblNovijaVozila);
+        add(cbNovijaVozila);
+        add(lblPetFriendly);
+        add(cbPetFriendly);
 
         txtVremePorudzbine.setEditable(false);
         txtAdresaPolaska.setEditable(false);
@@ -94,6 +102,8 @@ public class DodeliVoznju extends JFrame {
         cbMusterije.setEnabled(false);
         cbStatus.setEnabled(false);
         cbTipPorudzbine.setEnabled(false);
+        cbNovijaVozila.setEnabled(false);
+        cbPetFriendly.setEnabled(false);
 
         add(new JLabel());
         add(btnOk, "split");
@@ -115,6 +125,8 @@ public class DodeliVoznju extends JFrame {
                     Vozaci vozac = taxiSluzba.pronalazenjeVozaca(Integer.parseInt(cbVozaci.getSelectedItem().toString()));
                     StatusVoznje status = StatusVoznje.DODELJENA;
                     TipPorudzbine tipPorudzbine = TipPorudzbine.valueOf(cbTipPorudzbine.getSelectedItem().toString());
+                    Boolean novijaVozila = Boolean.parseBoolean(cbNovijaVozila.getSelectedItem().toString());
+                    Boolean petFriendly = Boolean.parseBoolean(cbPetFriendly.getSelectedItem().toString());
 
                     if(voznja != null) {
                         if (vozac.getAutomobil().getIdVozila() == 0) {
@@ -127,6 +139,8 @@ public class DodeliVoznju extends JFrame {
                             voznja.setVozac(vozac);
                             voznja.setStatusVoznje(status);
                             voznja.setTipPorudzbine(tipPorudzbine);
+                            voznja.setNovijaVozila(novijaVozila);
+                            voznja.setPetFriendly(petFriendly);
                             JOptionPane.showMessageDialog(null, "Uspesno dodeljen vozac!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                         }
                     }
@@ -156,6 +170,8 @@ public class DodeliVoznju extends JFrame {
         cbVozaci.setSelectedItem(voznja.getVozac().getId());
         cbStatus.setSelectedItem(voznja.getStatusVoznje());
         cbTipPorudzbine.setSelectedItem(voznja.getTipPorudzbine());
+        cbNovijaVozila.setSelectedItem(voznja.isNovijaVozila());
+        cbPetFriendly.setSelectedItem(voznja.isPetFriendly());
     }
 
     private boolean validacija() {

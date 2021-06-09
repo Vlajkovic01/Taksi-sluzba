@@ -50,7 +50,7 @@ public class AukcijaPrikazVoznjiDispeceru extends JFrame {
             }
         }
 
-        String[] zaglavlja = new String[] {"ID", "Vreme porudzbine", "Adresa polaska", "Adresa destinacije", "Musterija", "Vozac", "Predjeni km", "Trajanje(min)", "Status", "Poruceno", "Izbrisana"};
+        String[] zaglavlja = new String[] {"ID", "Vreme porudzbine", "Adresa polaska", "Adresa destinacije", "Musterija", "Vozac", "Predjeni km", "Trajanje(min)", "Status", "Poruceno", "Izbrisana" ,"Zahtev za novije vozilo", "Pet Friendly"};
         Object[][] sadrzaj = new Object[voznje.size()][zaglavlja.length];
 
         int i = 0;
@@ -66,6 +66,8 @@ public class AukcijaPrikazVoznjiDispeceru extends JFrame {
             sadrzaj[i][8] = voznja.getStatusVoznje();
             sadrzaj[i][9] = voznja.getTipPorudzbine();
             sadrzaj[i][10] = voznja.isIzbrisana();
+            sadrzaj[i][11] = voznja.isNovijaVozila();
+            sadrzaj[i][12] = voznja.isPetFriendly();
             i++;
         }
         tableModel = new DefaultTableModel(sadrzaj, zaglavlja);
@@ -119,8 +121,9 @@ public class AukcijaPrikazVoznjiDispeceru extends JFrame {
                         if (!sveAukcije.isEmpty()) {
                             Aukcija max = sveAukcije.get(0);
                             for(int i=0; i<sveAukcije.size(); i++) {
-                                if(max.getUkupnoBodovaVozac() < sveAukcije.get(i).getUkupnoBodovaVozac())
+                                if(max.getUkupnoBodovaVozac() < sveAukcije.get(i).getUkupnoBodovaVozac()) {
                                     max = sveAukcije.get(i);
+                                }
                             }
 
                             Vozaci optimalanVozac = max.getVozac();
@@ -128,6 +131,8 @@ public class AukcijaPrikazVoznjiDispeceru extends JFrame {
                             voznjaNaAukciji.setVozac(optimalanVozac);
                             voznjaNaAukciji.setStatusVoznje(StatusVoznje.DODELJENA);
                             taxiSluzba.snimiVoznje();
+
+                            JOptionPane.showMessageDialog(null, "Uspesno dodeljen vozac pomocu aukcije!\n" + optimalanVozac.getIme() + " " + optimalanVozac.getPrezime() + " - " + optimalanVozac.getId(), "Greska", JOptionPane.ERROR_MESSAGE);
 
                         } else {
                             JOptionPane.showMessageDialog(null, "Nije moguce pokrenuti aukciju za odabranu voznju!\nNe postoje kandidati.", "Greska", JOptionPane.ERROR_MESSAGE);

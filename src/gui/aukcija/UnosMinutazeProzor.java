@@ -97,10 +97,13 @@ public class UnosMinutazeProzor extends JFrame {
                     double ukupnoMinuta = (1/minutaza) * 5;
                     double starostVozila = Double.parseDouble(String.valueOf(vozac.getAutomobil().getGodProizvodnje())) / 1000;
 
-                    ukupnaSuma = brojVoznji + ukupnoMinuta + starostVozila;
+                    if (voznja.isNovijaVozila()) {
+                        ukupnaSuma = brojVoznji + ukupnoMinuta + starostVozila;
+                    }else {
+                        ukupnaSuma = brojVoznji + ukupnoMinuta;
+                    }
 
-                    System.out.println("Ukupna suma: " + ukupnaSuma + "\nBroj voznji suma: " + brojVoznji + "\nUkupno minuta suma: "
-                    + ukupnoMinuta + "\nStarost vozila suma: " + starostVozila);
+                    System.out.println(ukupnaSuma);
 
                     Aukcija aukcija = new Aukcija(voznja,vozac,minutaza,ukupnaSuma);
                     taxiSluzba.dodajAukciju(aukcija);

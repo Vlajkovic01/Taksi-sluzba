@@ -24,6 +24,7 @@ public class NarucivanjeTelefonomProzor extends JFrame {
     private JLabel lblAdresaDestinacije = new JLabel(" Adresa destinacije:");
     private JTextField txtAdresaDestinacije = new JTextField(20);
     private JCheckBox novaVozilaCheckBox = new JCheckBox("Zahtevaj novija vozila ");
+    private JCheckBox petFriendlyCheckBox = new JCheckBox("Zahtevaj Pet Friendly  ");
     private JButton btnNaruci = new JButton("Naruci");
     private JButton btnOtkazi = new JButton("Otkazi");
 
@@ -46,6 +47,7 @@ public class NarucivanjeTelefonomProzor extends JFrame {
         setLayout(mig);
 
         novaVozilaCheckBox.setHorizontalTextPosition(SwingConstants.LEFT);
+        petFriendlyCheckBox.setHorizontalTextPosition(SwingConstants.LEFT);
 
         add(lblPozdrav,"span 2");
         add(lblAdresaPolaska);
@@ -53,6 +55,8 @@ public class NarucivanjeTelefonomProzor extends JFrame {
         add(lblAdresaDestinacije);
         add(txtAdresaDestinacije);
         add(novaVozilaCheckBox);
+        add(new JLabel());
+        add(petFriendlyCheckBox);
         add(new JLabel());
         add(new JLabel());
         add(btnNaruci, "split 2");
@@ -83,7 +87,15 @@ public class NarucivanjeTelefonomProzor extends JFrame {
                     double trajanjeVoznje = 0;
                     StatusVoznje status = StatusVoznje.KREIRANA;
                     TipPorudzbine tipPorudzbine = TipPorudzbine.TELEFONOM;
-                    Voznja voznja = new Voznja(id,vremePorudzbine,adresaPolaska,adresaDestinacije,musterija,vozac,predjeniKm,trajanjeVoznje,status,tipPorudzbine,false);
+                    boolean novijaVozila = false;
+                    if (novaVozilaCheckBox.isSelected()) {
+                        novijaVozila = true;
+                    }
+                    boolean petFriendly = false;
+                    if (petFriendlyCheckBox.isSelected()){
+                        petFriendly = true;
+                    }
+                    Voznja voznja = new Voznja(id,vremePorudzbine,adresaPolaska,adresaDestinacije,musterija,vozac,predjeniKm,trajanjeVoznje,status,tipPorudzbine,false,novijaVozila,petFriendly );
                     taxiSluzba.dodajVoznju(voznja);
                     JOptionPane.showMessageDialog(null, "Uspesno narucena voznja!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                     taxiSluzba.snimiVoznje();
