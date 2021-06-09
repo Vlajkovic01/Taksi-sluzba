@@ -7,6 +7,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.util.HashSet;
+
 import strukture.ArrayList;
 
 public class IzvestajPrikaz extends JFrame {
@@ -38,7 +40,8 @@ public class IzvestajPrikaz extends JFrame {
         double ukupnoMin = 0;
         double cenaStart = 120;
         double cenaKm = 50;
-        ArrayList<Integer> brVozaca = new ArrayList<>();
+//        ArrayList<Integer> brVozaca = new ArrayList<>();  // koristiti ovo u slucaju da moramo implementirati strukturu za HashSet
+        HashSet<Integer> brVozaca = new HashSet<>();
 
         for (Voznja voznja : pronadjenaVoznja) {
             sadrzaj[i][0] = voznja.getId();
@@ -56,9 +59,11 @@ public class IzvestajPrikaz extends JFrame {
             ukupnoKm += voznja.getPredjeniKm();
             ukupnoMin += voznja.getTrajanjeVoznje();
 
-            if (!brVozaca.contains(voznja.getVozac().getId())) {
-                brVozaca.add(voznja.getVozac().getId());
-            }
+//            if (!brVozaca.contains(voznja.getVozac().getId())) { // koristiti ovo u slucaju da moramo implementirati strukturu za HashSet
+//                brVozaca.add(voznja.getVozac().getId());
+//            }
+
+            brVozaca.add(voznja.getVozac().getId()); // HashSet
 
         }
 

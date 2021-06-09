@@ -22,6 +22,7 @@ public class Sluzba {
     private ArrayList<Musterije> musterije;
     private ArrayList<Voznja> voznje;
     private ArrayList<Automobil> automobili;
+    private ArrayList<Aukcija> aukcije;
 
     public Sluzba() {
         this.id = 0;
@@ -36,6 +37,7 @@ public class Sluzba {
         this.musterije = new ArrayList<Musterije>();
         this.voznje = new ArrayList<Voznja>();
         this.automobili = new ArrayList<Automobil>();
+        this.aukcije = new ArrayList<Aukcija>();
     }
 
     public Sluzba(int id, String pib, String naziv, String adresa, int cenaStart, int cenaKm) {
@@ -133,6 +135,14 @@ public class Sluzba {
 
     public void setCenaKm(double cenaKm) {
         this.cenaKm = cenaKm;
+    }
+
+    public ArrayList<Aukcija> getAukcije() {
+        return aukcije;
+    }
+
+    public void setAukcije(ArrayList<Aukcija> aukcije) {
+        this.aukcije = aukcije;
     }
 
     @Override
@@ -421,6 +431,46 @@ public class Sluzba {
         }
     }
 
+    public void ucitajAukcije() {
+        try {
+            File file = new File("fajlovi/aukcije.txt");
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] split = line.split("\\|");
+                Integer voznjaId = Integer.parseInt(split[0]);
+                Integer vozacId = Integer.parseInt(split[1]);
+                Double ponudjenoVreme = Double.parseDouble(split[2]);
+                Double ukupnoBodova = Double.parseDouble(split[3]);
+                Voznja voznja = (Voznja) pronadjiVoznju(voznjaId);
+                Vozaci vozaci = (Vozaci) pronadjiVozaca(vozacId);
+                Aukcija aukcija = new Aukcija(voznja, vozaci, ponudjenoVreme, ukupnoBodova);
+                aukcije.add(aukcija);
+                // 1|2|5
+            }
+            reader.close();
+        } catch (IOException e) {
+            System.out.println("Greska prilikom snimanja podataka o aukciji");
+            e.printStackTrace();
+        }
+    }
+
+    public void snimiAukcije() {
+        try {
+            File file = new File("fajlovi/aukcije.txt");
+            String content = "";
+            for (Aukcija aukcija : aukcije) {
+                content += aukcija.getVoznja().getId() + "|" + aukcija.getVozac().getId() + "|"
+                        + aukcija.getPonudjenoVreme() + "|" + aukcija.getUkupnoBodovaVozac() + "\n";
+            }
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            writer.write(content);
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Greska prilikom snimanja aukcije.");
+        }
+    }
+
     //-----------------------------Pronalazenje------------------------------------//
 
 //    public Automobil pronalazenjeAutomobila(int id) {
@@ -518,16 +568,16 @@ public class Sluzba {
         strukture.ArrayList<Vozaci> pronadjeniVozaci = new strukture.ArrayList<>();
         for (Vozaci vozac : vozaci) {
             if (!vozac.isIzbrisan()) {
-                if (!vozac.getIme().equalsIgnoreCase(ime) && !ime.equals("")) {
+                if (!vozac.getIme().toLowerCase().contains(ime.toLowerCase()) && !ime.equals("")) {
                     continue;
                 }
-                if (!vozac.getPrezime().equalsIgnoreCase(prezime) && !prezime.equals("")) {
+                if (!vozac.getPrezime().toLowerCase().contains(prezime.toLowerCase()) && !prezime.equals("")) {
                     continue;
                 }
-                if (!String.valueOf((int) vozac.getPlata()).equals(plata) && !plata.equals("")) {
+                if (!String.valueOf((int) vozac.getPlata()).contains(plata)) {
                     continue;
                 }
-                if (!vozac.getAutomobil().getProizvodjac().equalsIgnoreCase(automobil) && !automobil.equals("")) {
+                if (!vozac.getAutomobil().getProizvodjac().toLowerCase().contains(automobil.toLowerCase()) && !automobil.equals("")) {
                     continue;
                 }
                 pronadjeniVozaci.add(vozac);
@@ -631,6 +681,10 @@ public class Sluzba {
 
     public void dodajVoznju(Voznja voznja) {
         this.voznje.add(voznja);
+    }
+
+    public void dodajAukciju(Aukcija aukcija) {
+        this.aukcije.add(aukcija);
     }
 
     //----------------------------------Brisanje--------------------------------------//

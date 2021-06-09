@@ -1,4 +1,4 @@
 ||||||MUSKO||VOZAC|true|0|123120.0|0|0|
 budo|12345|Marko|Budesa|0101010101010|Svetog Save, Sabac|MUSKO|062323232|VOZAC|false|1|45000.0|1001|1|
-mare|321321|Marko|Veselinovic|0202020202020|Sabacka, Subotica|MUSKO|061121|VOZAC|false|2|45000.0|1002|2|
+mare|12345|Marko|Veselinovic|0202020202020|Sabacka, Subotica|MUSKO|061121|VOZAC|false|2|45000.0|1002|2|
 nidzo|12345|Nikola|Peric|1234567891234|Grobljanska|MUSKO|064063|VOZAC|false|3|55000.0|1003|3|

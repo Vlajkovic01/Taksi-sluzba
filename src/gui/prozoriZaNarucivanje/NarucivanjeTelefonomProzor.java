@@ -19,10 +19,11 @@ import java.util.Date;
 public class NarucivanjeTelefonomProzor extends JFrame {
 
     private JLabel lblPozdrav = new JLabel();
-    private JLabel lblAdresaPolaska = new JLabel("Adresa polaska:");
+    private JLabel lblAdresaPolaska = new JLabel(" Adresa polaska:");
     private JTextField txtAdresaPolaska = new JTextField(20);
-    private JLabel lblAdresaDestinacije = new JLabel("Adresa destinacije:");
+    private JLabel lblAdresaDestinacije = new JLabel(" Adresa destinacije:");
     private JTextField txtAdresaDestinacije = new JTextField(20);
+    private JCheckBox novaVozilaCheckBox = new JCheckBox("Zahtevaj novija vozila ");
     private JButton btnNaruci = new JButton("Naruci");
     private JButton btnOtkazi = new JButton("Otkazi");
 
@@ -44,11 +45,15 @@ public class NarucivanjeTelefonomProzor extends JFrame {
         MigLayout mig = new MigLayout("wrap 2", "[][]", "[]10[][]10[]");
         setLayout(mig);
 
+        novaVozilaCheckBox.setHorizontalTextPosition(SwingConstants.LEFT);
+
         add(lblPozdrav,"span 2");
         add(lblAdresaPolaska);
         add(txtAdresaPolaska);
         add(lblAdresaDestinacije);
         add(txtAdresaDestinacije);
+        add(novaVozilaCheckBox);
+        add(new JLabel());
         add(new JLabel());
         add(btnNaruci, "split 2");
         add(btnOtkazi);
@@ -84,7 +89,6 @@ public class NarucivanjeTelefonomProzor extends JFrame {
                     taxiSluzba.snimiVoznje();
                     NarucivanjeTelefonomProzor.this.dispose();
                     NarucivanjeTelefonomProzor.this.setVisible(false);
-
                 }
             }
         });

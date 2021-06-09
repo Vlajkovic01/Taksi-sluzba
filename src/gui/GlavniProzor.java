@@ -1,9 +1,12 @@
 package gui;
 
+import entiteti.Dispeceri;
 import entiteti.Korisnici;
 import entiteti.Musterije;
 import entiteti.Vozaci;
 import enumeracije.TipKorisnika;
+import gui.aukcija.AukcijaPrikazVoznjiDispeceru;
+import gui.aukcija.AukcijaPrikazVoznjiVozacu;
 import gui.izvestaj.DnevniIzvestajProzor;
 import gui.izvestaj.GodisnjiIzvestajProzor;
 import gui.izvestaj.MesecniIzvestajProzor;
@@ -28,6 +31,8 @@ public class GlavniProzor extends JFrame {
     private JMenu meniIzvestaj = new JMenu("Izvestaj");
     private JMenu meniNarucivanjeVoznje = new JMenu("Narucivanje voznje");
     private JMenu meniAukcija = new JMenu("Aukcija");
+    private JMenuItem aukcijaVozacItem = new JMenuItem("Izaberi voznju");
+    private JMenuItem aukcijaDispecerItem = new JMenuItem("Pokreni aukciju");
     private JMenuItem vozaciItem = new JMenuItem("Pregled vozaca");
     private JMenuItem dispeceriItem = new JMenuItem("Pregled dispecera");
     private JMenuItem voznjeItem = new JMenuItem("Pregled voznji");
@@ -80,6 +85,7 @@ public class GlavniProzor extends JFrame {
             setJMenuBar(mainMenu);
             mainMenu.add(meniVoznje);
             mainMenu.add(meniAukcija);
+            meniAukcija.add(aukcijaVozacItem);
             meniVoznje.add(dodeljeneVoznjeItem);
             meniVoznje.add(zavrsiVoznjeItem);
         }
@@ -89,6 +95,8 @@ public class GlavniProzor extends JFrame {
             mainMenu.add(meniVoznje);
             mainMenu.add(meniIzvestaj);
             mainMenu.add(meniPretraga);
+            mainMenu.add(meniAukcija);
+            meniAukcija.add(aukcijaDispecerItem);
             meniZaposleni.add(vozaciItem);
             meniZaposleni.add(dispeceriItem);
             meniVoznje.add(voznjeItem);
@@ -217,6 +225,24 @@ public class GlavniProzor extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 NedeljniIzvestajProzor ni = new NedeljniIzvestajProzor(taxiSluzba);
                 ni.setVisible(true);
+            }
+        });
+
+        aukcijaVozacItem.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AukcijaPrikazVoznjiVozacu av = new AukcijaPrikazVoznjiVozacu(taxiSluzba, (Vozaci) korisnik);
+                av.setVisible(true);
+            }
+        });
+
+        aukcijaDispecerItem.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AukcijaPrikazVoznjiDispeceru av = new AukcijaPrikazVoznjiDispeceru(taxiSluzba);
+                av.setVisible(true);
             }
         });
     }
