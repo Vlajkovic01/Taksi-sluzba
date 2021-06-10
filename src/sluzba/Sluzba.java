@@ -567,6 +567,7 @@ public class Sluzba {
         return null;
     }
 
+    // mora barem jedan parametar od 4 da se unese, svaki uneti mora biti tacan, dovoljno je i jedno slovo uneti ili deo reci
     public strukture.ArrayList<Vozaci> kombinovanaPretragaVozaca(String ime, String prezime, String plata, String automobil) {
         strukture.ArrayList<Vozaci> pronadjeniVozaci = new strukture.ArrayList<>();
         for (Vozaci vozac : vozaci) {
@@ -609,6 +610,7 @@ public class Sluzba {
 
     //-------------------------------Izvestaji--------------------------------------//
 
+    // logika za dnevni, mesecni, godisnji izvestaj, poredi se deo stringa u txt fajlu i prosledjen datum
     public strukture.ArrayList<Voznja> izvestaj(String datum, int pocetak, int kraj) {
         strukture.ArrayList<Voznja> pronadjeneVoznje = new strukture.ArrayList<>();
         for (Voznja voznja : voznje) {
@@ -621,6 +623,7 @@ public class Sluzba {
         return pronadjeneVoznje;
     }
 
+    // isto kao za ostale izvestaje, iskoriceno LocalDate plusDays
     public strukture.ArrayList<Voznja> nedeljniIzvestaj(String datum) {
         strukture.ArrayList<Voznja> pronadjeneVoznje = new strukture.ArrayList<Voznja>();
         for (int i = 0 ; i < 8 ; i++) {

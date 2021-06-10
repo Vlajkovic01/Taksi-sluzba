@@ -86,7 +86,7 @@ public class IzvestajPrikaz extends JFrame {
         voznjeTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         voznjeTabela.setDefaultEditor(Object.class, null);
         voznjeTabela.getTableHeader().setReorderingAllowed(false);
-        voznjeTabela.setAutoCreateRowSorter(true);
+        voznjeTabela.setAutoCreateRowSorter(true); // sortiranje tabele
 
         voznjeTabela.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         for(int k=0; k<zaglavlja.length; k++) {

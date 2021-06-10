@@ -5,7 +5,6 @@ import entiteti.Vozaci;
 import entiteti.Voznja;
 import enumeracije.StatusVoznje;
 import sluzba.Sluzba;
-//import strukture.ArrayList;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -48,6 +47,11 @@ public class AukcijaPrikazVoznjiVozacu extends JFrame {
         ArrayList<Voznja> voznje = new ArrayList<Voznja>();
 
         //TODO ispraviti, moze bolje
+
+        /* kada vozac konkurise za voznju nakon
+        osvezavanja mu se ta voznja ne prikazuje vise
+         */
+
         for (Voznja voznja : taxiSluzba.getVoznje()) {
             if (voznja.getStatusVoznje().equals(StatusVoznje.KREIRANA) && voznja.getVozac().getId() == 0) {
                 voznje.add(voznja);
@@ -96,7 +100,7 @@ public class AukcijaPrikazVoznjiVozacu extends JFrame {
         voznjeTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         voznjeTabela.setDefaultEditor(Object.class, null);
         voznjeTabela.getTableHeader().setReorderingAllowed(false);
-        voznjeTabela.setAutoCreateRowSorter(true);
+        voznjeTabela.setAutoCreateRowSorter(true); // sortiranje tabele
 
         voznjeTabela.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         for(int k=0; k<zaglavlja.length; k++) {
@@ -121,8 +125,12 @@ public class AukcijaPrikazVoznjiVozacu extends JFrame {
                     Voznja voznja = taxiSluzba.pronalazenjeVoznje(Integer.parseInt(id));
 
                     if(voznja != null) {
-                        UnosMinutazeProzor unosMinutaze = new UnosMinutazeProzor(taxiSluzba, voznja, vozac);
-                        unosMinutaze.setVisible(true);
+                        if (vozac.getAutomobil().getIdVozila() != 0) {
+                            UnosMinutazeProzor unosMinutaze = new UnosMinutazeProzor(taxiSluzba, voznja, vozac);
+                            unosMinutaze.setVisible(true);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Nemate dodeljen automobil, ne mozete ucestvovati", "Greska", JOptionPane.ERROR_MESSAGE);
+                        }
                     }else {
                         JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabran pregled!", "Greska", JOptionPane.ERROR_MESSAGE);
                     }

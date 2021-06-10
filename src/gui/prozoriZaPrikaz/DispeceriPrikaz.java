@@ -89,7 +89,7 @@ public class DispeceriPrikaz extends JFrame {
         dispeceriTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         dispeceriTabela.setDefaultEditor(Object.class, null);
         dispeceriTabela.getTableHeader().setReorderingAllowed(false);
-        dispeceriTabela.setAutoCreateRowSorter(true);
+        dispeceriTabela.setAutoCreateRowSorter(true); // sortiranje tabele
 
         dispeceriTabela.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         for(int k=0; k<zaglavlja.length; k++) {

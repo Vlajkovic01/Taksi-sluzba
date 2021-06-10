@@ -24,7 +24,7 @@ public class ArrayList<E> implements Iterable<E> {
         return length <= 0;
     }
 
-    //return size of array list
+    //vraca velicinu array liste
     public int size() {
         return length;
     }

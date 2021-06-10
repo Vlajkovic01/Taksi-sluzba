@@ -85,7 +85,7 @@ public class AukcijaPrikazVoznjiDispeceru extends JFrame {
         voznjeTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         voznjeTabela.setDefaultEditor(Object.class, null);
         voznjeTabela.getTableHeader().setReorderingAllowed(false);
-        voznjeTabela.setAutoCreateRowSorter(true);
+        voznjeTabela.setAutoCreateRowSorter(true); // sortiranje tabele
 
         voznjeTabela.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         for(int k=0; k<zaglavlja.length; k++) {
@@ -109,6 +109,11 @@ public class AukcijaPrikazVoznjiDispeceru extends JFrame {
                     String id = voznjeTabela.getValueAt(red, 0).toString();
                     voznjaNaAukciji = taxiSluzba.pronalazenjeVoznje(Integer.parseInt(id));
 
+                    /* uzima ID selektovane voznje i na osnovu nje
+                    pravi listu aukcija tako da ako je lista prazna znaci da
+                    niko nije konkurisao za tu voznju
+                     */
+
                     ArrayList<Aukcija> sveAukcije = new ArrayList<Aukcija>();
                     for(Aukcija aukcija: taxiSluzba.getAukcije()) {
                         if (voznjaNaAukciji.getId() == aukcija.getVoznja().getId()) {
@@ -116,9 +121,14 @@ public class AukcijaPrikazVoznjiDispeceru extends JFrame {
                         }
                     }
 
-                    //algoritam za aukciju
+                    /*algoritam za aukciju,
+                    prolazi kroz listu svih aukciju i za max
+                    postavlja vozaca koji ima najvise bodova
+                     */
+
                     if(voznjaNaAukciji != null) {
                         if (!sveAukcije.isEmpty()) {
+
                             Aukcija max = sveAukcije.get(0);
                             for(int i=0; i<sveAukcije.size(); i++) {
                                 if(max.getUkupnoBodovaVozac() < sveAukcije.get(i).getUkupnoBodovaVozac()) {

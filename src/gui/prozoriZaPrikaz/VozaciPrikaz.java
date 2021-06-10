@@ -89,7 +89,7 @@ public class VozaciPrikaz extends JFrame {
         vozaciTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         vozaciTabela.setDefaultEditor(Object.class, null);
         vozaciTabela.getTableHeader().setReorderingAllowed(false);
-        vozaciTabela.setAutoCreateRowSorter(true);
+        vozaciTabela.setAutoCreateRowSorter(true); // sortiranje tabele
 
         vozaciTabela.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         for(int k=0; k<zaglavlja.length; k++) {

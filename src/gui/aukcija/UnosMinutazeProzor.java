@@ -77,33 +77,35 @@ public class UnosMinutazeProzor extends JFrame {
                         }
                     }
 
-
+                    //broj minuta do dolaska -> sto manje to bolje
                     //minutaza x5
                     //brojVoznji x3
                     //starostVozila / 1000
                     //broj prethodnih voznji -> sto manje to bolje
+                    //starost vozila -> sto mladje to bolje
 
                     double ukupnaSuma = 0;
-
                     double brojVoznji = 0;
+
+                    // broj zavrsenih voznji vozaca
                     for(Voznja voznja : voznje) {
                         if(voznja.getVozac().getId() == vozac.getId() && voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA))
                             brojVoznji++;
                     }
 
                     brojVoznji = (1 / brojVoznji) * 3;
-
-                    //starost vozila -> sto mladje to bolje
                     double ukupnoMinuta = (1/minutaza) * 5;
                     double starostVozila = Double.parseDouble(String.valueOf(vozac.getAutomobil().getGodProizvodnje())) / 1000;
 
+                    /* prilikom narucivanja,
+                    ako musterija selektuje checkBox za novija vozila
+                     */
                     if (voznja.isNovijaVozila()) {
                         ukupnaSuma = brojVoznji + ukupnoMinuta + starostVozila;
                     }else {
                         ukupnaSuma = brojVoznji + ukupnoMinuta;
                     }
 
-                    System.out.println(ukupnaSuma);
 
                     Aukcija aukcija = new Aukcija(voznja,vozac,minutaza,ukupnaSuma);
                     taxiSluzba.dodajAukciju(aukcija);
