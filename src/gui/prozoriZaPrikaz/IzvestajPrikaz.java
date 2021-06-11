@@ -32,7 +32,7 @@ public class IzvestajPrikaz extends JFrame {
 
     private void InitGUI() {
 
-        String[] zaglavlja = new String[] {"ID", "Vreme porudzbine", "Adresa polaska", "Adresa destinacije", "Musterija", "Vozac", "Predjeni km", "Trajanje(min)", "Status", "Poruceno", "Izbrisana","Zahtev za novije vozilo", "Pet Friendly"};
+        String[] zaglavlja = new String[] {"ID", "Vreme porudzbine", "Adresa polaska", "Adresa destinacije", "Musterija", "Vozac", "Predjeni km", "Trajanje(min)", "Status", "Poruceno", "Izbrisana","Zahtev za novije vozilo", "Pet Friendly", "Ocena"};
         Object[][] sadrzaj = new Object[pronadjenaVoznja.size()][zaglavlja.length];
 
         int i = 0;
@@ -40,6 +40,8 @@ public class IzvestajPrikaz extends JFrame {
         double ukupnoMin = 0;
         double cenaStart = 120;
         double cenaKm = 50;
+        double prosecnaOcena = 0;
+        int brojVoznjiOcena = 0;
 //        ArrayList<Integer> brVozaca = new ArrayList<>();  // koristiti ovo u slucaju da moramo implementirati strukturu za HashSet
         HashSet<Integer> brVozaca = new HashSet<>();
 
@@ -61,6 +63,11 @@ public class IzvestajPrikaz extends JFrame {
             i++;
             ukupnoKm += voznja.getPredjeniKm();
             ukupnoMin += voznja.getTrajanjeVoznje();
+
+            if (voznja.getOcenaVoznje() != 0) {
+                prosecnaOcena += voznja.getOcenaVoznje();
+                brojVoznjiOcena++;
+            }
 
 //            if (!brVozaca.contains(voznja.getVozac().getId())) { // koristiti ovo u slucaju da moramo implementirati strukturu za HashSet
 //                brVozaca.add(voznja.getVozac().getId());
@@ -101,7 +108,7 @@ public class IzvestajPrikaz extends JFrame {
 
         lblIzvestaj.setText("Ukupno voznji: " + i + "\nBroj aktivnih vozaca: " + brVozaca.size()  + "\nProsek km: " + ukupnoKm/i +
                 "\nProsek min: " + ukupnoMin/i + "\nUkupna zarada: " + ukupnaZarada + " Rsd" +
-                "\nProsek zarade po voznji: " + ukupnaZarada/i + " Rsd");
+                "\nProsek zarade po voznji: " + ukupnaZarada/i + " Rsd" + "\nProsecna ocena ocenjenih voznji: " + prosecnaOcena/brojVoznjiOcena);
 
         JScrollPane scrollPane = new JScrollPane(voznjeTabela);
         add(scrollPane, BorderLayout.CENTER);
