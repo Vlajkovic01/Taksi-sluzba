@@ -17,8 +17,7 @@ import java.awt.event.ActionListener;
 public class AukcijaPrikazVoznjiDispeceru extends JFrame {
 
     private JToolBar mainToolbar = new JToolBar();
-    private JButton btnStartAuction = new JButton();
-    private JButton btnEndAuction = new JButton();
+    private JButton btnStartAuction = new JButton("POKRENI AUKCIJU");
 
     private DefaultTableModel tableModel;
     private JTable voznjeTabela;
@@ -37,8 +36,9 @@ public class AukcijaPrikazVoznjiDispeceru extends JFrame {
     }
 
     private void InitGUI() {
-        ImageIcon addIcon = new ImageIcon(getClass().getResource("/slike/add.gif"));
-        btnStartAuction.setIcon(addIcon);
+        btnStartAuction.setBackground(mainToolbar.getBackground());
+        btnStartAuction.setForeground(Color.RED);
+        btnStartAuction.setFont(new Font("Bold",Font.BOLD,13));
 
         mainToolbar.add(btnStartAuction);
         add(mainToolbar, BorderLayout.NORTH);
@@ -123,7 +123,9 @@ public class AukcijaPrikazVoznjiDispeceru extends JFrame {
 
                     /*algoritam za aukciju,
                     prolazi kroz listu svih aukciju i za max
-                    postavlja vozaca koji ima najvise bodova
+                    postavlja vozaca koji ima najvise bodova,
+                    ako svi imaju isto bodova pobedice onaj
+                    koji je prvi konkurisao tj prvi u listi
                      */
 
                     if(voznjaNaAukciji != null) {

@@ -6,11 +6,11 @@ import entiteti.Voznja;
 import enumeracije.StatusVoznje;
 import net.miginfocom.swing.MigLayout;
 import sluzba.Sluzba;
-import strukture.ArrayList;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 
 public class UnosMinutazeProzor extends JFrame {
 
@@ -70,40 +70,38 @@ public class UnosMinutazeProzor extends JFrame {
                 if(validacija()) {
                     double minutaza = Double.parseDouble(txtMinutaza.getText());
 
-                    ArrayList<Voznja> voznje = new ArrayList<Voznja>();
+                    //broj minuta do dolaska -> sto manje to bolje
+                    //minutaza x5
+                    //broj prethodnih voznji -> sto manje to bolje
+                    //brojVoznji x3
+                    //starost vozila -> sto mladje to bolje
+                    //starostVozila x2
+                    //max bodova -> 10
+
+                    double ukupnaSuma = 0;
+                    double brojVoznjiSuma = 0;
+
+                    // broj zavrsenih voznji vozaca
                     for(Voznja voznja: taxiSluzba.getVoznje()) {
-                        if(!voznja.isIzbrisana()) {
-                            voznje.add(voznja);
+                        if(!voznja.isIzbrisana() && voznja.getVozac().getId() == vozac.getId() && voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA)) {
+                            brojVoznjiSuma++;
+                        } else {
+                            brojVoznjiSuma = 1;
                         }
                     }
 
-                    //broj minuta do dolaska -> sto manje to bolje
-                    //minutaza x5
-                    //brojVoznji x3
-                    //starostVozila / 1000
-                    //broj prethodnih voznji -> sto manje to bolje
-                    //starost vozila -> sto mladje to bolje
-
-                    double ukupnaSuma = 0;
-                    double brojVoznji = 0;
-
-                    // broj zavrsenih voznji vozaca
-                    for(Voznja voznja : voznje) {
-                        if(voznja.getVozac().getId() == vozac.getId() && voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA))
-                            brojVoznji++;
-                    }
-
-                    brojVoznji = (1 / brojVoznji) * 3;
-                    double ukupnoMinuta = (1/minutaza) * 5;
-                    double starostVozila = Double.parseDouble(String.valueOf(vozac.getAutomobil().getGodProizvodnje())) / 1000;
+                    brojVoznjiSuma = (1 / brojVoznjiSuma) * 3;
+                    double vremeDolaskaSuma = (1/minutaza) * 5;
+                    int trenutnaGodina = Calendar.getInstance().get(Calendar.YEAR);
+                    double starostVozilaSuma = (Double.parseDouble(String.valueOf(vozac.getAutomobil().getGodProizvodnje())) / trenutnaGodina) * 2 ;
 
                     /* prilikom narucivanja,
                     ako musterija selektuje checkBox za novija vozila
                      */
                     if (voznja.isNovijaVozila()) {
-                        ukupnaSuma = brojVoznji + ukupnoMinuta + starostVozila;
+                        ukupnaSuma = brojVoznjiSuma + vremeDolaskaSuma + starostVozilaSuma;
                     }else {
-                        ukupnaSuma = brojVoznji + ukupnoMinuta;
+                        ukupnaSuma = brojVoznjiSuma + vremeDolaskaSuma;
                     }
 
 
@@ -137,11 +135,15 @@ public class UnosMinutazeProzor extends JFrame {
         try {
             Integer.parseInt(txtMinutaza.getText());
         }catch (NumberFormatException e) {
-            poruka += "-Minutaza mora biti broj\n";
+            poruka += "-Minutaza mora biti broj.\n";
             ispravno = false;
         }
         if(txtMinutaza.getText().trim().equals("")) {
-            poruka += "Morate uneti broj minuta\n";
+            poruka += "-Morate uneti broj minuta.\n";
+            ispravno = false;
+        }
+        if(txtMinutaza.getText().trim().equals("0")) {
+            poruka += "-Minimum je 1 minut.\n";
             ispravno = false;
         }
         if(ispravno == false) {

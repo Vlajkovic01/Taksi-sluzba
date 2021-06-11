@@ -93,7 +93,7 @@ public class KombinovanaPretragaProzor extends JFrame {
         Boolean ispravno = true;
         String poruka = "Molimo popravite sledece greske u unosu:\n";
         if (txtIme.getText().trim().equals("") && txtPrezime.getText().trim().equals("") && txtPlata.getText().trim().equals("") && txtAutomobil.getText().trim().equals("")) {
-            poruka += "Morate uneti bar jedan parametar za pretragu\n";
+            poruka += "-Morate uneti bar jedan parametar za pretragu\n";
             ispravno = false;
         }
         if(ispravno == false) {

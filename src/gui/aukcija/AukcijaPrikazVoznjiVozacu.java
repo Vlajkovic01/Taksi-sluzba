@@ -17,9 +17,7 @@ import java.awt.event.ActionListener;
 public class AukcijaPrikazVoznjiVozacu extends JFrame {
 
     private JToolBar mainToolbar = new JToolBar();
-    private JButton btnAdd = new JButton();
-    private JButton btnIzmeni = new JButton();
-    private JButton btnObrisi = new JButton();
+    private JButton btnAdd = new JButton("KONKURISI");
 
     private DefaultTableModel tableModel;
     private JTable voznjeTabela;
@@ -38,8 +36,9 @@ public class AukcijaPrikazVoznjiVozacu extends JFrame {
     }
 
     private void InitGUI() {
-        ImageIcon addIcon = new ImageIcon(getClass().getResource("/slike/add.gif"));
-        btnAdd.setIcon(addIcon);
+        btnAdd.setBackground(mainToolbar.getBackground());
+        btnAdd.setForeground(Color.BLACK);
+        btnAdd.setFont(new Font("Bold",Font.BOLD,13));
 
         mainToolbar.add(btnAdd);
         add(mainToolbar, BorderLayout.NORTH);
