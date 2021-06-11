@@ -57,6 +57,7 @@ public class IzvestajPrikaz extends JFrame {
             sadrzaj[i][10] = voznja.isIzbrisana();
             sadrzaj[i][11] = voznja.isNovijaVozila();
             sadrzaj[i][12] = voznja.isPetFriendly();
+            sadrzaj[i][13] = voznja.getOcenaVoznje();
             i++;
             ukupnoKm += voznja.getPredjeniKm();
             ukupnoMin += voznja.getTrajanjeVoznje();

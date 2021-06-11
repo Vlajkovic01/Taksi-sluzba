@@ -11,6 +11,7 @@ public class Vozaci extends Korisnici {
     protected int brClanskeKarte;
     protected Automobil automobil;
     protected ArrayList<Voznja> voznjeVozaca;
+    protected double prosecnaOcena;
 
     public Vozaci() {
         this.id = 0;
@@ -18,15 +19,17 @@ public class Vozaci extends Korisnici {
         this.brClanskeKarte = 0;
         this.automobil = new Automobil();
         this.voznjeVozaca = new ArrayList<Voznja>();
+        this.prosecnaOcena = 0;
     }
 
-    public Vozaci(String korisnickoIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol, String telefon, TipKorisnika tipKorisnika, boolean izbrisan, int id, double plata, int brClanskeKarte, Automobil automobil, ArrayList<Voznja> voznjeVozaca) {
+    public Vozaci(String korisnickoIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol, String telefon, TipKorisnika tipKorisnika, boolean izbrisan, int id, double plata, int brClanskeKarte, Automobil automobil, ArrayList<Voznja> voznjeVozaca, double prosecnaOcena) {
         super(korisnickoIme, lozinka, ime, prezime, jmbg, adresa, pol, telefon, tipKorisnika, izbrisan);
         this.id = id;
         this.plata = plata;
         this.brClanskeKarte = brClanskeKarte;
         this.automobil = automobil;
         this.voznjeVozaca = voznjeVozaca;
+        this.prosecnaOcena = prosecnaOcena;
     }
 
     public int getId() {
@@ -69,6 +72,14 @@ public class Vozaci extends Korisnici {
         this.voznjeVozaca = voznjeVozaca;
     }
 
+    public double getProsecnaOcena() {
+        return prosecnaOcena;
+    }
+
+    public void setProsecnaOcena(double prosecnaOcena) {
+        this.prosecnaOcena = prosecnaOcena;
+    }
+
     @Override
     public String toString() {
         String s = "Vozaci{" + "korisnickoIme='" +this.korisnickoIme + '\'' +
@@ -84,7 +95,7 @@ public class Vozaci extends Korisnici {
                 ", id=" + this.id + '\'' +
                 ", plata=" + this.plata + '\'' +
                 ", brClanskeKarte=" + this.brClanskeKarte + '\'' +
-                ", automobil=" + this.automobil.getIdVozila() + ", idVoznji=";
+                ", automobil=" + this.automobil.getIdVozila() + ", prosecnaOcena=" + this.prosecnaOcena + ", idVoznji=";
         for (Voznja voznja: voznjeVozaca) {
             s += voznja.getId() + ", ";
         }

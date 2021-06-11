@@ -338,7 +338,8 @@ public class Sluzba {
                 int idVozila = Integer.parseInt(idVozilaString);
                 Automobil automobil = pronadjiAutomobil(idVozila);
                 strukture.ArrayList<Voznja> voznjeVozaca = new strukture.ArrayList<Voznja>();
-                Vozaci vozac = new Vozaci(korisnickoIme,lozinka,ime,prezime,jmbg,adresa,pol,telefon,tipKorisnika,izbrisan,id,plata,brClanskeKarte,automobil,voznjeVozaca);
+                double prosecnaOcena = Double.parseDouble(split[14]);
+                Vozaci vozac = new Vozaci(korisnickoIme,lozinka,ime,prezime,jmbg,adresa,pol,telefon,tipKorisnika,izbrisan,id,plata,brClanskeKarte,automobil,voznjeVozaca, prosecnaOcena);
                 vozaci.add(vozac);
                 // budo|12345|Marko|Budesa|01010101|Svetog Save, Sabac|MUSKO|062323232|VOZAC|false|200|45000|1001|100
             }
@@ -360,7 +361,7 @@ public class Sluzba {
                         + vozac.getPol() + "|" + vozac.getTelefon() + "|"
                         + vozac.getTipKorisnika() + "|" + vozac.isIzbrisan() + "|"
                         + vozac.getId() + "|" + vozac.getPlata() + "|" + vozac.getBrClanskeKarte() + "|"
-                        + vozac.getAutomobil().getIdVozila() + "|" + "\n";
+                        + vozac.getAutomobil().getIdVozila() + "|" + vozac.getProsecnaOcena() +"\n";
             }
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
             writer.write(content);
@@ -398,7 +399,8 @@ public class Sluzba {
                 boolean izbrisana = Boolean.parseBoolean(split[10]);
                 boolean novijaVozila = Boolean.parseBoolean(split[11]);
                 boolean petFriendly = Boolean.parseBoolean(split[12]);
-                Voznja voznja = new Voznja(id,datumIVremePorudzbine,adresaPolaska,adresaDestinacije,musterija,vozac,predjeniKm,trajanjeVoznje,statusVoznje,tipPorudzbine,izbrisana, novijaVozila,petFriendly);
+                int ocena = Integer.parseInt(split[13]);
+                Voznja voznja = new Voznja(id,datumIVremePorudzbine,adresaPolaska,adresaDestinacije,musterija,vozac,predjeniKm,trajanjeVoznje,statusVoznje,tipPorudzbine,izbrisana, novijaVozila,petFriendly, ocena);
                 if (vozac != null) {
                     vozac.getVoznjeVozaca().add(voznja);
                 }
@@ -424,7 +426,7 @@ public class Sluzba {
                         + voznja.getMusterija().getId() + "|" + voznja.getVozac().getId() + "|"
                         + voznja.getPredjeniKm() + "|" + voznja.getTrajanjeVoznje() + "|"
                         + voznja.getStatusVoznje() + "|" + voznja.getTipPorudzbine() + "|" + voznja.isIzbrisana()
-                        + "|" + voznja.isNovijaVozila() + "|" + voznja.isPetFriendly() +  "\n";
+                        + "|" + voznja.isNovijaVozila() + "|" + voznja.isPetFriendly() + "|" + voznja.getOcenaVoznje() +  "\n";
             }
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
             writer.write(content);

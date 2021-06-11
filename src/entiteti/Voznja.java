@@ -17,6 +17,7 @@ public class Voznja {
     protected boolean izbrisana;
     protected boolean novijaVozila;
     protected boolean petFriendly;
+    protected int ocenaVoznje;
 
     public Voznja() {
         this.id = 0;
@@ -32,9 +33,10 @@ public class Voznja {
         this.izbrisana = false;
         this.novijaVozila = false;
         this.petFriendly = false;
+        this.ocenaVoznje = 0;
     }
 
-    public Voznja(int id, String datumIVremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterije musterija, Vozaci vozac, double predjeniKm, double trajanjeVoznje, StatusVoznje statusVoznje, TipPorudzbine tipPorudzbine, boolean izbrisana, boolean novijaVozila, boolean petFriendly) {
+    public Voznja(int id, String datumIVremePorudzbine, String adresaPolaska, String adresaDestinacije, Musterije musterija, Vozaci vozac, double predjeniKm, double trajanjeVoznje, StatusVoznje statusVoznje, TipPorudzbine tipPorudzbine, boolean izbrisana, boolean novijaVozila, boolean petFriendly, int ocenaVoznje) {
         this.id = id;
         this.datumIVremePorudzbine = datumIVremePorudzbine;
         this.adresaPolaska = adresaPolaska;
@@ -48,6 +50,7 @@ public class Voznja {
         this.izbrisana = izbrisana;
         this.novijaVozila = novijaVozila;
         this.petFriendly = petFriendly;
+        this.ocenaVoznje = ocenaVoznje;
     }
 
     public int getId() {
@@ -154,6 +157,14 @@ public class Voznja {
         this.petFriendly = petFriendly;
     }
 
+    public int getOcenaVoznje() {
+        return ocenaVoznje;
+    }
+
+    public void setOcenaVoznje(int ocenaVoznje) {
+        this.ocenaVoznje = ocenaVoznje;
+    }
+
     @Override
     public String toString() {
         return "Voznja{" +
@@ -170,6 +181,7 @@ public class Voznja {
                 ", izbrisana=" + izbrisana +
                 ", novijaVozila=" + novijaVozila +
                 ", petFriendly=" + petFriendly +
+                ", ocenaVoznje=" + ocenaVoznje +
                 '}';
     }
 }

@@ -38,6 +38,8 @@ public class VoznjeDodajIzmeni extends JFrame {
     private JComboBox<Boolean> cbNovijaVozila = new JComboBox<Boolean>();
     private JLabel lblPetFriendly = new JLabel("Zahtevaj Pet Friendly");
     private JComboBox<Boolean> cbPetFriendly = new JComboBox<Boolean>();
+    private JLabel lblOcena = new JLabel("Ocena voznje");
+    private JComboBox<Integer> cbOcena = new JComboBox<Integer>();
 
     private JButton btnOk = new JButton("OK");
     private JButton btnCancel = new JButton("Cancel");
@@ -69,6 +71,9 @@ public class VoznjeDodajIzmeni extends JFrame {
         cbStatus.setSelectedIndex(0);
         cbTipPorudzbine.setModel(new DefaultComboBoxModel<>(TipPorudzbine.values()));
         cbTipPorudzbine.setSelectedIndex(0);
+        for (int i = 1 ; i < 6 ; i ++) {
+            cbOcena.addItem(i);
+        }
 
         for(Vozaci vozac: taxiSluzba.getVozaci()) {
             if (!vozac.isIzbrisan() || vozac.getId() == 0) {
@@ -109,6 +114,8 @@ public class VoznjeDodajIzmeni extends JFrame {
         add(cbNovijaVozila);
         add(lblPetFriendly);
         add(cbPetFriendly);
+        add(lblOcena);
+        add(cbOcena);
 
         add(new JLabel());
         add(btnOk, "split");
@@ -136,9 +143,10 @@ public class VoznjeDodajIzmeni extends JFrame {
                     TipPorudzbine tipPorudzbine = TipPorudzbine.valueOf(cbTipPorudzbine.getSelectedItem().toString());
                     Boolean novijaVozila = Boolean.parseBoolean(cbNovijaVozila.getSelectedItem().toString());
                     Boolean petFriendly = Boolean.parseBoolean(cbPetFriendly.getSelectedItem().toString());
+                    int ocena = Integer.parseInt(cbOcena.getSelectedItem().toString());
 
                     if(voznja == null) {
-                        Voznja voznja = new Voznja(ID,vremePorudzbine,adresaPolaska,adresaDestinacije,musterija,vozac,predjeniKm,trajanjeVoznje,status,tipPorudzbine,false,novijaVozila,petFriendly);
+                        Voznja voznja = new Voznja(ID,vremePorudzbine,adresaPolaska,adresaDestinacije,musterija,vozac,predjeniKm,trajanjeVoznje,status,tipPorudzbine,false,novijaVozila,petFriendly, ocena);
                         taxiSluzba.dodajVoznju(voznja);
                         JOptionPane.showMessageDialog(null, "Uspesno kreirana voznja!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                     }
@@ -154,6 +162,7 @@ public class VoznjeDodajIzmeni extends JFrame {
                         voznja.setTipPorudzbine(tipPorudzbine);
                         voznja.setNovijaVozila(novijaVozila);
                         voznja.setPetFriendly(petFriendly);
+                        voznja.setOcenaVoznje(ocena);
 
                         JOptionPane.showMessageDialog(null, "Izmene su sacuvane!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                     }
@@ -187,6 +196,7 @@ public class VoznjeDodajIzmeni extends JFrame {
         cbTipPorudzbine.setSelectedItem(voznja.getTipPorudzbine());
         cbNovijaVozila.setSelectedItem(voznja.isNovijaVozila());
         cbPetFriendly.setSelectedItem(voznja.isPetFriendly());
+        cbOcena.setSelectedItem(voznja.getOcenaVoznje());
     }
 
     private boolean validacija() {

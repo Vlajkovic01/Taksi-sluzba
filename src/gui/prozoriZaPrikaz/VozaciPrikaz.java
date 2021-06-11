@@ -53,7 +53,7 @@ public class VozaciPrikaz extends JFrame {
             }
         }
 
-        String[] zaglavlja = new String[] {"Korisnicko Ime", "Lozinka", "Ime", "Prezime", "JMBG", "Adresa", "Pol", "Telefon", "Uloga", "Izbrisan", "ID", "Plata", "Clanska karta", "Automobil",};
+        String[] zaglavlja = new String[] {"Korisnicko Ime", "Lozinka", "Ime", "Prezime", "JMBG", "Adresa", "Pol", "Telefon", "Uloga", "Izbrisan", "ID", "Plata", "Clanska karta", "Automobil","Prosecna ocena"};
         Object[][] sadrzaj = new Object[vozaci.size()][zaglavlja.length];
 
         int i = 0;
@@ -72,6 +72,7 @@ public class VozaciPrikaz extends JFrame {
             sadrzaj[i][11] = vozac.getPlata();
             sadrzaj[i][12] = vozac.getBrClanskeKarte();
             sadrzaj[i][13] = vozac.getAutomobil().getIdVozila();
+            sadrzaj[i][14] = vozac.getProsecnaOcena();
             i++;
         }
         tableModel = new DefaultTableModel(sadrzaj, zaglavlja);

@@ -10,6 +10,8 @@ import sluzba.Sluzba;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
 public class UnosMinutazeProzor extends JFrame {
@@ -70,38 +72,48 @@ public class UnosMinutazeProzor extends JFrame {
                 if(validacija()) {
                     double minutaza = Double.parseDouble(txtMinutaza.getText());
 
+                    //TODO SVE JE SKALIRANO NA INTERVAL 0-1 RADI LAKSE MANIPULACIJE
                     //broj minuta do dolaska -> sto manje to bolje
-                    //minutaza x5
-                    //broj prethodnih voznji -> sto manje to bolje
-                    //brojVoznji x3
+                    //broj voznji u prethodnom mesecu -> sto manje to bolje
                     //starost vozila -> sto mladje to bolje
+                    //prosecna ocena -> sto veca to bolje
+                    //minutaza x6
+                    //prosecnaOcena x4
+                    //brojVoznji x3
                     //starostVozila x2
-                    //max bodova -> 10
+                    //max bodova -> 15
+
 
                     double ukupnaSuma = 0;
                     double brojVoznjiSuma = 0;
+                    LocalDate sadasnjiDatum = LocalDate.now();
+                    String prosliMesec = sadasnjiDatum.minusMonths(1).format(DateTimeFormatter.ofPattern("MM-yyyy"));
 
-                    // broj zavrsenih voznji vozaca
-                    for(Voznja voznja: taxiSluzba.getVoznje()) {
-                        if(!voznja.isIzbrisana() && voznja.getVozac().getId() == vozac.getId() && voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA)) {
+                    // broj zavrsenih voznji vozaca prethodnog meseca
+                    for(Voznja v: taxiSluzba.getVoznje()) {
+                        if(!v.isIzbrisana() && v.getVozac().getId() == vozac.getId() && v.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) && v.getDatumIVremePorudzbine().substring(3, 10).equals(prosliMesec)) {
                             brojVoznjiSuma++;
-                        } else {
-                            brojVoznjiSuma = 1;
                         }
+                    }
+
+                    //u slucaju da vozac nema voznje prethodnog meseca
+                    if (brojVoznjiSuma == 0) {
+                        brojVoznjiSuma = 1;
                     }
 
                     brojVoznjiSuma = (1 / brojVoznjiSuma) * 3;
                     double vremeDolaskaSuma = (1/minutaza) * 5;
                     int trenutnaGodina = Calendar.getInstance().get(Calendar.YEAR);
                     double starostVozilaSuma = (Double.parseDouble(String.valueOf(vozac.getAutomobil().getGodProizvodnje())) / trenutnaGodina) * 2 ;
+                    double prosecnaOcena = (vozac.getProsecnaOcena() / 5) * 4;
 
                     /* prilikom narucivanja,
                     ako musterija selektuje checkBox za novija vozila
                      */
                     if (voznja.isNovijaVozila()) {
-                        ukupnaSuma = brojVoznjiSuma + vremeDolaskaSuma + starostVozilaSuma;
+                        ukupnaSuma = brojVoznjiSuma + vremeDolaskaSuma + starostVozilaSuma + prosecnaOcena;
                     }else {
-                        ukupnaSuma = brojVoznjiSuma + vremeDolaskaSuma;
+                        ukupnaSuma = brojVoznjiSuma + vremeDolaskaSuma + prosecnaOcena;
                     }
 
 
@@ -112,6 +124,7 @@ public class UnosMinutazeProzor extends JFrame {
                     UnosMinutazeProzor.this.dispose();
                     UnosMinutazeProzor.this.setVisible(false);
                     taxiSluzba.snimiAukcije();
+                    taxiSluzba.snimiVozace();
                 }
             }
         });

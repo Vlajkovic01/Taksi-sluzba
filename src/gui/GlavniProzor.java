@@ -1,6 +1,5 @@
 package gui;
 
-import entiteti.Dispeceri;
 import entiteti.Korisnici;
 import entiteti.Musterije;
 import entiteti.Vozaci;
@@ -13,6 +12,7 @@ import gui.izvestaj.MesecniIzvestajProzor;
 import gui.izvestaj.NedeljniIzvestajProzor;
 import gui.prozoriZaNarucivanje.DodeljivanjeVoznjeProzor;
 import gui.prozoriZaNarucivanje.NarucivanjeTelefonomProzor;
+import gui.prozoriZaNarucivanje.OceniVozacaProzor;
 import gui.prozoriZaPretragu.BinarnaPretragaProzor;
 import gui.prozoriZaPretragu.KombinovanaPretragaProzor;
 import gui.prozoriZaPrikaz.*;
@@ -30,7 +30,9 @@ public class GlavniProzor extends JFrame {
     private JMenu meniPretraga = new JMenu("Pretraga vozaca");
     private JMenu meniIzvestaj = new JMenu("Izvestaj");
     private JMenu meniNarucivanjeVoznje = new JMenu("Narucivanje voznje");
+    private JMenu meniOceniVozaca = new JMenu("Oceni vozaca");
     private JMenu meniAukcija = new JMenu("Aukcija");
+    private JMenuItem oceniVozacaItem = new JMenuItem("Izaberi voznju");
     private JMenuItem aukcijaVozacItem = new JMenuItem("Izaberi voznju");
     private JMenuItem aukcijaDispecerItem = new JMenuItem("Pokreni aukciju");
     private JMenuItem vozaciItem = new JMenuItem("Pregled vozaca");
@@ -79,7 +81,9 @@ public class GlavniProzor extends JFrame {
         if(uloga.equals(TipKorisnika.MUSTERIJA)) {
             setJMenuBar(mainMenu);
             mainMenu.add(meniNarucivanjeVoznje);
+            mainMenu.add(meniOceniVozaca);
             meniNarucivanjeVoznje.add(narucivanjeTelefonomItem);
+            meniOceniVozaca.add(oceniVozacaItem);
         }
         else if(uloga.equals(TipKorisnika.VOZAC)) {
             setJMenuBar(mainMenu);
@@ -225,6 +229,15 @@ public class GlavniProzor extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 NedeljniIzvestajProzor ni = new NedeljniIzvestajProzor(taxiSluzba);
                 ni.setVisible(true);
+            }
+        });
+
+        oceniVozacaItem.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                OceniVozacaProzor ov = new OceniVozacaProzor(taxiSluzba, (Musterije) korisnik);
+                ov.setVisible(true);
             }
         });
 

@@ -43,6 +43,8 @@ public class VozaciDodajIzmeni extends JFrame {
     private JTextField txtClanskaKarta = new JTextField(15);
     private JLabel lblAutomobil = new JLabel("Automobil");
     private JComboBox<Integer> cbAutomobil = new JComboBox<Integer>();
+    private JLabel lblProsecnaOcena = new JLabel("Plata");
+    private JTextField txtProsecnaOcena = new JTextField(15);
     private JLabel lblPrihvacenaVoznja = new JLabel("Zamena auta je onemogucena");
     private JLabel lblPrihvacenaVoznjaNastavak = new JLabel("zbog prihvacene voznje.");
 
@@ -109,12 +111,15 @@ public class VozaciDodajIzmeni extends JFrame {
         add(txtPlata);
         add(lblAutomobil);
         add(cbAutomobil);
+        add(lblProsecnaOcena);
+        add(txtProsecnaOcena);
 
 
         add(new JLabel());
         add(btnOk, "split");
         add(btnCancel);
         cbUloga.setEnabled(false);
+        txtProsecnaOcena.setEditable(false);
         txtID.setText(String.valueOf(taxiSluzba.generisanjeIDVozaca(0)));
         txtClanskaKarta.setText(String.valueOf(taxiSluzba.generisanjeIDVozaca(1000)));
     }
@@ -138,8 +143,9 @@ public class VozaciDodajIzmeni extends JFrame {
                     double plata  = Double.parseDouble(txtPlata.getText());
                     int brClanskeKarte = taxiSluzba.generisanjeIDVozaca(1000);
                     Automobil automobil = taxiSluzba.pronalazenjeAutomobila( Integer.parseInt(cbAutomobil.getSelectedItem().toString()));
+                    double prosecnaOcena = Double.parseDouble(txtProsecnaOcena.getText());
                     if(vozac == null) {
-                        Vozaci vozac = new Vozaci(korisnickoIme,lozinka,ime,prezime,jmbg,adresa,pol,telefon,uloga,false,ID,plata,brClanskeKarte,automobil,new ArrayList<Voznja>());
+                        Vozaci vozac = new Vozaci(korisnickoIme,lozinka,ime,prezime,jmbg,adresa,pol,telefon,uloga,false,ID,plata,brClanskeKarte,automobil,new ArrayList<Voznja>(),prosecnaOcena);
                         taxiSluzba.dodajVozaca(vozac);
                         JOptionPane.showMessageDialog(null, "Uspesno kreiran vozac!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                     }
@@ -156,6 +162,7 @@ public class VozaciDodajIzmeni extends JFrame {
                         vozac.setPlata(plata);
                         vozac.getAutomobil().setSlobodan(true);
                         vozac.setAutomobil(automobil);
+                        vozac.setProsecnaOcena(prosecnaOcena);
                         JOptionPane.showMessageDialog(null, "Izmene su sacuvane!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                     }
                     VozaciDodajIzmeni.this.dispose();
@@ -192,6 +199,7 @@ public class VozaciDodajIzmeni extends JFrame {
         txtPlata.setText(String.valueOf(vozac.getPlata()));
         txtClanskaKarta.setText(String.valueOf(vozac.getBrClanskeKarte()));
         cbAutomobil.setSelectedItem(vozac.getAutomobil().getIdVozila());
+        txtProsecnaOcena.setText(String.valueOf(vozac.getProsecnaOcena()));
         if (menjanjeAutomobila()) {
             cbAutomobil.setEnabled(false);
             add(lblPrihvacenaVoznja);
@@ -279,6 +287,16 @@ public class VozaciDodajIzmeni extends JFrame {
             Integer.parseInt(txtClanskaKarta.getText());
         }catch (NumberFormatException e) {
             poruka += "- Clanska karta mora biti broj\n";
+            ispravno = false;
+        }
+        try {
+            Double.parseDouble(txtProsecnaOcena.getText());
+        }catch (NumberFormatException e) {
+            poruka += "- Prosecna ocena mora biti broj\n";
+            ispravno = false;
+        }
+        if(txtProsecnaOcena.getText().trim().equals("")) {
+            poruka += "Morate uneti prosecnu ocenu\n";
             ispravno = false;
         }
         if(ispravno == false) {

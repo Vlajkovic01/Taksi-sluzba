@@ -1,11 +1,10 @@
-package gui.aukcija;
+package gui.prozoriZaNarucivanje;
 
-import entiteti.Aukcija;
-import entiteti.Vozaci;
+import entiteti.Musterije;
 import entiteti.Voznja;
 import enumeracije.StatusVoznje;
 import sluzba.Sluzba;
-import java.util.ArrayList;
+import strukture.ArrayList;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -14,20 +13,20 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AukcijaPrikazVoznjiVozacu extends JFrame {
+public class OceniVozacaProzor extends JFrame {
 
     private JToolBar mainToolbar = new JToolBar();
-    private JButton btnAdd = new JButton("KONKURISI");
+    private JButton btnAdd = new JButton("OCENI VOZACA");
 
     private DefaultTableModel tableModel;
     private JTable voznjeTabela;
     private Sluzba taxiSluzba;
-    private Vozaci vozac;
+    private Musterije musterija;
 
-    public AukcijaPrikazVoznjiVozacu(Sluzba taxiSluzba, Vozaci vozac) {
+    public OceniVozacaProzor(Sluzba taxiSluzba, Musterije musterija) {
         this.taxiSluzba = taxiSluzba;
-        this.vozac = vozac;
-        setTitle("Dodeljivanje voznje");
+        this.musterija = musterija;
+        setTitle("Ocenjivanje vozaca");
         setSize(900,300);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -37,34 +36,20 @@ public class AukcijaPrikazVoznjiVozacu extends JFrame {
 
     private void InitGUI() {
         btnAdd.setBackground(mainToolbar.getBackground());
-        btnAdd.setForeground(Color.BLACK);
+        btnAdd.setForeground(Color.RED);
         btnAdd.setFont(new Font("Bold",Font.BOLD,13));
 
         mainToolbar.add(btnAdd);
         add(mainToolbar, BorderLayout.NORTH);
 
         ArrayList<Voznja> voznje = new ArrayList<Voznja>();
-
-        //TODO ispraviti, moze bolje
-
-        /* kada vozac konkurise za voznju nakon
-        osvezavanja mu se ta voznja ne prikazuje vise
-         */
-
-        for (Voznja voznja : taxiSluzba.getVoznje()) {
-            if (voznja.getStatusVoznje().equals(StatusVoznje.KREIRANA) && voznja.getVozac().getId() == 0) {
+        for(Voznja voznja: taxiSluzba.getVoznje()) {
+            if(voznja.getStatusVoznje().equals(StatusVoznje.ZAVRSENA) && voznja.getMusterija().getId() == musterija.getId() && voznja.getOcenaVoznje() == 0) {
                 voznje.add(voznja);
             }
-            for (Aukcija aukcija : taxiSluzba.getAukcije()) {
-                if (aukcija.getVoznja().getId() == voznja.getId() && aukcija.getVozac().getId() == vozac.getId()) {
-                    voznje.remove(aukcija.getVoznja());
-                }
-            }
         }
-        // nije najbolje resenje, nema sta nisam probao jedino mi ovako radi.
 
-
-        String[] zaglavlja = new String[] {"ID", "Vreme porudzbine", "Adresa polaska", "Adresa destinacije", "Musterija", "Vozac", "Predjeni km", "Trajanje(min)", "Status", "Poruceno", "Izbrisana","Zahtev za novije vozilo", "Pet Friendly", "Ocena"};
+        String[] zaglavlja = new String[] {"ID", "Vreme porudzbine", "Adresa polaska", "Adresa destinacije", "Musterija", "Vozac", "Predjeni km", "Trajanje(min)", "Status", "Poruceno", "Izbrisana","Zahtev za novije vozilo", "Pet Friendly","Ocena"};
         Object[][] sadrzaj = new Object[voznje.size()][zaglavlja.length];
 
         int i = 0;
@@ -122,15 +107,11 @@ public class AukcijaPrikazVoznjiVozacu extends JFrame {
                     JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
                 }else {
                     String id = voznjeTabela.getValueAt(red, 0).toString();
-                    Voznja voznja = taxiSluzba.pronalazenjeVoznje(Integer.parseInt(id));
+                    Voznja izabranaVoznja = taxiSluzba.pronalazenjeVoznje(Integer.parseInt(id));
 
-                    if(voznja != null) {
-                        if (vozac.getAutomobil().getIdVozila() != 0) {
-                            UnosMinutazeProzor unosMinutaze = new UnosMinutazeProzor(taxiSluzba, voznja, vozac);
-                            unosMinutaze.setVisible(true);
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Nemate dodeljen automobil, ne mozete ucestvovati", "Greska", JOptionPane.ERROR_MESSAGE);
-                        }
+                    if(izabranaVoznja != null) {
+                        OcenjivanjeVozaca ocenjivanjeVozaca = new OcenjivanjeVozaca(taxiSluzba, izabranaVoznja);
+                        ocenjivanjeVozaca.setVisible(true);
                     }else {
                         JOptionPane.showMessageDialog(null, "Nije moguce pronaci odabran pregled!", "Greska", JOptionPane.ERROR_MESSAGE);
                     }

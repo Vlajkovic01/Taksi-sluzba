@@ -82,7 +82,7 @@ public class NarucivanjeTelefonomProzor extends JFrame {
                     String vremePorudzbine = new SimpleDateFormat("dd-MM-yyyy/HH:mm").format(new Date());
                     String adresaPolaska = txtAdresaPolaska.getText();
                     String adresaDestinacije = txtAdresaDestinacije.getText();
-                    Vozaci vozac = new Vozaci("","","","","","",Pol.MUSKO,"",TipKorisnika.VOZAC,false,0,0,0,new Automobil(),new ArrayList<>());
+                    Vozaci vozac = new Vozaci("","","","","","",Pol.MUSKO,"",TipKorisnika.VOZAC,false,0,0,0,new Automobil(),new ArrayList<>(),0);
                     double predjeniKm = 0;
                     double trajanjeVoznje = 0;
                     StatusVoznje status = StatusVoznje.KREIRANA;
@@ -95,7 +95,7 @@ public class NarucivanjeTelefonomProzor extends JFrame {
                     if (petFriendlyCheckBox.isSelected()){
                         petFriendly = true;
                     }
-                    Voznja voznja = new Voznja(id,vremePorudzbine,adresaPolaska,adresaDestinacije,musterija,vozac,predjeniKm,trajanjeVoznje,status,tipPorudzbine,false,novijaVozila,petFriendly );
+                    Voznja voznja = new Voznja(id,vremePorudzbine,adresaPolaska,adresaDestinacije,musterija,vozac,predjeniKm,trajanjeVoznje,status,tipPorudzbine,false,novijaVozila,petFriendly,0);
                     taxiSluzba.dodajVoznju(voznja);
                     JOptionPane.showMessageDialog(null, "Uspesno narucena voznja!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                     taxiSluzba.snimiVoznje();
