@@ -27,7 +27,7 @@ public class AukcijaPrikazVoznjiVozacu extends JFrame {
     public AukcijaPrikazVoznjiVozacu(Sluzba taxiSluzba, Vozaci vozac) {
         this.taxiSluzba = taxiSluzba;
         this.vozac = vozac;
-        setTitle("Dodeljivanje voznje");
+        setTitle("Izaberi voznju");
         setSize(900,300);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

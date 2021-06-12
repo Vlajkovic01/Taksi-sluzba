@@ -9,4 +9,7 @@
 9|20-05-2021/21:26|Loznica|Brnjac|2|3|10.0|20.0|ZAVRSENA|TELEFONOM|false|true|true|3
 10|20-05-2021/21:26|Brnjac|Novo Selo|2|1|0.0|0.0|ODBIJENA|TELEFONOM|false|false|true|0
 11|20-05-2021/21:26|Sabac|Bogatic|2|1|50.0|60.0|ZAVRSENA|TELEFONOM|false|true|false|4
-12|11-06-2021/23:12|Test|Test|2|3|0.0|0.0|DODELJENA|TELEFONOM|false|true|false|0
+12|12-06-2021/10:17|Test|Test|2|3|0.0|0.0|DODELJENA|TELEFONOM|false|true|true|0
+13|12-06-2021/10:17|Test1|Test1|2|3|0.0|0.0|DODELJENA|TELEFONOM|false|true|false|0
+14|12-06-2021/10:17|Test2|Test2|2|0|0.0|0.0|KREIRANA|TELEFONOM|false|false|true|0
+15|12-06-2021/10:17|Test3|Test3|2|0|0.0|0.0|KREIRANA|TELEFONOM|false|false|false|0

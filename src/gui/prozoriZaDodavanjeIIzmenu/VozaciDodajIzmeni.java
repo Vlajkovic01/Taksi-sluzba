@@ -43,7 +43,7 @@ public class VozaciDodajIzmeni extends JFrame {
     private JTextField txtClanskaKarta = new JTextField(15);
     private JLabel lblAutomobil = new JLabel("Automobil");
     private JComboBox<Integer> cbAutomobil = new JComboBox<Integer>();
-    private JLabel lblProsecnaOcena = new JLabel("Plata");
+    private JLabel lblProsecnaOcena = new JLabel("Prosecna ocena");
     private JTextField txtProsecnaOcena = new JTextField(15);
     private JLabel lblPrihvacenaVoznja = new JLabel("Zamena auta je onemogucena");
     private JLabel lblPrihvacenaVoznjaNastavak = new JLabel("zbog prihvacene voznje.");
@@ -119,7 +119,6 @@ public class VozaciDodajIzmeni extends JFrame {
         add(btnOk, "split");
         add(btnCancel);
         cbUloga.setEnabled(false);
-        txtProsecnaOcena.setEditable(false);
         txtID.setText(String.valueOf(taxiSluzba.generisanjeIDVozaca(0)));
         txtClanskaKarta.setText(String.valueOf(taxiSluzba.generisanjeIDVozaca(1000)));
     }

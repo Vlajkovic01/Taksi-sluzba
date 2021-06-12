@@ -34,8 +34,6 @@ public class DodeliVoznju extends JFrame {
     private JComboBox<Boolean> cbNovijaVozila = new JComboBox<Boolean>();
     private JLabel lblPetFriendly = new JLabel("Zahtevaj Pet Friendly");
     private JComboBox<Boolean> cbPetFriendly = new JComboBox<Boolean>();
-    private JLabel lblOcena = new JLabel("Ocena voznje");
-    private JComboBox<Integer> cbOcena = new JComboBox<Integer>();
 
     private JButton btnOk = new JButton("OK");
     private JButton btnCancel = new JButton("Cancel");
@@ -64,9 +62,10 @@ public class DodeliVoznju extends JFrame {
         cbStatus.setSelectedIndex(0);
         cbTipPorudzbine.setModel(new DefaultComboBoxModel<>(TipPorudzbine.values()));
         cbTipPorudzbine.setSelectedIndex(0);
-        for (int i = 1 ; i < 6 ; i ++) {
-            cbOcena.addItem(i);
-        }
+        cbNovijaVozila.addItem(true);
+        cbNovijaVozila.addItem(false);
+        cbPetFriendly.addItem(true);
+        cbPetFriendly.addItem(false);
 
         for(Vozaci vozac: taxiSluzba.getVozaci()) {
             if (!vozac.isIzbrisan() && vozac.getId() != 0) {
@@ -100,8 +99,6 @@ public class DodeliVoznju extends JFrame {
         add(cbNovijaVozila);
         add(lblPetFriendly);
         add(cbPetFriendly);
-        add(lblOcena);
-        add(cbOcena);
 
         txtVremePorudzbine.setEditable(false);
         txtAdresaPolaska.setEditable(false);
@@ -111,7 +108,6 @@ public class DodeliVoznju extends JFrame {
         cbTipPorudzbine.setEnabled(false);
         cbNovijaVozila.setEnabled(false);
         cbPetFriendly.setEnabled(false);
-        cbOcena.setEnabled(false);
 
         add(new JLabel());
         add(btnOk, "split");
@@ -135,7 +131,6 @@ public class DodeliVoznju extends JFrame {
                     TipPorudzbine tipPorudzbine = TipPorudzbine.valueOf(cbTipPorudzbine.getSelectedItem().toString());
                     Boolean novijaVozila = Boolean.parseBoolean(cbNovijaVozila.getSelectedItem().toString());
                     Boolean petFriendly = Boolean.parseBoolean(cbPetFriendly.getSelectedItem().toString());
-                    int ocena = Integer.parseInt(cbOcena.getSelectedItem().toString());
 
                     if(voznja != null) {
                         if (vozac.getAutomobil().getIdVozila() == 0) {
@@ -150,7 +145,6 @@ public class DodeliVoznju extends JFrame {
                             voznja.setTipPorudzbine(tipPorudzbine);
                             voznja.setNovijaVozila(novijaVozila);
                             voznja.setPetFriendly(petFriendly);
-                            voznja.setOcenaVoznje(ocena);
                             JOptionPane.showMessageDialog(null, "Uspesno dodeljen vozac!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
                         }
                     }
@@ -182,7 +176,6 @@ public class DodeliVoznju extends JFrame {
         cbTipPorudzbine.setSelectedItem(voznja.getTipPorudzbine());
         cbNovijaVozila.setSelectedItem(voznja.isNovijaVozila());
         cbPetFriendly.setSelectedItem(voznja.isPetFriendly());
-        cbOcena.setSelectedItem(voznja.getOcenaVoznje());
     }
 
     private boolean validacija() {

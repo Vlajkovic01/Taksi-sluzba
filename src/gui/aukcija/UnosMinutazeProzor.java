@@ -102,7 +102,7 @@ public class UnosMinutazeProzor extends JFrame {
                     }
 
                     brojVoznjiSuma = (1 / brojVoznjiSuma) * 3;
-                    double vremeDolaskaSuma = (1/minutaza) * 5;
+                    double vremeDolaskaSuma = (1/minutaza) * 6;
                     int trenutnaGodina = Calendar.getInstance().get(Calendar.YEAR);
                     double starostVozilaSuma = (Double.parseDouble(String.valueOf(vozac.getAutomobil().getGodProizvodnje())) / trenutnaGodina) * 2 ;
                     double prosecnaOcena = (vozac.getProsecnaOcena() / 5) * 4;
