@@ -8,7 +8,7 @@ import sluzba.Sluzba;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import strukture.ArrayList;
+import strukture.ArrayList.ArrayList;
 
 public class GodisnjiIzvestajProzor extends JFrame {
 

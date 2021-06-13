@@ -11,5 +11,4 @@
 11|20-05-2021/21:26|Sabac|Bogatic|2|1|50.0|60.0|ZAVRSENA|TELEFONOM|false|true|false|4
 12|12-06-2021/10:17|Test|Test|2|3|0.0|0.0|DODELJENA|TELEFONOM|false|true|true|0
 13|12-06-2021/10:17|Test1|Test1|2|3|0.0|0.0|DODELJENA|TELEFONOM|false|true|false|0
-14|12-06-2021/10:17|Test2|Test2|2|0|0.0|0.0|KREIRANA|TELEFONOM|false|false|true|0
-15|12-06-2021/10:17|Test3|Test3|2|0|0.0|0.0|KREIRANA|TELEFONOM|false|false|false|0
+14|13-06-2021/10:41|test4|test|2|0|0.0|0.0|KREIRANA|TELEFONOM|false|true|true|0

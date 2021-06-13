@@ -1,4 +1,4 @@
-package strukture;
+package strukture.ArrayList;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;

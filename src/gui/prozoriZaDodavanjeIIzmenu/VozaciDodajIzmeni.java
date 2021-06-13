@@ -13,7 +13,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import strukture.ArrayList;
+import strukture.ArrayList.ArrayList;
 
 public class VozaciDodajIzmeni extends JFrame {
 

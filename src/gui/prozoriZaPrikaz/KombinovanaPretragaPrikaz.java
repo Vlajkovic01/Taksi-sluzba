@@ -7,7 +7,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import strukture.ArrayList;
+import strukture.ArrayList.ArrayList;
 
 public class KombinovanaPretragaPrikaz extends JFrame {
 

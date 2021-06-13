@@ -21,6 +21,6 @@ public class SluzbaMain {
         sluzba.ucitajAukcije();
 
         LoginProzor loginProzor = new LoginProzor(sluzba);
-        loginProzor.setVisible(true); //postavljeni su korIme i lozinka radi brzeg logovanja i testiranja, u loginProzor fajlu izmeniti liniju 48 i 49
+        loginProzor.setVisible(true);
     }
 }

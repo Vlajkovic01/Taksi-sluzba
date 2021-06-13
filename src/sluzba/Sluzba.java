@@ -279,7 +279,7 @@ public class Sluzba {
                 boolean izbrisan = Boolean.parseBoolean(split[9]);
                 String idString = split[10];
                 int id = Integer.parseInt(idString);
-                strukture.ArrayList<Voznja> voznjeMusterije = new strukture.ArrayList<Voznja>();
+                strukture.ArrayList.ArrayList<Voznja> voznjeMusterije = new strukture.ArrayList.ArrayList<Voznja>();
                 Musterije musterija = new Musterije(korisnickoIme,lozinka,ime,prezime,jmbg,adresa,pol,telefon,tipKorisnika,izbrisan,id,voznjeMusterije);
                 musterije.add(musterija);
                 // nidzo|12345|Nikola|Panic|123123123|Nikole Tesle, Beograd|MUSKO|061123123|MUSTERIJA|false|101
@@ -337,7 +337,7 @@ public class Sluzba {
                 String idVozilaString = split[13];
                 int idVozila = Integer.parseInt(idVozilaString);
                 Automobil automobil = pronadjiAutomobil(idVozila);
-                strukture.ArrayList<Voznja> voznjeVozaca = new strukture.ArrayList<Voznja>();
+                strukture.ArrayList.ArrayList<Voznja> voznjeVozaca = new strukture.ArrayList.ArrayList<Voznja>();
                 double prosecnaOcena = Double.parseDouble(split[14]);
                 Vozaci vozac = new Vozaci(korisnickoIme,lozinka,ime,prezime,jmbg,adresa,pol,telefon,tipKorisnika,izbrisan,id,plata,brClanskeKarte,automobil,voznjeVozaca, prosecnaOcena);
                 vozaci.add(vozac);
@@ -570,8 +570,8 @@ public class Sluzba {
     }
 
     // mora barem jedan parametar od 4 da se unese, svaki uneti mora biti tacan, dovoljno je i jedno slovo uneti ili deo reci
-    public strukture.ArrayList<Vozaci> kombinovanaPretragaVozaca(String ime, String prezime, String plata, String automobil) {
-        strukture.ArrayList<Vozaci> pronadjeniVozaci = new strukture.ArrayList<>();
+    public strukture.ArrayList.ArrayList<Vozaci> kombinovanaPretragaVozaca(String ime, String prezime, String plata, String automobil) {
+        strukture.ArrayList.ArrayList<Vozaci> pronadjeniVozaci = new strukture.ArrayList.ArrayList<>();
         for (Vozaci vozac : vozaci) {
             if (!vozac.isIzbrisan()) {
                 if (!vozac.getIme().toLowerCase().contains(ime.toLowerCase()) && !ime.equals("")) {
@@ -613,8 +613,8 @@ public class Sluzba {
     //-------------------------------Izvestaji--------------------------------------//
 
     // logika za dnevni, mesecni, godisnji izvestaj, poredi se deo stringa u txt fajlu i prosledjen datum
-    public strukture.ArrayList<Voznja> izvestaj(String datum, int pocetak, int kraj) {
-        strukture.ArrayList<Voznja> pronadjeneVoznje = new strukture.ArrayList<>();
+    public strukture.ArrayList.ArrayList<Voznja> izvestaj(String datum, int pocetak, int kraj) {
+        strukture.ArrayList.ArrayList<Voznja> pronadjeneVoznje = new strukture.ArrayList.ArrayList<>();
         for (Voznja voznja : voznje) {
             if (!voznja.isIzbrisana() && voznja.getStatusVoznje() == StatusVoznje.ZAVRSENA) {
                 if (voznja.getDatumIVremePorudzbine().substring(pocetak,kraj).equals(datum)) {
@@ -626,8 +626,8 @@ public class Sluzba {
     }
 
     // isto kao za ostale izvestaje, iskoriceno LocalDate plusDays
-    public strukture.ArrayList<Voznja> nedeljniIzvestaj(String datum) {
-        strukture.ArrayList<Voznja> pronadjeneVoznje = new strukture.ArrayList<Voznja>();
+    public strukture.ArrayList.ArrayList<Voznja> nedeljniIzvestaj(String datum) {
+        strukture.ArrayList.ArrayList<Voznja> pronadjeneVoznje = new strukture.ArrayList.ArrayList<Voznja>();
         for (int i = 0 ; i < 8 ; i++) {
 
             LocalDate date = LocalDate.of(Integer.parseInt(datum.substring(6,10)),Integer.parseInt(datum.substring(3,5)),Integer.parseInt(datum.substring(0,2)));

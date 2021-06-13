@@ -4,7 +4,7 @@ import entiteti.Musterije;
 import entiteti.Voznja;
 import enumeracije.StatusVoznje;
 import sluzba.Sluzba;
-import strukture.ArrayList;
+import strukture.ArrayList.ArrayList;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;

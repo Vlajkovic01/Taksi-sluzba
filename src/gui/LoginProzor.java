@@ -45,8 +45,6 @@ public class LoginProzor extends JFrame {
         add(btnPrijava, "split 2");
         add(btnOtkazi);
 
-        txtKorisnickoIme.setText("stefo");
-        pfLozinka.setText("12345");      // izbrisati ovu liniju i prethodnu, sluzi samo da bi se brze logovali.
         getRootPane().setDefaultButton(btnPrijava);
     }
 

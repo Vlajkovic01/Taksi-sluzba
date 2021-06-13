@@ -3,7 +3,7 @@ package entiteti;
 import enumeracije.Pol;
 import enumeracije.TipKorisnika;
 
-import strukture.ArrayList;
+import strukture.ArrayList.ArrayList;
 
 public class Vozaci extends Korisnici {
     protected int id;

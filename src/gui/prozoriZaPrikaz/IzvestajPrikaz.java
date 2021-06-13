@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.HashSet;
 
-import strukture.ArrayList;
+import strukture.ArrayList.ArrayList;
 
 public class IzvestajPrikaz extends JFrame {
 
@@ -18,7 +18,7 @@ public class IzvestajPrikaz extends JFrame {
     private DefaultTableModel tableModel;
     private JTable voznjeTabela;
     private Sluzba taxiSluzba;
-    private strukture.ArrayList<Voznja> pronadjenaVoznja;
+    private ArrayList<Voznja> pronadjenaVoznja;
 
     public IzvestajPrikaz(Sluzba taxiSluzba, ArrayList<Voznja> pronadjenaVoznja) {
         this.taxiSluzba = taxiSluzba;
